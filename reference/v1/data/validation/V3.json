@@ -1,0 +1,9 @@
+{
+  "tolerance_deg": 0.2,
+  "spice_el_deg": 10.70351540194955,
+  "spice_az_deg": 88.80549724407823,
+  "horizons_el_deg": 10.703314286,
+  "horizons_az_deg": 88.805495359,
+  "published_el_deg": 10.8,
+  "published_source": "planned landing Sun elevation, NASA SP-4029 Apollo by the Numbers"
+}

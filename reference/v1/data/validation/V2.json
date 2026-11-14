@@ -1,0 +1,20 @@
+{
+  "tolerance_deg": 0.005,
+  "stats": {
+    "SUN": {
+      "pairs": 1000,
+      "max_deg": 6.088940325001867e-07,
+      "rms_deg": 3.740987101363839e-07,
+      "max_abs_d_el_deg": 4.923362837416789e-07,
+      "max_abs_d_az_cos_el_deg": 4.734238968282428e-07
+    },
+    "EARTH": {
+      "pairs": 1000,
+      "max_deg": 1.01711152055294e-06,
+      "rms_deg": 5.83202933206462e-07,
+      "max_abs_d_el_deg": 9.452140830035205e-07,
+      "max_abs_d_az_cos_el_deg": 9.585717207864651e-07
+    }
+  },
+  "note": "Horizons az/el are printed to 1e-6 deg; SPICE uses DE440s + moon_pa_de440 (MOON_ME), Horizons DE441 + MEAN_ME."
+}

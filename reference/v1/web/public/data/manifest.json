@@ -1,0 +1,66 @@
+{
+ "built_utc": "2026-11-14T18:38:43+00:00",
+ "git_commit": "cc05566",
+ "kernels": [
+  "naif0012.tls",
+  "pck00011.tpc",
+  "moon_pa_de440_200625.bpc",
+  "moon_de440_250416.tf",
+  "de440s.bsp"
+ ],
+ "kernel_hashes": {
+  "de440s.bsp": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+  "earth_1962_260806_2126_combined.bpc": "cc87ad1a495cf598800ba403763d350f087ac0b97da9fec603278a3864c6a53e",
+  "moon_de440_250416.tf": "a47c71e9c9f33796bdafb2c9d69a7ee447b6016ecad80f71cd6f3e479f9cf768",
+  "moon_pa_de440_200625.bpc": "60cd55aa401ea2ea97360636f567554bfe4e37bb829f901b4460a455dfaf783f",
+  "naif0012.tls": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b",
+  "pck00011.tpc": "3dff7b1dbeceaa01f25467767d3fa25816051c85d162d1edf04acb310ee28bb1"
+ },
+ "dem_products": [
+  {
+   "file": "LDEM_60S_240MPP_ADJ.TIF",
+   "sha256": "3f9663257b63022f2b0d5a623482ff3cadddceb91594a4e4ca14a94d8cec8b34",
+   "url": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_60S_240MPP_ADJ.TIF"
+  },
+  {
+   "file": "LDEM_80S_80MPP_ADJ.TIF",
+   "sha256": "82030dcbdd7c4bb0c7d858e9b4b293b9f2cda5a543ba31ec0f42784bd6beee5a",
+   "url": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_80MPP_ADJ.TIF"
+  },
+  {
+   "file": "LDEM_80S_80MPP_ADJ_ERR.TIF",
+   "sha256": "e89306914bb209143f61ba66d341703d75221339424b774c6a1eb3c6c370ffc6",
+   "url": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_80MPP_ADJ_ERR.TIF"
+  },
+  {
+   "file": "LDEM_80S_80MPP_ADJ_HILL.TIF",
+   "sha256": "f669073ea6bf05ae97bce897e5e3c08f2ee9097a663c8cd3a758db296f373ae2",
+   "url": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_80MPP_ADJ_HILL.TIF"
+  }
+ ],
+ "ephemeris_span": [
+  "2026-01-01T00:00:00Z",
+  "2031-01-03T00:00:00Z"
+ ],
+ "mask": {
+  "n_az": 1440,
+  "s_max_km": 300.0,
+  "heights_m": [
+   2,
+   10
+  ],
+  "ray_step": "half a pixel",
+  "coarse_err_assumption_m": 3.0
+ },
+ "browser_dem": {
+  "n": 2533,
+  "x0": -304080.0,
+  "y0": 304080.0,
+  "px": 240.0,
+  "scale": 0.5,
+  "err": 2.7,
+  "source": "LDEM_60S_240MPP_ADJ.TIF (cropped to the 80S cap)",
+  "err_definition": "RMS height difference vs the 80 m DEM at 200k random points (measured)"
+ },
+ "validation": {}
+}

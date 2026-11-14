@@ -1,0 +1,35 @@
+{
+ "epoch_utc": "2026-01-01T00:00:00Z",
+ "epoch_unix_ms": 1767225600000,
+ "seg_seconds": 345600.0,
+ "degree": 15,
+ "n_segments": 457,
+ "targets": [
+  "SUN",
+  "EARTH"
+ ],
+ "frame": "MOON_ME",
+ "abcorr": "LT+S",
+ "observer": "MOON (centre)",
+ "kernels": [
+  "naif0012.tls",
+  "pck00011.tpc",
+  "moon_pa_de440_200625.bpc",
+  "moon_de440_250416.tf",
+  "de440s.bsp",
+  "earth_1962_260806_2126_combined.bpc"
+ ],
+ "max_error_deg": {
+  "SUN": {
+   "max_deg": 2.9962469225721365e-09,
+   "rms_deg": 2.485910899278521e-10,
+   "max_deg_from_surface": 2.9962477804716955e-09
+  },
+  "EARTH": {
+   "max_deg": 3.8934481456798105e-09,
+   "rms_deg": 2.984760202215118e-10,
+   "max_deg_from_surface": 3.8960059357487915e-09
+  }
+ },
+ "layout": "float64 little-endian [target][segment][axis xyz][coef 0..degree]"
+}
