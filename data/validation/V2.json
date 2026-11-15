@@ -1,0 +1,21 @@
+{
+ "id": "V2",
+ "test": "Runtime ephemeris (SPICE DE440 piece) + site geometry vs JPL Horizons apparent az/el from lunar-surface sites, 2013 cached responses (DE441, MEAN_ME, airless), re-run offline",
+ "criterion": "<= 0.005 deg",
+ "measured": {
+  "SUN": {
+   "max_deg": 0.0000014787793334710982,
+   "rms_deg": 5.114431375951989e-7,
+   "n": 1006
+  },
+  "EARTH": {
+   "max_deg": 0.00002664539873259316,
+   "rms_deg": 0.000015723073571747864,
+   "n": 1006
+  }
+ },
+ "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:02:20.999Z",
+ "generator": "vitest (web/src/core)"
+}

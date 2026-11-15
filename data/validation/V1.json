@@ -1,0 +1,13 @@
+{
+ "id": "V1",
+ "test": "Round trip lon/lat -> polar stereographic -> lon/lat -> map, and map -> DEM pixel -> map, 5000 random points 80-90 S",
+ "criterion": "<= 1 m and <= 0.5 px",
+ "measured": {
+  "max_m": 4.3679992143890217e-10,
+  "max_px": 4.3723063760068295e-13
+ },
+ "summary": "max 4.4e-10 m, 4.4e-13 px",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:02:22.224Z",
+ "generator": "vitest (web/src/core)"
+}

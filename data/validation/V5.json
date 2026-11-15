@@ -1,0 +1,15 @@
+{
+ "id": "V5",
+ "test": "Azimuth wrap for a site on the 180° meridian (89.5°S) with a hill across north; rays leaving a 80 km grid",
+ "criterion": "no seam (step at 0° no larger than elsewhere); voids flagged, not fatal",
+ "measured": {
+  "seam_deg": 0.0007016658782958984,
+  "max_neighbour_step_deg": 0.038333892822265625,
+  "rays_leaving_data": 720,
+  "void_fraction": 0.514529549481144
+ },
+ "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:02:22.099Z",
+ "generator": "vitest (web/src/core)"
+}

@@ -1,0 +1,845 @@
+{
+ "generated_utc": "2026-11-15T01:02:56.876Z",
+ "objectives": [
+  {
+   "id": "C1",
+   "objective": "Curated sites + custom coordinates",
+   "acceptance": "≥ 25 sourced sites; custom by click, search and form",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:sites catalogue",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:custom site by form",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:custom site by map click",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:search",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "objective": "Side-by-side comparison of 2–4 sites",
+   "acceptance": "overlaid sky plots, deltas, bars",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:compare",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C3",
+   "objective": "Dates and times across lunar days and seasons",
+   "acceptance": "picker, scrub, play, slip, year view",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:time controls",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C4",
+   "objective": "Sun and Earth relative to the horizon",
+   "acceptance": "sky plot + 3D directions + Street View",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:sky plot",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:street view",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C5",
+   "objective": "Time remaining before sunset and Earthset",
+   "acceptance": "countdown cards with ±; V8",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:countdowns",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V8",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C6",
+   "objective": "Solar elevation prominent; sunlight duration; Earth windows",
+   "acceptance": "floating card + metrics",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:solar elevation card",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C7",
+   "objective": "Multiple visualisations",
+   "acceptance": "Globe, South pole, Site 3D, Street View, timeline",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:views",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C8",
+   "objective": "Temporal dynamics",
+   "acceptance": "animated lighting + timeline over a lunar day",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:time controls",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:play",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C9",
+   "objective": "Accessible to planners, educators, public",
+   "acceptance": "modes, tour, glossary, FR, V13",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:learn mode",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:french",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:axe",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C10",
+   "objective": "Real terrain horizon, no atmosphere",
+   "acceptance": "V4–V7 pass, method page",
+   "status": "in progress",
+   "evidence": [
+    {
+     "ref": "val:V4",
+     "result": "pass"
+    },
+    {
+     "ref": "val:V5",
+     "result": "pass"
+    },
+    {
+     "ref": "val:V6",
+     "result": "pass"
+    },
+    {
+     "ref": "doc:docs/METHODS.md",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C11",
+   "objective": "Libration and orbital variations shown",
+   "acceptance": "libration loop on sky plot; method page",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:libration loop",
+     "result": "missing"
+    },
+    {
+     "ref": "vt:libration",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C12",
+   "objective": "Why small changes have large impacts",
+   "acceptance": "Who-blocks-the-Sun, compass, porkchop",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:who blocks",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:compass",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C13",
+   "objective": "Thermal conditions for equipment (proxy)",
+   "acceptance": "§7.14 in Workbench, Top 3 cards, Brief; unit tests",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:thermal",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:thermal",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "C14",
+   "objective": "Site-date scenario comparison and seasons",
+   "acceptance": "2–4 scenarios incl. same site/different dates; season view",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:scenario compare",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:season",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P1",
+   "objective": "Golden path ≤ 10 s, brief ≤ 60 s",
+   "acceptance": "e2e timing",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:golden path",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P2",
+   "objective": "Moon Maps: search, layers panel, place card, measure, share",
+   "acceptance": "e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:search",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:layers panel",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:place card",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:share link",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P3",
+   "objective": "≥ 8 value-added layers with legends and probe",
+   "acceptance": "e2e + V7",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:layers panel",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V7",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P4",
+   "objective": "Top 3 + crew choice + Mission Brief",
+   "acceptance": "V17 + e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V17",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:golden path",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P5",
+   "objective": "Landing safety: slope, roughness, tip-over, ellipse",
+   "acceptance": "V15, V16 + e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V15",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V16",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:safety",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P6",
+   "objective": "Solar-efficiency optimizers + headline + survival timeline",
+   "acceptance": "V10 + e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V10",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:energy",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P7",
+   "objective": "Earth connectivity: DSN + custom stations, DTE, pointing, FSPL, interference",
+   "acceptance": "V11 + e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V11",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:connectivity",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P8",
+   "objective": "Moon Street View",
+   "acceptance": "e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:street view",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P9",
+   "objective": "Moon Directions",
+   "acceptance": "V20 + e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V20",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:directions",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P10",
+   "objective": "Site 3D with true-Sun shadows",
+   "acceptance": "e2e screenshot, ≥ 30 fps",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:site 3d",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P11",
+   "objective": "Mission replay (2023–2025 landings)",
+   "acceptance": "V18, V19",
+   "status": "in progress",
+   "evidence": [
+    {
+     "ref": "val:V18",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V19",
+     "result": "pass"
+    },
+    {
+     "ref": "e2e:mission replay",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P12",
+   "objective": "Resource integrations of §4.3 implemented or justified",
+   "acceptance": "RESOURCES.md complete",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "doc:docs/RESOURCES.md",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P13",
+   "objective": "Public URL on GitHub Pages",
+   "acceptance": "URL returns 200, golden path passes on it",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:DEPLOY",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P14",
+   "objective": "Trust page, TRACEABILITY, product docs, demo script, pitch, submission",
+   "acceptance": "files present and current",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:trust page",
+     "result": "missing"
+    },
+    {
+     "ref": "doc:docs/TRACEABILITY.md",
+     "result": "missing"
+    },
+    {
+     "ref": "doc:docs/PRODUCT.md",
+     "result": "missing"
+    },
+    {
+     "ref": "doc:docs/DEMO_SCRIPT.md",
+     "result": "missing"
+    },
+    {
+     "ref": "doc:docs/PITCH.md",
+     "result": "missing"
+    },
+    {
+     "ref": "doc:docs/SUBMISSION.md",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P15",
+   "objective": "Installable, offline-capable PWA",
+   "acceptance": "offline reload works in e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:offline",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P16",
+   "objective": "Science and Engineering constraint panels feeding Top 3 and Brief",
+   "acceptance": "e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:constraints",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "P17",
+   "objective": "\"Land it!\" educational game (optional)",
+   "acceptance": "e2e",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:land it",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "O1",
+   "objective": "Browser ephemeris vs v1 SPICE az/el fixture (300 rows × 2 bodies)",
+   "acceptance": "≤ 0.001°",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "vt:O1",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "O2",
+   "objective": "New horizon masks vs v1 masks, curated south-pole sites (2 m, 10 m)",
+   "acceptance": "≤ 0.05° (report max, explain)",
+   "status": "blocked",
+   "evidence": [
+    {
+     "ref": "blocked:LOLA 80 m product unreachable (D7)",
+     "result": "blocked"
+    },
+    {
+     "ref": "fallback O2b + report val O2_240m",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "O2b",
+   "objective": "New horizon cascade vs v1 algorithm on the same 240 m DEM",
+   "acceptance": "≤ 0.05°",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "vt:O2b",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "V1",
+   "objective": "Round trip lat/lon ↔ Cartesian ↔ DEM pixel ↔ map pixel",
+   "acceptance": "≤ 1 m and ≤ 0.5 px",
+   "status": "in progress",
+   "evidence": [
+    {
+     "ref": "vt:V1",
+     "result": "pass"
+    },
+    {
+     "ref": "py:test_v1",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V2",
+   "objective": "Ephemeris vs Horizons az/el (cached responses)",
+   "acceptance": "≤ 0.005°",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "val:V2",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "V3",
+   "objective": "Apollo 11 touchdown Sun elevation vs Horizons and a published source",
+   "acceptance": "≤ 0.2°",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V3",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V4",
+   "objective": "Synthetic terrain: sphere dip; Gaussian ring; cone",
+   "acceptance": "≤ 1e-4°",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "vt:V4",
+     "result": "pass"
+    },
+    {
+     "ref": "val:V4",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "V5",
+   "objective": "Azimuth wrap and edge-of-DEM cases",
+   "acceptance": "no seam; voids flagged",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "vt:V5",
+     "result": "pass"
+    },
+    {
+     "ref": "val:V5",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "V6",
+   "objective": "Convergence: halve Δα and step, double s_max",
+   "acceptance": "≤ 0.02°",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "val:V6",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "V7",
+   "objective": "Candidate-grid masks vs naive march at the same azimuths",
+   "acceptance": "≤ 0.01°",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V7",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V7b",
+   "objective": "360-azimuth sampling vs 1440-azimuth masks (sunlit time)",
+   "acceptance": "≤ 2 percentage points",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V7b",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V8",
+   "objective": "Event times vs brute-force 1 s scan",
+   "acceptance": "≤ 5 s",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V8",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V8",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V9",
+   "objective": "Sun-disk occlusion vs analytic circle segment",
+   "acceptance": "≤ 1e-4",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V9",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V9",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V10",
+   "objective": "Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d",
+   "acceptance": "≤ 0.1 %",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V10",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V10",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V11",
+   "objective": "Moon elevation at DSN sites vs Horizons, ≥ 200 instants",
+   "acceptance": "≤ 0.05°",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V11",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V12",
+   "objective": "Hero sites vs QuickMap (documented screenshots)",
+   "acceptance": "qualitative",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V12",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V13",
+   "objective": "Front end: e2e golden path; axe critical = 0; Lighthouse; mobile",
+   "acceptance": "pass",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "e2e:golden path",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:axe",
+     "result": "missing"
+    },
+    {
+     "ref": "e2e:mobile",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V14",
+   "objective": "Clean clone → one command rebuilds artifacts with identical hashes",
+   "acceptance": "pass or documented",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V14",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V15",
+   "objective": "Plane fit on synthetic tilted planes and a cone",
+   "acceptance": "slope ≤ 0.01°, azimuth ≤ 0.1°",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V15",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V15",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V16",
+   "objective": "Tip-over analytic cases",
+   "acceptance": "exact to 1e-9",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V16",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V16",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V17",
+   "objective": "Top 3: determinism, constraints, diversity",
+   "acceptance": "pass",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V17",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V17",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V18",
+   "objective": "Mission replay vs published accounts (cited)",
+   "acceptance": "documented",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "val:V18",
+     "result": "missing"
+    }
+   ]
+  },
+  {
+   "id": "V19",
+   "objective": "Ephemeris 2017–2031 vs SPICE",
+   "acceptance": "≤ 0.001°",
+   "status": "met",
+   "evidence": [
+    {
+     "ref": "val:V19",
+     "result": "pass"
+    }
+   ]
+  },
+  {
+   "id": "V20",
+   "objective": "Moon Directions: A* vs Dijkstra; no forbidden cell",
+   "acceptance": "exact cost match",
+   "status": "todo",
+   "evidence": [
+    {
+     "ref": "vt:V20",
+     "result": "missing"
+    },
+    {
+     "ref": "val:V20",
+     "result": "missing"
+    }
+   ]
+  }
+ ]
+}

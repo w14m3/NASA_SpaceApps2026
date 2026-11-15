@@ -1,0 +1,14 @@
+{
+ "id": "O1",
+ "test": "Runtime ephemeris + topocentric geometry vs reference/v1 rigorous SPICE az/el fixture (300 site/time rows, Sun and Earth)",
+ "criterion": "<= 0.001 deg",
+ "measured": {
+  "max_angular_deg": 0.00002693111196810459,
+  "max_el_deg": 0.00002693459853464475,
+  "rows": 300
+ },
+ "summary": "max 2.7e-5 deg",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:02:20.986Z",
+ "generator": "vitest (web/src/core)"
+}

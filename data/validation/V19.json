@@ -1,0 +1,44 @@
+{
+ "id": "V19",
+ "test": "Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself",
+ "criterion": "<= 0.001 deg",
+ "measured": {
+  "de421_vs_spice_de440": {
+   "SUN": {
+    "max_deg": 1.5584987858300537e-05,
+    "rms_deg": 8.37719860783797e-06
+   },
+   "EARTH": {
+    "max_deg": 1.5162990854944584e-05,
+    "rms_deg": 1.0065471651007048e-05
+   }
+  },
+  "fit_de421": {
+   "SUN": {
+    "max_deg": 6.285179956739081e-09,
+    "rms_deg": 2.337653754012354e-09,
+    "n_check": 4000
+   },
+   "EARTH": {
+    "max_deg": 2.0673820828749378e-07,
+    "rms_deg": 5.135504777379783e-08,
+    "n_check": 4000
+   }
+  },
+  "fit_de440_v1": {
+   "SUN": {
+    "max_deg": 2.9962469225721365e-09,
+    "rms_deg": 2.485910899278521e-10,
+    "max_deg_from_surface": 2.9962477804716955e-09
+   },
+   "EARTH": {
+    "max_deg": 3.8934481456798105e-09,
+    "rms_deg": 2.984760202215118e-10,
+    "max_deg_from_surface": 3.8960059357487915e-09
+   }
+  }
+ },
+ "summary": "max 1.6e-05 deg (DE421 vs DE440 + fit)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T00:56:10+00:00"
+}

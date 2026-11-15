@@ -18,3 +18,15 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
 - **D4 — PA→ME composition order fixed by the oracle.** The DE421 PA→ME angles (67.92″, 78.56″, 0.30″ about axes
   3, 2, 1) are applied as the transpose of [a1]₃[a2]₂[a3]₁ (SPICE TKFRAME semantics). The other compositions disagree
   with the DE440 oracle by 0.029–0.058°, the chosen one by 1.6e-5°; recorded by `test_pa_to_me_convention`.
+- **D5 — Golden-section refinement of each horizon maximum.** After the march, the maximum is refined between the
+  neighbouring steps. On the same 240 m DEM the unrefined march reproduces the v1 algorithm exactly (O2b: 0.0000°);
+  refinement raises horizons by up to 0.097° at ridge kinks, toward the exact maximum of the bilinear surface (V4 cone
+  error 1.4e-8° with refinement). Production uses refinement.
+- **D6 — One horizon implementation (TypeScript) for the browser and the build scripts.** v1 kept a Python (numba)
+  and a TypeScript port "in step" by hand. Here the candidate grids and layers are built by Node scripts that import
+  `web/src/core`, so the numbers shown live and precomputed come from the same code. Python stays for the ephemeris
+  (ERFA/DE421) and its tests.
+- **D7 — O2 proper is blocked; curated south-pole sites keep the v1 masks.** The 80 m LOLA product is unreachable
+  here. O2b validates the algorithm on the same DEM; the report `O2_240m` shows the 240 m vs 80 m-based horizons
+  differ by up to 3.1° at 10 m, so curated sites use the validated v1 80 m masks and every 240 m result is labelled
+  "LOLA 240 m — screening resolution".

@@ -1,0 +1,24 @@
+{
+ "name": "LOLA 240 m",
+ "label": "LOLA 240 m (PGDA product 90, 80\u201390\u00b0S)",
+ "file": "dem240_80S.i16d.gz",
+ "encoding": "gzip of int16 little-endian row-wise deltas (first column absolute); NODATA -32768",
+ "nx": 2533,
+ "ny": 2533,
+ "x0": -304080.0,
+ "y0": 304080.0,
+ "px": 240.0,
+ "scale": 0.5,
+ "err": 2.7,
+ "err_definition": "RMS height difference vs the 80 m DEM at 200k random points (measured)",
+ "source": "LDEM_60S_240MPP_ADJ.TIF (LOLA, NASA GSFC PGDA product 90; Barker et al. 2023, PSJ 4, 183, doi:10.3847/PSJ/acf3e1), cropped to the 80\u00b0S cap and quantised to 0.5 m by reference/v1",
+ "crs": "south polar stereographic, sphere R = 1737.4 km, true scale at the pole, lon0 = 0 (IAU 30135)",
+ "frame_note": "LOLA heights are in MOON_ME of DE421; the DE421-DE440 ME difference is < 1 m at the surface",
+ "valid_fraction": 1.0,
+ "z_range_m": [
+  -7286.5,
+  7025.0
+ ],
+ "sha256_decoded_int16": "a33283041f903b0e71d5d5b24edec5dd23ac54b2aa63c45d6c0665059a5d8893",
+ "sha256_file": "ea8116d572e06c431245912076d23acd396d40b269e6af614927987a7643104d"
+}

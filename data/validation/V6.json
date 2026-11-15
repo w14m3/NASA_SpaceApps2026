@@ -1,0 +1,15 @@
+{
+ "id": "V6",
+ "test": "Convergence on LOLA 240 m terrain (4 sites, h = 10 m): 720 -> 1440 azimuths, ray step x0.5, s_max 300 -> 600 km",
+ "criterion": "<= 0.02 deg",
+ "measured": {
+  "connecting ridge": 0.010212421417236328,
+  "shackleton rim 004": 0.008653402328491211,
+  "IM-2 Athena": 0.0005131065845489502,
+  "Malapert M1": 0.0018472671508789062
+ },
+ "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:02:28.839Z",
+ "generator": "vitest (web/src/core)"
+}

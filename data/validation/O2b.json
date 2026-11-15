@@ -1,0 +1,31 @@
+{
+ "id": "O2b",
+ "test": "Oracle: new horizon march (refinement off) vs the reference/v1 browser algorithm on the same LOLA 240 m DEM (4 sites x 2 heights, 720 azimuths). The production setting adds a golden-section refinement of each maximum, which only raises the horizon toward the exact maximum of the bilinear surface (V4 cone); its largest effect is reported",
+ "criterion": "<= 0.05 deg",
+ "measured": {
+  "base_vs_v1_deg": {
+   "connecting ridge h=2": 0,
+   "connecting ridge h=10": 0,
+   "shackleton rim 004 h=2": 0,
+   "shackleton rim 004 h=10": 0,
+   "IM-2 Athena h=2": 0,
+   "IM-2 Athena h=10": 0,
+   "Malapert M1 h=2": 0,
+   "Malapert M1 h=10": 0
+  },
+  "refinement_raises_by_deg": {
+   "connecting ridge h=2": 0.025124311447143555,
+   "connecting ridge h=10": 0.03533935546875,
+   "shackleton rim 004 h=2": 0.0969088077545166,
+   "shackleton rim 004 h=10": 0.02502298355102539,
+   "IM-2 Athena h=2": 0.01278918981552124,
+   "IM-2 Athena h=10": 0.013013899326324463,
+   "Malapert M1 h=2": 0.018764257431030273,
+   "Malapert M1 h=10": 0.01652216911315918
+  }
+ },
+ "summary": "max 0.0000° (refinement adds up to 0.097°)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:02:34.217Z",
+ "generator": "vitest (web/src/core)"
+}
