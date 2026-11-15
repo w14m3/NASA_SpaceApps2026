@@ -1,0 +1,187 @@
+API VERSION: 1.2
+API SOURCE: NASA/JPL Horizons API
+
+
+
+*******************************************************************************
+Ephemeris / API_USER Sat Nov 14 10:04:07 2026 Pasadena, USA      / Horizons    
+*******************************************************************************
+Target body name: Earth (399)                     {source: DE441}
+Center body name: Moon (301)                      {source: DE441}
+Center-site name: (user defined site below)
+*******************************************************************************
+Start time      : A.D. 2026-Feb-14 00:30:30.0590 UT      
+Stop  time      : A.D. 2030-Dec-21 04:15:51.3524 UT      
+Step-size       : DISCRETE TIME-LIST
+*******************************************************************************
+Target pole/equ : ITRF93 (high precision)         {East-longitude positive}
+Target radii    : 6378.137, 6378.137, 6356.752 km {Equator_a, b, pole_c}       
+Center geodetic : 2.798005, -16.109377, 1.9818    {E-lon(deg),Lat(deg),Alt(km)}
+Center cylindric: 2.798005,1671.08281,-482.629556 {E-lon(deg),Dxy(km),Dz(km)}
+Center pole/equ : MEAN_ME (high precision)        {East-longitude positive}
+Center radii    : 1737.4, 1737.4, 1737.4 km       {Equator_a, b, pole_c}       
+Target primary  : Sun
+Vis. interferer : EARTH (R_eq= 6378.137) km       {source: DE441}
+Rel. light bend : Sun, EARTH                      {source: DE441}
+Rel. lght bnd GM: 1.3271E+11, 3.9860E+05 km^3/s^2                              
+Atmos refraction: NO (AIRLESS)
+RA format       : DEG
+Time format     : JD  
+Calendar mode   : Mixed Julian/Gregorian
+EOP file        : eop.261113.p270209                                           
+EOP coverage    : DATA-BASED 1962-JAN-20 TO 2026-NOV-13. PREDICTS-> 2027-FEB-08
+Units conversion: 1 au= 149597870.700 km, c= 299792.458 km/s, 1 day= 86400.0 s 
+Table cut-offs 1: Elevation (-90.0deg=NO ),Airmass     n.a.    , Daylight (NO )
+Table cut-offs 2: Solar elongation (  0.0,180.0=NO ),Local Hour Angle( 0.0=NO )
+Table cut-offs 3: RA/DEC angular rate (     0.0=NO )                           
+Table format    : Comma Separated Values (spreadsheet)
+***************************************************************************************************
+Date_________JDUT, , ,Azimuth_(a-app), Elevation_(a-app),  Ang-diam,             delta,     deldot,
+***************************************************************************************************
+$$SOE
+2461085.521181240, ,i,  343.773180678,      67.361880839,  6633.382,  0.00265159538554, -0.0399736,
+2461102.421985120,*,i,    6.836180352,      74.111355204,  6946.194,  0.00253219497768,  0.0423249,
+2461136.317774590,*,i,  354.549723387,      67.056560828,  6543.222,  0.00268812891888,  0.0182641,
+2461137.171124950,*,i,  351.980266125,      66.839621369,  6526.920,  0.00269484234023,  0.0087164,
+2461158.008115810,*,i,    9.820191293,      72.161776256,  6790.201,  0.00259036240753,  0.0440653,
+2461176.612132100, ,i,  328.371424162,      78.292837566,  7342.280,  0.00239560663321, -0.0314753,
+2461190.943787880,*,i,  357.480285535,      67.229704342,  6517.381,  0.00269878620093,  0.0135528,
+2461195.976033660,*,i,  339.342269571,      68.764290713,  6566.210,  0.00267871862962, -0.0297046,
+2461214.407782980,*,i,   11.088696798,      69.054171474,  6713.408,  0.00261999009596,  0.0560814,
+2461223.711533210,*,i,  339.971363168,      69.649205080,  6585.061,  0.00267105116061, -0.0288458,
+2461338.080513700,*,i,  323.686526351,      75.636218433,  7036.097,  0.00249984327153, -0.0574618,
+2461388.664961760, ,i,  335.541611311,      71.669489987,  6559.687,  0.00268138202069, -0.0306120,
+2461468.874838400, ,i,  349.893439585,      71.015863137,  6530.832,  0.00269322837620, -0.0139681,
+2461503.928801670, ,i,  321.244352987,      77.707077731,  6983.267,  0.00251875315113, -0.0371863,
+2461544.851165040,*,i,    5.026418480,      67.138780324,  6772.261,  0.00259722353374,  0.0396605,
+2461568.229328150,*,i,    7.978269014,      69.234961063,  7023.669,  0.00250426605891,  0.0504618,
+2461570.951245920,*,i,    8.252517883,      67.058716205,  6814.453,  0.00258114431156,  0.0454162,
+2461688.005819400,*,i,  354.591349055,      73.629216376,  6532.313,  0.00269261757009,  0.0020298,
+2461698.766578680,*,i,  331.405215246,      76.789707793,  7039.590,  0.00249860277319, -0.0272685,
+2461724.038562790,*,i,  324.101954260,      77.736829328,  7005.874,  0.00251062635494, -0.0417495,
+2461825.937739100, ,i,  349.692614079,      76.244478458,  6499.261,  0.00270630978476,  0.0017285,
+2461871.870285650,*,i,    4.476182229,      67.214953652,  7198.489,  0.00244345449262,  0.0477996,
+2461890.367925540, ,i,  328.228564068,      74.854407510,  6949.544,  0.00253097461696, -0.0367794,
+2461985.945078560,*,i,    9.174258961,      71.848690015,  6708.198,  0.00262202493210,  0.0389799,
+2462062.556229040, ,i,  359.184093343,      67.304457991,  7342.358,  0.00239558137900,  0.0215448,
+2462066.284110680, ,i,   13.613727567,      70.088289647,  7015.088,  0.00250732917939,  0.0708914,
+2462100.153819700,*,i,  359.129036076,      79.358602016,  6548.406,  0.00268600104219,  0.0199396,
+2462130.258657050,*,i,  336.838836904,      79.920548573,  6543.245,  0.00268811928681, -0.0134492,
+2462151.508196840, ,i,    6.976216278,      75.476116053,  6767.948,  0.00259887867828,  0.0426099,
+2462191.206572140,*,i,  324.270293701,      72.170056833,  6867.841,  0.00256108111847, -0.0710474,
+2462197.752337290,*,i,  353.994688814,      67.156232706,  7365.463,  0.00238806737279,  0.0102616,
+2462252.820285320,*,i,  346.048319481,      66.556623706,  7351.455,  0.00239261725154, -0.0283610,
+2462261.718977650,*,i,   17.792303771,      77.249447419,  6728.035,  0.00261429474285,  0.0607057,
+2462264.190190980, ,i,    8.509365942,      79.897448775,  6561.000,  0.00268084560834,  0.0312348,
+2462329.337877100, ,i,  335.970081887,      70.184173335,  6907.975,  0.00254620314491, -0.0447933,
+2462341.201077750,*,i,    6.133052950,      74.175213346,  7005.221,  0.00251086045993,  0.0351367,
+2462346.063727780,*,i,    6.380588858,      80.036646516,  6672.444,  0.00263607371391,  0.0433888,
+2462374.545232300,*,i,    0.675395001,      80.433406262,  6600.657,  0.00266474037763,  0.0311350,
+2462386.359940480, ,i,  338.277459945,      67.168078487,  7143.794,  0.00246216031748, -0.0558332,
+2462394.119174980, ,i,    9.911163126,      71.927149015,  7081.189,  0.00248392612557,  0.0498818,
+2462396.516389450,*,i,   14.803583187,      75.409913154,  6887.147,  0.00255390275957,  0.0490016,
+2462540.832807120, ,i,  357.862823625,      79.465784905,  6575.327,  0.00267500485833,  0.0277516,
+2462554.223885070,*,i,  348.727330841,      67.484789512,  7169.194,  0.00245343775797, -0.0069961,
+2462565.014530050, ,i,    9.328958706,      80.263753803,  6752.449,  0.00260484320546,  0.0415617,
+2462597.958896520, ,i,  344.937254743,      75.962464501,  6514.802,  0.00269985467167,  0.0035717,
+2462601.173161760, ,i,  335.271952047,      70.374038483,  6585.994,  0.00267067266283, -0.0365150,
+2462603.261417970,*,i,  333.268084597,      67.158023112,  6736.403,  0.00261104733975, -0.0610605,
+2462826.175892860, ,i,  335.528534108,      65.223633547,  6973.314,  0.00252234785520, -0.0735236,
+2462835.464911350, ,i,   20.612586881,      79.400056984,  7125.242,  0.00246857043586,  0.0638663,
+2462856.677677690, ,i,  335.808856664,      68.935473829,  7213.285,  0.00243844289492, -0.0605481,
+$$EOE
+***************************************************************************************************
+Column meaning:
+ 
+TIME
+
+  Times PRIOR to 1962 are UT1, a mean-solar time closely related to the
+prior but now-deprecated GMT. Times AFTER 1962 are in UTC, the current
+civil or "wall-clock" time-scale. UTC is kept within 0.9 seconds of UT1
+using integer leap-seconds for 1972 and later years.
+
+  Conversion from the internal Barycentric Dynamical Time (TDB) of solar
+system dynamics to the non-uniform civil UT time-scale requested for output
+has not been determined for UTC times after the next July or January 1st.
+Therefore, the last known leap-second is used as a constant over future
+intervals.
+
+  Time tags refer to the UT time-scale conversion from TDB on Earth
+regardless of observer location within the solar system, although clock
+rates may differ due to the local gravity field and no analog to "UT"
+may be defined for that location.
+
+  Any 'b' symbol in the 1st-column denotes a B.C. date. First-column blank
+(" ") denotes an A.D. date.
+ 
+CALENDAR SYSTEM
+
+  Mixed calendar mode was active such that calendar dates after AD 1582-Oct-15
+(if any) are in the modern Gregorian system. Dates prior to 1582-Oct-5 (if any)
+are in the Julian calendar system, which is automatically extended for dates
+prior to its adoption on 45-Jan-1 BC.  The Julian calendar is useful for
+matching historical dates. The Gregorian calendar more accurately corresponds
+to the Earth's orbital motion and seasons. A "Gregorian-only" calendar mode is
+available if such physical events are the primary interest.
+
+  NOTE: "n.a." in output means quantity "not available" at the print-time.
+ 
+SOLAR PRESENCE (OBSERVING SITE)
+  Time tag is followed by a blank, then a solar-presence symbol:
+
+       '*'  Daylight (solar upper-limb on or above apparent horizon)
+       ' '  Night OR body-centered ephemeris
+
+INTERFERING BODY PRESENCE (OBSERVING SITE)
+  The solar-presence symbol is immediately followed by an "interfering body"
+presence symbol.
+
+       'i'  Upper-limb of interfering body on or above apparent horizon
+       ' '  Upper-limb of interfering body below apparent horizon OR body
+              centered ephemeris.
+
+  An "interfering body" is the largest other body in the immediate
+planet/satellite system, potentially compromising visual observations due to
+its brightness. Any such body is identified in the print-out header.
+ 
+ 'Azimuth_(a-app), Elevation_(a-app),' =
+  Airless apparent azimuth and elevation of target center. Compensated
+for light-time, the gravitational deflection of light, stellar aberration,
+precession and nutation. Azimuth is measured clockwise from north:
+
+  North(0) -> East(90) -> South(180) -> West(270) -> North (360)
+
+Elevation angle is with respect to a plane perpendicular to the reference
+surface local zenith direction. TOPOCENTRIC ONLY.  Units: DEGREES
+ 
+ 'Ang-diam,' =
+   The equatorial angular width of the target body full disk, if it were fully
+illuminated and visible to the observer. If the target body diameter is unknown
+"n.a." is output.
+
+   Units: ARCSECONDS
+ 
+ 'delta,     deldot,' =
+   Apparent range ("delta", light-time aberrated) and range-rate ("delta-dot")
+of the target center relative to the observer. A positive "deldot" means the
+target center is moving away from the observer, negative indicates movement
+toward the observer.  Units: AU and KM/S
+
+Computations by ...
+
+    Solar System Dynamics Group, Horizons On-Line Ephemeris System
+    4800 Oak Grove Drive, Jet Propulsion Laboratory
+    Pasadena, CA  91109   USA
+
+    General site: https://ssd.jpl.nasa.gov/
+    Mailing list: https://ssd.jpl.nasa.gov/email_list.html
+    System news : https://ssd.jpl.nasa.gov/horizons/news.html
+    User Guide  : https://ssd.jpl.nasa.gov/horizons/manual.html
+    Connect     : browser        https://ssd.jpl.nasa.gov/horizons/app.html#/x
+                  API            https://ssd-api.jpl.nasa.gov/doc/horizons.html
+                  command-line   telnet ssd.jpl.nasa.gov 6775
+                  e-mail/batch   https://ssd.jpl.nasa.gov/ftp/ssd/horizons_batch.txt
+                  scripts        https://ssd.jpl.nasa.gov/ftp/ssd/SCRIPTS
+    Inquiries   : Jon.D.Giorgini@jpl.nasa.gov
+
+***************************************************************************************************

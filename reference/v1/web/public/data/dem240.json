@@ -1,0 +1,10 @@
+{
+ "n": 2533,
+ "x0": -304080.0,
+ "y0": 304080.0,
+ "px": 240.0,
+ "scale": 0.5,
+ "err": 2.7,
+ "source": "LDEM_60S_240MPP_ADJ.TIF (cropped to the 80S cap)",
+ "err_definition": "RMS height difference vs the 80 m DEM at 200k random points (measured)"
+}

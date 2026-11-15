@@ -1,0 +1,13 @@
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+*.part
+dist/
+data/dem/
+data/kernels/
+reference/v1/data/dem/
+reference/v1/data/kernels/
+web/public/cesium/
+reference/v1/web/public/cesium/
+data/cache/

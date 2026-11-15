@@ -1,0 +1,15 @@
+{
+  "tolerance_deg": 0.001,
+  "errors": {
+    "SUN": {
+      "max_deg": 2.717562897148203e-09,
+      "rms_deg": 2.612464980799596e-10,
+      "max_deg_from_surface": 2.717563489455533e-09
+    },
+    "EARTH": {
+      "max_deg": 3.886229097177993e-09,
+      "rms_deg": 3.177453511226487e-10,
+      "max_deg_from_surface": 3.888209434220379e-09
+    }
+  }
+}

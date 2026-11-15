@@ -1,0 +1,117 @@
+{
+ "generated_utc": "2026-11-14T18:39:52+00:00",
+ "checks": [
+  {
+   "id": "V1",
+   "test": "Round trip lat/lon ↔ Cartesian ↔ DEM pixel ↔ map coordinate (5,000 points, checked against PROJ)",
+   "tolerance": "≤ 1 m and ≤ 0.5 px",
+   "status": "pass",
+   "result": "max 1.0e-06 m, 3.1e-12 px"
+  },
+  {
+   "id": "V2",
+   "test": "SPICE vs JPL Horizons: Sun and Earth az/el from lunar surface sites (1000 + 1000 random site/time pairs, 2026–2031)",
+   "tolerance": "≤ 0.005°",
+   "status": "pass",
+   "result": "Sun max 6.1e-07° (RMS 3.7e-07°); Earth max 1.0e-06° (RMS 5.8e-07°)"
+  },
+  {
+   "id": "V3",
+   "test": "Apollo 11 touchdown (1969-07-20 20:17:40 UTC): Sun elevation vs Horizons and vs the published value",
+   "tolerance": "≤ 0.2°",
+   "status": "pass",
+   "result": "SPICE 10.704°, Horizons 10.703°, published 10.8° (planned landing Sun elevation, NASA SP-4029 Apollo by the Numbers)"
+  },
+  {
+   "id": "V4",
+   "test": "Synthetic terrain: smooth-sphere dip at 4 heights; Gaussian ring wall vs the exact profile",
+   "tolerance": "≤ 1e-4°",
+   "status": "pass",
+   "result": "sphere 1.0e-06°, ring 3.6e-05°"
+  },
+  {
+   "id": "V5",
+   "test": "Azimuth wrap at north, off-pole site on the 180° meridian; rays leaving the DEM are flagged, not fatal",
+   "tolerance": "no seam; ≤ 1e-3° vs exact terrain",
+   "status": "pass",
+   "result": "seam 8.4e-06°, max error 7.4e-05°"
+  },
+  {
+   "id": "V6",
+   "test": "Convergence on real LOLA terrain: halve azimuth spacing and ray step, double the search radius (300 → 600 km)",
+   "tolerance": "mask change ≤ 0.02°",
+   "status": "pass",
+   "result": "connecting_ridge_001 0.014°; shackleton_rim_004 0.016°; im2_athena 0.009°"
+  },
+  {
+   "id": "V7",
+   "test": "Raster sweep algorithm vs naive ray-marching",
+   "tolerance": "≤ 0.01°",
+   "status": "not run",
+   "result": "Raster layers are not built yet, so there is nothing to compare."
+  },
+  {
+   "id": "V8",
+   "test": "Rise/set event times vs brute-force 1 s scan (8 events, rugged synthetic mask, 12 days)",
+   "tolerance": "≤ 5 s",
+   "status": "pass",
+   "result": "max 0.48 s"
+  },
+  {
+   "id": "V9",
+   "test": "Sun-disk occlusion vs analytic circle-segment area",
+   "tolerance": "≤ 1e-4",
+   "status": "pass",
+   "result": "4.9e-07 (4000 strips); production setting, 200 strips: 3.0e-05"
+  },
+  {
+   "id": "V10",
+   "test": "Energy integrator vs closed form (clipped sinusoid sampled like the app's time series)",
+   "tolerance": "≤ 0.1 %",
+   "status": "pass",
+   "result": "relative error 6.1e-06"
+  },
+  {
+   "id": "V11",
+   "test": "Ground-station geometry (Moon elevation at DSN sites) vs Horizons",
+   "tolerance": "≤ 0.05°",
+   "status": "not run",
+   "result": "Ground-station windows are not implemented yet."
+  },
+  {
+   "id": "V12",
+   "test": "Hero sites vs Quickmap screenshots",
+   "tolerance": "qualitative",
+   "status": "not run",
+   "result": "Manual comparison not done."
+  },
+  {
+   "id": "V13",
+   "test": "Front end: headless end-to-end flow (pick site, compare, custom site, share link, 3D globe, phone width)",
+   "tolerance": "pass",
+   "status": "pass",
+   "result": "13 checks passed, 0 failed. axe and Lighthouse audits not run."
+  },
+  {
+   "id": "V14",
+   "test": "Clean clone → one command rebuilds artifacts with identical hashes",
+   "tolerance": "pass",
+   "status": "not run",
+   "result": "A rebuild script exists; hash identity on a second machine was not verified."
+  },
+  {
+   "id": "B1",
+   "test": "Browser ephemeris (Chebyshev, TypeScript) vs rigorous SPICE topocentric az/el (600 pairs)",
+   "tolerance": "≤ 0.001°",
+   "status": "pass",
+   "result": "max 2.7e-05°"
+  },
+  {
+   "id": "B2",
+   "test": "Moon-centre vector minus site vector vs SPICE constant-position observer",
+   "tolerance": "≤ 0.001°",
+   "status": "pass",
+   "result": "max 2.7e-05°"
+  }
+ ]
+}
