@@ -370,7 +370,9 @@ export function explain(o: CandidateScore, median: RankResult['median']): { reas
   if (Number.isFinite(o.distZeroKm)) cand.push({ key: 'reason.ice', v: { km: o.distZeroKm }, weight: o.distZeroKm < 2 ? 0.4 : 0 })
   const sorted = [...cand].sort((a, b) => b.weight - a.weight || a.key.localeCompare(b.key))
   const reasons = sorted.slice(0, 3)
-  const worst = sorted[sorted.length - 1]
+  // main risk: the weakest engineering metric relative to the feasible median (ice proximity is not a risk)
+  const eng = sorted.filter((r) => r.key !== 'reason.ice')
+  const worst = eng[eng.length - 1]
   let risk: Reason = { ...worst, key: worst.key.replace('reason.', 'risk.') }
   if (o.nearShare > 0.25) risk = { key: 'risk.nearfield', v: { pct: o.nearShare * 100 }, weight: 1 }
   return { reasons, risk }

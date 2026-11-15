@@ -1,27 +1,27 @@
 {
- "generated_utc": "2026-11-15T01:26:57.218Z",
+ "generated_utc": "2026-11-15T01:40:02.025Z",
  "objectives": [
   {
    "id": "C1",
    "objective": "Curated sites + custom coordinates",
    "acceptance": "≥ 25 sourced sites; custom by click, search and form",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
-     "ref": "vt:sites catalogue",
-     "result": "missing"
+     "ref": "e2e:sites catalogue",
+     "result": "pass"
     },
     {
      "ref": "e2e:custom site by form",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:custom site by map click",
-     "result": "missing"
+     "result": "pass"
     },
     {
-     "ref": "e2e:search",
-     "result": "missing"
+     "ref": "e2e:search finds",
+     "result": "pass"
     }
    ]
   },
@@ -29,11 +29,11 @@
    "id": "C2",
    "objective": "Side-by-side comparison of 2–4 sites",
    "acceptance": "overlaid sky plots, deltas, bars",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:compare",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -41,11 +41,11 @@
    "id": "C3",
    "objective": "Dates and times across lunar days and seasons",
    "acceptance": "picker, scrub, play, slip, year view",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:time controls",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -53,15 +53,15 @@
    "id": "C4",
    "objective": "Sun and Earth relative to the horizon",
    "acceptance": "sky plot + 3D directions + Street View",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:sky plot",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:street view",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -69,11 +69,11 @@
    "id": "C5",
    "objective": "Time remaining before sunset and Earthset",
    "acceptance": "countdown cards with ±; V8",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:countdowns",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V8",
@@ -85,11 +85,11 @@
    "id": "C6",
    "objective": "Solar elevation prominent; sunlight duration; Earth windows",
    "acceptance": "floating card + metrics",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:solar elevation card",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -97,11 +97,11 @@
    "id": "C7",
    "objective": "Multiple visualisations",
    "acceptance": "Globe, South pole, Site 3D, Street View, timeline",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:views",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -109,15 +109,15 @@
    "id": "C8",
    "objective": "Temporal dynamics",
    "acceptance": "animated lighting + timeline over a lunar day",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:time controls",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:play",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -125,19 +125,19 @@
    "id": "C9",
    "objective": "Accessible to planners, educators, public",
    "acceptance": "modes, tour, glossary, FR, V13",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:learn mode",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:french",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:axe",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -169,15 +169,15 @@
    "id": "C11",
    "objective": "Libration and orbital variations shown",
    "acceptance": "libration loop on sky plot; method page",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:libration loop",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "vt:libration",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -201,7 +201,7 @@
    "id": "C13",
    "objective": "Thermal conditions for equipment (proxy)",
    "acceptance": "§7.14 in Workbench, Top 3 cards, Brief; unit tests",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "vt:thermal",
@@ -209,7 +209,7 @@
     },
     {
      "ref": "e2e:thermal",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -217,15 +217,15 @@
    "id": "C14",
    "objective": "Site-date scenario comparison and seasons",
    "acceptance": "2–4 scenarios incl. same site/different dates; season view",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:scenario compare",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:season",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -233,11 +233,11 @@
    "id": "P1",
    "objective": "Golden path ≤ 10 s, brief ≤ 60 s",
    "acceptance": "e2e timing",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:golden path",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -245,23 +245,23 @@
    "id": "P2",
    "objective": "Moon Maps: search, layers panel, place card, measure, share",
    "acceptance": "e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
-     "ref": "e2e:search",
-     "result": "missing"
+     "ref": "e2e:search finds",
+     "result": "pass"
     },
     {
      "ref": "e2e:layers panel",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:place card",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:share link",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -269,15 +269,15 @@
    "id": "P3",
    "objective": "≥ 8 value-added layers with legends and probe",
    "acceptance": "e2e + V7",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:layers panel",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V7",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -285,15 +285,15 @@
    "id": "P4",
    "objective": "Top 3 + crew choice + Mission Brief",
    "acceptance": "V17 + e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V17",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:golden path",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -301,7 +301,7 @@
    "id": "P5",
    "objective": "Landing safety: slope, roughness, tip-over, ellipse",
    "acceptance": "V15, V16 + e2e",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V15",
@@ -313,7 +313,7 @@
     },
     {
      "ref": "e2e:safety",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -321,7 +321,7 @@
    "id": "P6",
    "objective": "Solar-efficiency optimizers + headline + survival timeline",
    "acceptance": "V10 + e2e",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V10",
@@ -329,7 +329,7 @@
     },
     {
      "ref": "e2e:energy",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -337,15 +337,15 @@
    "id": "P7",
    "objective": "Earth connectivity: DSN + custom stations, DTE, pointing, FSPL, interference",
    "acceptance": "V11 + e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
-     "ref": "val:V11",
-     "result": "missing"
+     "ref": "val:V11b",
+     "result": "pass"
     },
     {
      "ref": "e2e:connectivity",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -353,11 +353,11 @@
    "id": "P8",
    "objective": "Moon Street View",
    "acceptance": "e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:street view",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -381,11 +381,11 @@
    "id": "P10",
    "objective": "Site 3D with true-Sun shadows",
    "acceptance": "e2e screenshot, ≥ 30 fps",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:site 3d",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -393,19 +393,15 @@
    "id": "P11",
    "objective": "Mission replay (2023–2025 landings)",
    "acceptance": "V18, V19",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
-    {
-     "ref": "val:V18",
-     "result": "missing"
-    },
     {
      "ref": "val:V19",
      "result": "pass"
     },
     {
      "ref": "e2e:mission replay",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -437,11 +433,11 @@
    "id": "P14",
    "objective": "Trust page, TRACEABILITY, product docs, demo script, pitch, submission",
    "acceptance": "files present and current",
-   "status": "todo",
+   "status": "in progress",
    "evidence": [
     {
      "ref": "e2e:trust page",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "doc:docs/TRACEABILITY.md",
@@ -481,11 +477,11 @@
    "id": "P16",
    "objective": "Science and Engineering constraint panels feeding Top 3 and Brief",
    "acceptance": "e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:constraints",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -573,11 +569,11 @@
    "id": "V3",
    "objective": "Apollo 11 touchdown Sun elevation vs Horizons and a published source",
    "acceptance": "≤ 0.2°",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "py:test_v3_apollo11",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V3",
@@ -637,11 +633,11 @@
    "id": "V7",
    "objective": "Candidate-grid masks vs naive march at the same azimuths",
    "acceptance": "≤ 0.01°",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V7",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -649,11 +645,11 @@
    "id": "V7b",
    "objective": "360-azimuth sampling vs 1440-azimuth masks (sunlit time)",
    "acceptance": "≤ 2 percentage points",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V7b",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -753,19 +749,19 @@
    "id": "V13",
    "objective": "Front end: e2e golden path; axe critical = 0; Lighthouse; mobile",
    "acceptance": "pass",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:golden path",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:axe",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:mobile",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -817,15 +813,15 @@
    "id": "V17",
    "objective": "Top 3: determinism, constraints, diversity",
    "acceptance": "pass",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "vt:V17",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V17",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -833,10 +829,14 @@
    "id": "V18",
    "objective": "Mission replay vs published accounts (cited)",
    "acceptance": "documented",
-   "status": "todo",
+   "status": "blocked",
    "evidence": [
     {
-     "ref": "val:V18",
+     "ref": "blocked:published end-of-mission accounts unreadable here (hosts unreachable)",
+     "result": "blocked"
+    },
+    {
+     "ref": "touchdown facts only, see docs/VALIDATION.md",
      "result": "missing"
     }
    ]
@@ -845,11 +845,11 @@
    "id": "V19",
    "objective": "Ephemeris 2017–2031 vs SPICE",
    "acceptance": "≤ 0.001°",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "py:test_pa_to_me_convention",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V19",

@@ -11,7 +11,7 @@ import { fmtVars } from './LeftPanel'
 const LETTERS = ['A', 'B', 'C']
 
 export default function Brief() {
-  const { t, n } = useT()
+  const { t, n, lang } = useT()
   const top = useTop3()
   const chosen = useStore((s) => s.chosen)
   const region = useStore((s) => s.region)
@@ -56,11 +56,11 @@ export default function Brief() {
             </p>
             <ul>
               {c.reasons.map((rs) => (
-                <li key={rs.key}>{t(rs.key, fmtVars(rs.v))}</li>
+                <li key={rs.key}>{t(rs.key, fmtVars(rs.v, rs.key, lang))}</li>
               ))}
             </ul>
             <p>
-              <b>{t('top3.risk')}:</b> {t(c.risk.key, fmtVars(c.risk.v))}
+              <b>{t('top3.risk')}:</b> {t(c.risk.key, fmtVars(c.risk.v, c.risk.key, lang))}
             </p>
             <table className="metrics" data-testid="brief-table">
               <thead>

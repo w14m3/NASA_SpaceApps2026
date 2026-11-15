@@ -163,6 +163,7 @@ export function Timeline() {
           {fmtUtc(tNow)}
         </span>
       </div>
+      <div style={{ position: 'relative', minHeight: 0 }}>
       <canvas
         ref={ref}
         className="timeline"
@@ -190,6 +191,7 @@ export function Timeline() {
           e.preventDefault()
         }}
       />
+      </div>
       {site && !analysis && <span className="sr-only">{t('computing')}</span>}
     </>
   )

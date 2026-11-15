@@ -1,0 +1,14 @@
+{
+ "id": "V7b",
+ "test": "Sunlit time over 14 days (2026-12-11, h = 10 m): fast path (360-azimuth uint8 masks, straight-horizon 1 % criterion, hourly samples) vs full 1440-azimuth masks with exact 200-strip disk fractions and events, 200 seeded candidates (Connecting Ridge)",
+ "criterion": "<= 2 percentage points",
+ "measured": {
+  "max_pp": 0.9540376209077384,
+  "mean_pp": 0.13412293933686764,
+  "n": 200
+ },
+ "summary": "max 0.95 pp, mean 0.13 pp (n=200)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:35:47.862Z",
+ "generator": "vitest (web/src/core)"
+}

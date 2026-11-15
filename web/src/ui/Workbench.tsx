@@ -140,6 +140,7 @@ export function Workbench() {
             {t('wb.quickmap')} ↗
           </a>
         </div>
+        {site.curated?.landing_utc && <Replay landing={site.curated.landing_utc} name={site.name} />}
         {h !== site.h && <p className="hint">Mast {h} m requested; precomputed 80 m-based masks exist at 2 m and 10 m, nearest used.</p>}
       </div>
       <div className="section" aria-live="polite">
@@ -237,6 +238,27 @@ export function Workbench() {
           <Exports a={a} site={site} />
         </>
       )}
+    </div>
+  )
+}
+
+/** Mission replay (contract §6.4/§11, P11): jump to the published touchdown time and replay the first days. */
+function Replay({ landing, name }: { landing: string; name: string }) {
+  const hasTime = landing.length > 10
+  const ms = Date.parse(hasTime ? landing : landing + 'T12:00:00Z')
+  const inSpan = ms >= Date.UTC(2017, 0, 1) && ms < Date.UTC(2031, 0, 2)
+  return (
+    <div className="row wrap" style={{ marginTop: 6 }}>
+      <button
+        className="btn small"
+        disabled={!inSpan}
+        onClick={() => setState({ landing: Date.UTC(new Date(ms).getUTCFullYear(), new Date(ms).getUTCMonth(), new Date(ms).getUTCDate()), durDays: 14, t: ms, view: 'street', playing: false })}
+        data-testid="replay"
+        title={inSpan ? '' : 'Outside the 2017–2031 ephemeris span'}
+      >
+        ⟲ Replay landing ({landing.slice(0, 16).replace('T', ' ')}{hasTime ? ' UTC' : ', time not published: 12:00 UTC used'})
+      </button>
+      <span className="hint">{name}: touchdown time and position from the cited source; conditions are Sightline predictions.</span>
     </div>
   )
 }

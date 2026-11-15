@@ -115,18 +115,29 @@ export function useTop3() {
   const station = useStore((s) => s.station)
   const minEl = useStore((s) => s.minEl)
   const relax = useStore((s) => s.relax)
+  const cons = useStore((s) => s.cons)
   const { t0, t1 } = useWindow()
   const [progress, setProgress] = useState(0)
-  const key = `${region}|${h <= 6 ? 2 : 10}|${lander}|${persona}|${t0}|${t1}|${station}|${minEl}|${relax}`
+  const key = `${region}|${h <= 6 ? 2 : 10}|${lander}|${persona}|${t0}|${t1}|${station}|${minEl}|${relax}|${cons}`
   const res = useAsync(key, () => {
     if (!rankCache.has(key)) {
       if (rankCache.size > 12) rankCache.clear()
       setProgress(0)
-      rankCache.set(key, rpc.rank({ region, h: h <= 6 ? 2 : 10, t0, t1, lander, persona, stations: stationsFor({ station, minEl }), constraints: relaxed(relax) }, setProgress))
+      rankCache.set(key, rpc.rank({ region, h: h <= 6 ? 2 : 10, t0, t1, lander, persona, stations: stationsFor({ station, minEl }), constraints: { ...parseCons(cons), ...relaxed(relax) } }, setProgress))
     }
     return rankCache.get(key)!
   })
   return { ...res, progress }
+}
+
+export function parseCons(cons: string): Record<string, number | boolean> {
+  const c: Record<string, number | boolean> = {}
+  for (const kv of cons.split(',').filter(Boolean)) {
+    const [k, v] = kv.split('=')
+    if (k === 'excludeZeroIllumination') c[k] = v === '1'
+    else if (Number.isFinite(Number(v))) c[k] = Number(v)
+  }
+  return c
 }
 
 export function relaxed(relax: string) {

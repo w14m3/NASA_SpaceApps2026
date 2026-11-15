@@ -34,7 +34,7 @@ if (existsSync(P('reports', 'pytest.xml'))) {
   const re = /<testcase\b([^>]*?)(\/>|>([\s\S]*?)<\/testcase>)/g
   let m
   while ((m = re.exec(xml))) {
-    const name = /name="([^"]*)"/.exec(m[1])?.[1] ?? ''
+    const name = /\sname="([^"]*)"/.exec(m[1])?.[1] ?? ''
     const cls = /classname="([^"]*)"/.exec(m[1])?.[1] ?? ''
     const body = m[3] ?? ''
     const st = /<(failure|error)\b/.test(body) ? 'fail' : /<skipped\b/.test(body) ? 'skip' : 'pass'

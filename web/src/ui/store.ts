@@ -44,6 +44,8 @@ export interface AppState {
   wizard: boolean
   /** compare scenarios: "siteRef@YYYY-MM-DD" separated by ';' (empty = pins + current site) */
   scen: string
+  /** user constraints for the Top 3 (engineering and science panels), "key=value,…" */
+  cons: string
 }
 
 /** Default scenario (contract §6.2): south-pole hero region, generic medium lander, mast 10 m. The landing date is
@@ -78,6 +80,7 @@ export const DEFAULTS: AppState = {
   tour: -1,
   wizard: false,
   scen: '',
+  cons: '',
 }
 
 export function refToString(r: SiteRef): string {
@@ -136,6 +139,7 @@ export function toHash(s: AppState): string {
   if (s.minEl !== d.minEl) p.set('minel', String(s.minEl))
   if (s.relax) p.set('relax', s.relax)
   if (s.scen) p.set('scen', s.scen)
+  if (s.cons) p.set('cons', s.cons)
   return '#' + p.toString()
 }
 
@@ -183,6 +187,7 @@ export function fromHash(hash: string): AppState {
     tour: -1,
     wizard: false,
     scen: p.get('scen') ?? '',
+    cons: p.get('cons') ?? '',
   }
 }
 

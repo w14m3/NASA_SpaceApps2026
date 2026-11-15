@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { azel, siteFrame, sphereDip } from './topo'
+import { azel, siteFrame, sphereDip, subPoint } from './topo'
 import { readJson, testEphemeris } from './testdata'
 import { record } from './record'
 
@@ -99,6 +99,21 @@ describe('ephemeris oracles', () => {
     expect(eph.startMs).toBeLessThanOrEqual(Date.UTC(2017, 0, 1))
     expect(eph.endMs).toBeGreaterThanOrEqual(Date.UTC(2031, 0, 2))
     for (const y of [2017, 2020, 2023, 2026, 2030]) expect(Math.abs(eph.dut1(Date.UTC(y, 5, 1)))).toBeLessThan(0.9)
+  })
+
+  it('libration: the sub-Earth point wanders about ±6.7° in latitude and ±7.9° in longitude (one year)', async () => {
+    const eph = await testEphemeris()
+    let maxLat = 0
+    let maxLon = 0
+    for (let t = Date.UTC(2027, 0, 1); t < Date.UTC(2028, 0, 1); t += 3_600_000) {
+      const p = subPoint(eph, 'EARTH', t)
+      maxLat = Math.max(maxLat, Math.abs(p.lat))
+      maxLon = Math.max(maxLon, Math.abs(p.lon))
+    }
+    expect(maxLat).toBeGreaterThan(6.4)
+    expect(maxLat).toBeLessThan(7.0)
+    expect(maxLon).toBeGreaterThan(7.0)
+    expect(maxLon).toBeLessThan(8.5)
   })
 
   it('smooth-sphere dip for a 10 m mast matches the small-angle form sqrt(2h/R)', () => {

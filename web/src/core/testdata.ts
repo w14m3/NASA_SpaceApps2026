@@ -38,3 +38,11 @@ export function testDem(): Promise<DemGrid> {
     })
   return demCache
 }
+
+import { parseCandidates, type CandidateGrid } from './candidates'
+import { HERO_REGIONS } from './regions'
+export function testGrid(id = 'connecting-ridge'): CandidateGrid {
+  const meta = JSON.parse(readFileSync(join(PUBLIC, 'data', 'candidates', `${id}.json`), 'utf8'))
+  const b = gunzipSync(readFileSync(join(PUBLIC, 'data', 'candidates', `${id}.bin.gz`)))
+  return parseCandidates(HERO_REGIONS.find((r) => r.id === id)!, meta, b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer)
+}

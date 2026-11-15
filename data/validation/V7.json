@@ -1,0 +1,13 @@
+{
+ "id": "V7",
+ "test": "Candidate-grid horizon march (360 azimuths, 1 % step capped at 120 m, golden-section refinement) vs a naive fixed-step march (1 m to 2 km, then 10 m to 300 km, no refinement), 12 seeded candidates x 72 azimuths, h = 10 m, LOLA 240 m; the uint8 storage quantisation is reported separately",
+ "criterion": "<= 0.01 deg",
+ "measured": {
+  "max_deg": 0.007888317108154297,
+  "storage_quantisation_max_deg": 0.0499875545501709
+ },
+ "summary": "max 0.0079° (storage quantisation ≤ 0.050°, accounted for in V7b)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:34:18.543Z",
+ "generator": "vitest (web/src/core)"
+}

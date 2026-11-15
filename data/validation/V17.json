@@ -1,0 +1,55 @@
+{
+ "id": "V17",
+ "test": "Top 3: two identical runs give identical options; every option satisfies the hard constraints; options are >= 1 km apart (2 regions x 2 personas, 14-day window from 2026-12-11, 10 m mast)",
+ "criterion": "pass",
+ "measured": {
+  "connecting-ridge/balanced": {
+   "deterministic": true,
+   "feasible": true,
+   "min_separation_m": 1061,
+   "n_feasible": 747,
+   "top": [
+    1920,
+    1740,
+    1570
+   ]
+  },
+  "connecting-ridge/crewSafety": {
+   "deterministic": true,
+   "feasible": true,
+   "min_separation_m": 1061,
+   "n_feasible": 747,
+   "top": [
+    1920,
+    1570,
+    1740
+   ]
+  },
+  "malapert/balanced": {
+   "deterministic": true,
+   "feasible": true,
+   "min_separation_m": 1030,
+   "n_feasible": 297,
+   "top": [
+    1684,
+    1428,
+    1619
+   ]
+  },
+  "malapert/crewSafety": {
+   "deterministic": true,
+   "feasible": true,
+   "min_separation_m": 1030,
+   "n_feasible": 297,
+   "top": [
+    1684,
+    1428,
+    1619
+   ]
+  }
+ },
+ "summary": "connecting-ridge/balanced: 747 feasible, min sep 1061 m; connecting-ridge/crewSafety: 747 feasible, min sep 1061 m; malapert/balanced: 297 feasible, min sep 1030 m; malapert/crewSafety: 297 feasible, min sep 1030 m",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:38:23.720Z",
+ "generator": "vitest (web/src/core)"
+}

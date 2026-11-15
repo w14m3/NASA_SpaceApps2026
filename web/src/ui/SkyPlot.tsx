@@ -147,7 +147,7 @@ export function SkyPlot({ layers, analysis, inst, height = 210, testId = 'sky-pl
         data-testid={testId}
       />
       <figcaption className="hint">
-        {t('sky.legend')} · <b>{t('sky.exag', { k: Math.round(exag.current) })}</b>
+        {t('sky.legend')} · <b>{t('sky.exag', { k: String(Math.round(exag.current)) })}</b>
       </figcaption>
     </figure>
   )

@@ -10,6 +10,6 @@
  },
  "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
  "status": "pass",
- "generated_utc": "2026-11-15T01:09:43.411Z",
+ "generated_utc": "2026-11-15T01:38:25.290Z",
  "generator": "vitest (web/src/core)"
 }

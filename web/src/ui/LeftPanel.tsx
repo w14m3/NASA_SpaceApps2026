@@ -4,6 +4,7 @@ import { fmtLat, fmtLon, fmtUtc, useT } from './i18n'
 import { effectiveHeight, useSites, useTop3 } from './hooks'
 import { sameRef, setState, useStore, type SiteRef } from './store'
 import type { CuratedSite } from './data'
+import { ConstraintsPanel } from './Constraints'
 
 const LETTERS = ['A', 'B', 'C']
 
@@ -111,7 +112,7 @@ function CustomForm() {
 }
 
 export function Top3Cards({ compact = false }: { compact?: boolean }) {
-  const { t, n } = useT()
+  const { t, n, lang } = useT()
   const sel = useStore((s) => s.sel)
   const region = useStore((s) => s.region)
   const relax = useStore((s) => s.relax)
@@ -174,11 +175,11 @@ export function Top3Cards({ compact = false }: { compact?: boolean }) {
               <>
                 <ul>
                   {o.reasons.map((rs) => (
-                    <li key={rs.key}>{t(rs.key, fmtVars(rs.v))}</li>
+                    <li key={rs.key}>{t(rs.key, fmtVars(rs.v, rs.key, lang))}</li>
                   ))}
                 </ul>
                 <div className="hint">
-                  ⚠ {t('top3.risk')}: {t(o.risk.key, fmtVars(o.risk.v))}
+                  ⚠ {t('top3.risk')}: {t(o.risk.key, fmtVars(o.risk.v, o.risk.key, lang))}
                 </div>
               </>
             )}
@@ -201,9 +202,18 @@ export function Top3Cards({ compact = false }: { compact?: boolean }) {
   )
 }
 
-export function fmtVars(v: Record<string, number | string>) {
-  const o: Record<string, string | number> = {}
-  for (const [k, x] of Object.entries(v)) o[k] = typeof x === 'number' ? Number(x.toFixed(Math.abs(x) >= 10 ? 0 : 1)) : x
+/** Format reason values: hours and percentages without decimals, angles and distances with one, speeds with two. */
+export function fmtVars(v: Record<string, number | string>, reasonKey = '', lang: 'en' | 'fr' = 'en') {
+  const o: Record<string, string> = {}
+  const angle = reasonKey.endsWith('.slope') || reasonKey.endsWith('.margin')
+  for (const [k, x] of Object.entries(v)) {
+    if (typeof x !== 'number') {
+      o[k] = x
+      continue
+    }
+    const digits = k === 'v' ? 2 : k === 'km' || k === 'm' || k === 's' || (k === 'med' && angle) ? 1 : 0
+    o[k] = x.toLocaleString(lang === 'fr' ? 'fr-FR' : 'en-GB', { minimumFractionDigits: digits, maximumFractionDigits: digits })
+  }
   return o
 }
 
@@ -263,6 +273,7 @@ export function LeftPanel() {
       </div>
       <div className="section">
         <h2>{t('top3.title')}</h2>
+        <ConstraintsPanel />
         <Top3Cards />
       </div>
       <div className="section">

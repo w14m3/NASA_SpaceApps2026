@@ -35,7 +35,7 @@ a { color: var(--accent); }
 .skip:focus { top: 8px; }
 
 /* layout */
-.app { display: grid; grid-template-rows: 56px 1fr 168px; grid-template-columns: 320px 1fr 360px; grid-template-areas: 'top top top' 'left stage right' 'left dock right'; height: 100vh; gap: 8px; padding: 0 8px 8px; }
+.app { display: grid; grid-template-rows: 56px 1fr 196px; grid-template-columns: 320px 1fr 360px; grid-template-areas: 'top top top' 'left stage right' 'left dock right'; height: 100vh; gap: 8px; padding: 0 8px 8px; }
 .topbar { grid-area: top; display: flex; align-items: center; gap: 12px; padding: 0 4px; }
 .left { grid-area: left; }
 .stage { grid-area: stage; position: relative; border-radius: var(--radius); overflow: hidden; background: #000; border: 1px solid var(--line); min-height: 0; }
@@ -125,11 +125,13 @@ canvas.map { width: 100%; height: 100%; display: block; touch-action: none; curs
 .cd .card .v { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .cd .card .k { color: var(--muted); font-size: 11.5px; }
 canvas.sky { width: 100%; height: 210px; display: block; border-radius: 8px; background: #050912; }
+canvas.map { position: absolute; inset: 0; }
 
 /* dock */
 .dock { display: grid; grid-template-rows: auto 1fr; }
 .dock .controls { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
-canvas.timeline { width: 100%; height: 100%; display: block; cursor: pointer; }
+canvas.timeline { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: pointer; }
+.dock { overflow: hidden; }
 
 /* metrics table */
 table.metrics { width: 100%; border-collapse: collapse; font-size: 12.5px; }

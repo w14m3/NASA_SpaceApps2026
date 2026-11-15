@@ -16,6 +16,6 @@
  },
  "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
  "status": "pass",
- "generated_utc": "2026-11-15T01:09:34.944Z",
+ "generated_utc": "2026-11-15T01:38:19.556Z",
  "generator": "vitest (web/src/core)"
 }
