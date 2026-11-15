@@ -75,7 +75,8 @@ MOON_ME) and the geocentric Moon into Chebyshev polynomials whose error is measu
 ## Trust
 
 See [`docs/VALIDATION.md`](docs/VALIDATION.md) (generated) and the in-app **Methods & Trust** page. Highlights: browser
-ephemeris vs rigorous SPICE 2.7e-5°; vs 2,012 cached JPL Horizons rows 2.7e-5°; Apollo 11 touchdown Sun elevation
+ephemeris vs rigorous SPICE 2.7e-5°; vs 2,012 cached JPL Horizons rows 2.7e-5°; DSN Moon elevation vs Horizons 0.0005°;
+curated horizon masks recomputed from LOLA 80 m match the reference to 0.001°; Apollo 11 touchdown Sun elevation
 10.703° (Horizons 10.703°); horizon algorithm identical to the validated v1 code on the same DEM; event times within
 0.5 s of a 1 s scan; energy within 3.6e-6 % of a one-minute reference over a year; station geometry within 0.0022° of
 an independent astropy chain; Top 3 deterministic, feasible and ≥ 1 km apart; A* identical to Dijkstra.
@@ -83,9 +84,8 @@ Equations and constants: [`docs/METHODS.md`](docs/METHODS.md).
 
 ## Limits
 
-- Built without access to NASA servers from the build machine (see `docs/DECISIONS.md`): custom sites and candidate
-  grids use the LOLA 240 m DEM (screening resolution; horizons can differ by ~3° from 80 m-based ones); curated
-  south-pole sites use validated 80 m-based masks.
+- Terrain: LOLA 80 m + 240 m (PGDA product 90). Live custom sites outside the four hero-region windows use 240 m
+  (screening resolution; horizons can differ by ~3°). No 5 m DEM was reachable: lander-scale relief is not resolved.
 - Not modelled: reflected light from terrain, thermal and dust effects, lander self-shadowing, antenna patterns,
   leg dynamics, soil failure, rocks smaller than a pixel. Several literature coordinates are flagged "unverified".
 
