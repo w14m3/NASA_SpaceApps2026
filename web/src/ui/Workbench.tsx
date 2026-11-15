@@ -151,10 +151,10 @@ export function Workbench() {
         ) : (
           <>
             <p data-testid="verdict">
-              {word(vp!.power)} Power: sunlit {pct(a.litFrac.value)} of the window, longest night {fmtDur(a.longestDarkH.value * HOUR, lang)}. {word(vp!.link)} Earth: direct-to-Earth {pct(a.dteFrac.value)}, longest gap {fmtDur(a.longestDteGapH * HOUR, lang)}.{' '}
+              {word(vp!.power)} {t('verdict.power', { lit: pct(a.litFrac.value), night: fmtDur(a.longestDarkH.value * HOUR, lang) })} {word(vp!.link)} {t('verdict.earth', { dte: pct(a.dteFrac.value), gap: fmtDur(a.longestDteGapH * HOUR, lang) })}{' '}
               {safety ? (
                 <>
-                  {word(vp!.land)} Landing: {safety.fit.slope.toFixed(1)}° slope at {safety.fit.baseline} m baseline; this lander tips over above {safety.tip.vCrit.toFixed(2)} m/s sideways.
+                  {word(vp!.land)} {t('verdict.land', { s: n(safety.fit.slope, 1), b: String(safety.fit.baseline), v: n(safety.tip.vCrit, 2) })}
                 </>
               ) : site.terrain === 'sphere' ? (
                 'Landing: no terrain data here.'
@@ -317,11 +317,8 @@ function EnergyPanel({ a, opt }: { a: SiteAnalysis; opt: ReturnType<typeof useEn
       </div>
       {headline && o ? (
         <p data-testid="energy-headline" style={{ fontSize: 15 }}>
-          <b>
-            Optimised layout delivers {headline.gain >= 0 ? '+' : ''}
-            {n(headline.gain, 0)} % energy and shortens the worst blackout by {n(Math.max(0, headline.blackout), 1)} h
-          </b>{' '}
-          versus the baseline (best fixed vertical panel at {o.baseline.h} m, facing {o.baseline.azimuth}°). Best: {o.best.layout === 'vertical' ? `vertical facing ${o.best.azimuth}°` : o.best.layout} at {o.best.h} m.
+          <b>{t('energy.headline', { g: `${headline.gain >= 0 ? '+' : ''}${n(headline.gain, 0)}`, h: n(Math.max(0, headline.blackout), 1) })}</b>{' '}
+          {t('energy.baseline', { h: String(o.baseline.h), az: String(o.baseline.azimuth), best: o.best.layout === 'vertical' ? `${t('energy.vertical')} ${o.best.azimuth}°` : o.best.layout, bh: String(o.best.h) })}
           {o.flat2 && <span className="hint"> Educational: a flat panel at {o.flat2.h} m collects {n(o.flat2.wh / 1000, 2)} kWh.</span>}
         </p>
       ) : (
@@ -396,7 +393,7 @@ function SafetyPanel() {
         <>
           <Gauge margin={s.tip.margin} tip={s.tip.tipAngle} verdict={s.tip.verdict} />
           <p style={{ fontSize: 14 }}>
-            On this ground, this lander tips over if it touches down faster than <b>{n(s.tip.vCrit, 2)} m/s</b> sideways.
+            {t('safety.sentence', { v: n(s.tip.vCrit, 2) })}
           </p>
           <table className="metrics">
             <tbody>

@@ -24,7 +24,7 @@ result yet; `todo` without evidence.
 | C9 | Accessible to planners, educators, public | modes, tour, glossary, FR, V13 | L5 | 1 | e2e:learn mode; e2e:french; e2e:axe | met |
 | C10 | Real terrain horizon, no atmosphere | V4–V7 pass, method page | L1 | 1 | val:V4; val:V5; val:V6; doc:docs/METHODS.md | met |
 | C11 | Libration and orbital variations shown | libration loop on sky plot; method page | L2 | 2 | e2e:libration loop; vt:libration | met |
-| C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop | L4 | 2 | vt:who blocks; e2e:who blocks; e2e:compass | met |
+| C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop | L4 | 2 | vt:who blocks; e2e:who blocks; e2e:compass; e2e:porkchop | met |
 | C13 | Thermal conditions for equipment (proxy) | §7.14 in Workbench, Top 3 cards, Brief; unit tests | L3 | 2 | vt:thermal; e2e:thermal | met |
 | C14 | Site-date scenario comparison and seasons | 2–4 scenarios incl. same site/different dates; season view | L3 | 2 | e2e:scenario compare; e2e:season | met |
 
@@ -70,7 +70,7 @@ result yet; `todo` without evidence.
 | V10 | Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d | ≤ 0.1 % | L1 | 1 | vt:V10; val:V10 | met |
 | V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | blocked:JPL Horizons unreachable from the build environment (D2); substitute V11b | blocked |
 | V11b | Moon elevation at DSN sites vs an independent astropy/ERFA chain (substitute for V11) | ≤ 0.05° | L1 | 1 | vt:V11b; val:V11b | met |
-| V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | val:V12 | todo |
+| V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | blocked:manual comparison; quickmap.lroc.asu.edu unreachable from the build environment | todo |
 | V13 | Front end: e2e golden path; axe critical = 0; Lighthouse; mobile | pass | L5 | 1 | e2e:golden path; e2e:axe; e2e:mobile | met |
 | V14 | Clean clone → one command rebuilds artifacts with identical hashes | pass or documented | L5 | 3 | val:V14 | todo |
 | V15 | Plane fit on synthetic tilted planes and a cone | slope ≤ 0.01°, azimuth ≤ 0.1° | L3 | 1 | vt:V15; val:V15 | met |

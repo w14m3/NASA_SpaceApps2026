@@ -1,0 +1,14 @@
+{
+ "id": "DEPLOY",
+ "test": "Public URL https://w14m3.github.io/NASA_SpaceApps2026/ returns 200 and the golden-path e2e passes against it",
+ "criterion": "HTTP 200 and golden path pass",
+ "measured": {
+  "http_status": 404,
+  "error": null,
+  "golden_path": "not run"
+ },
+ "summary": "HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions)",
+ "status": "fail",
+ "generated_utc": "2026-11-15T03:57:43.396Z",
+ "generator": "scripts/check-deploy.mjs"
+}

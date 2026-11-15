@@ -274,6 +274,11 @@ test.describe('compare', () => {
     await expect(page.getByTestId('compare-table')).toContainText('(', { timeout: 30_000 })
   })
 
+  test('porkchop plot of landing date x duration', async ({ page }) => {
+    await open(page, '#page=compare')
+    await expect(page.getByTestId('porkchop-best')).toContainText('Best:', { timeout: 40_000 })
+  })
+
   test('season heatmap over 12 lunations', async ({ page }) => {
     await open(page, '#page=compare')
     await expect(page.getByTestId('season')).toContainText('best', { timeout: 40_000 })

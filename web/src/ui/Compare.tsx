@@ -146,6 +146,7 @@ export default function Compare() {
           </>
         )}
         <Season />
+        <Porkchop />
       </div>
     </div>
   )
@@ -222,6 +223,45 @@ export function Season() {
           </text>
         </svg>
       )}
+    </section>
+  )
+}
+
+/** Lunar porkchop plot: landing date (6 months, daily) × surface duration → Power·Link geometric mean (0–100). */
+export function Porkchop() {
+  const { site } = useCurrentSite()
+  const landing = useStore((s) => s.landing)
+  const durations = [3, 7, 14, 30]
+  const days = 180
+  const res = useAsync(site ? `pc|${site.key}|${landing}` : null, () => rpc.porkchop({ site: { lon: site!.lon, lat: site!.lat, z0: site!.z0, h: site!.h }, mask: site!.mask, t0: landing, days, durations }))
+  const d = res.data
+  let best = { r: 0, c: 0, v: -1 }
+  if (d) d.grid.forEach((row, r) => row.forEach((v, c) => v > best.v && (best = { r, c, v })))
+  return (
+    <section data-testid="porkchop">
+      <h2>Lunar porkchop — when to land at {site?.name}</h2>
+      <p className="hint">Rows: surface duration; columns: landing date (daily, {days} days from {new Date(landing).toISOString().slice(0, 10)}). Cell = √(Power × Link) with the Top 3 formulas (hourly samples, mast {site?.h} m). Click a cell to set the window.</p>
+      {!d ? (
+        <p className="hint">Computing {(days + 30) * 24} hourly samples…</p>
+      ) : (
+        <svg viewBox={`0 0 ${days * 4 + 60} ${durations.length * 22 + 26}`} width="100%" role="img" aria-label={`Porkchop: best ${durations[best.r]}-day window starts ${new Date(landing + best.c * DAY).toISOString().slice(0, 10)} with score ${Math.round(best.v)}`}>
+          {d.grid.map((row, r) => (
+            <g key={r}>
+              <text x={0} y={r * 22 + 15} fill="#a7b1c4" fontSize="10">{durations[r]} d</text>
+              {row.map((v, c) => (
+                <rect key={c} x={50 + c * 4} y={r * 22} width={4} height={20} fill={`rgb(${Math.round(20 + 2.3 * v)},${Math.round(30 + 1.8 * v)},${Math.round(80 - 0.4 * v)})`} style={{ cursor: 'pointer' }} onClick={() => setState({ landing: landing + c * DAY, durDays: durations[r], t: landing + c * DAY, page: 'main' })}>
+                  <title>{`${new Date(landing + c * DAY).toISOString().slice(0, 10)}, ${durations[r]} d: ${Math.round(v)}`}</title>
+                </rect>
+              ))}
+            </g>
+          ))}
+          <rect x={50 + best.c * 4 - 1} y={best.r * 22 - 1} width={6} height={22} fill="none" stroke="#ffd75e" strokeWidth={1.5} />
+          {[0, 30, 60, 90, 120, 150].map((c) => (
+            <text key={c} x={50 + c * 4} y={durations.length * 22 + 14} fill="#7b879d" fontSize="9">{new Date(landing + c * DAY).toISOString().slice(5, 10)}</text>
+          ))}
+        </svg>
+      )}
+      {d && <p data-testid="porkchop-best">Best: {durations[best.r]}-day stay landing {new Date(landing + best.c * DAY).toISOString().slice(0, 10)} (score {Math.round(best.v)}/100). Yellow box.</p>}
     </section>
   )
 }

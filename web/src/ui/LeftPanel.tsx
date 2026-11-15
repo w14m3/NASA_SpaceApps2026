@@ -250,12 +250,18 @@ export function Overlays() {
 
 export function LeftPanel() {
   const { t } = useT()
+  const mode = useStore((s) => s.mode)
   const sites = useSites()
   const sel = useStore((s) => s.sel)
   const region = useStore((s) => s.region)
   const groups = ['southPole', 'clps', 'international', 'apollo'] as const
   return (
     <>
+      {mode === 'explore' && (
+        <div className="section" style={{ background: 'var(--panel-2)' }} data-testid="promise">
+          <p style={{ margin: 0 }}>{t('app.promise')}</p>
+        </div>
+      )}
       <div className="section">
         <h2>{t('left.title')}</h2>
         <Search />

@@ -15,7 +15,7 @@ import { HERO_REGIONS } from '../core/regions'
 import { ellipseMonteCarlo, LANDERS, planeFit, SLOPE_UNCERTAINTY_DEG, tipOver, type Ellipse } from '../core/safety'
 import { DSN, moonFromStation, stationFrame, type Station } from '../core/stations'
 import { diskFraction } from '../core/disk'
-import { bestLandingDate, DEFAULT_CONSTRAINTS, explain, PERSONAS, rankCandidates, strengths, type Constraints, type RankResult } from '../core/top3'
+import { bestLandingDate, DEFAULT_CONSTRAINTS, explain, linkScore, PERSONAS, powerScore, rankCandidates, strengths, type Constraints, type RankResult } from '../core/top3'
 import { azel, siteFrame, type SiteSpec } from '../core/topo'
 import { DEFAULT_ARRAY, integrate, LEVEL_ATTITUDE, sunTrack, type ArraySpec, type Attitude } from '../core/energy'
 import { gaps, intervals, longest } from '../core/events'
@@ -317,6 +317,45 @@ const api = {
       dte[k] = ef >= 0.5 && st.some((x) => moonFromStation(e, x.f, t).el >= x.s.minEl) ? 1 : 0
     }
     return { t0: a.t0, n, sun, dte }
+  },
+  /** Lunar porkchop plot (§6.12): landing date (daily, `days`) × surface duration → Power, Link and their geometric
+   *  mean, from hourly Sun-lit / DTE flags computed once (same score formulas as the Top 3). */
+  async porkchop(a: { site: SiteSpec; mask: Mask; t0: number; days: number; durations: number[]; stations?: Station[] }) {
+    const e = await eph()
+    const f = siteFrame(a.site)
+    const maxDur = Math.max(...a.durations)
+    const n = Math.round((a.days + maxDur) * 24)
+    const lit = new Uint8Array(n)
+    const dte = new Uint8Array(n)
+    const st = (a.stations ?? DSN).map((s) => ({ s, f: stationFrame(s) }))
+    for (let k = 0; k < n; k++) {
+      const t = a.t0 + (k + 0.5) * 3_600_000
+      lit[k] = diskFraction(a.mask, azel(e, 'SUN', t, f)) >= 0.01 ? 1 : 0
+      dte[k] = diskFraction(a.mask, azel(e, 'EARTH', t, f)) >= 0.5 && st.some((x) => moonFromStation(e, x.f, t).el >= x.s.minEl) ? 1 : 0
+    }
+    const win = (flags: Uint8Array, o: number, len: number) => {
+      let on = 0
+      let run = 0
+      let mx = 0
+      for (let k = o; k < o + len; k++) {
+        if (flags[k]) {
+          on++
+          run = 0
+        } else if (++run > mx) mx = run
+      }
+      return { frac: on / len, maxOff: mx }
+    }
+    const grid: number[][] = []
+    for (const d of a.durations) {
+      const row: number[] = []
+      for (let day = 0; day < a.days; day++) {
+        const L = win(lit, day * 24, d * 24)
+        const D = win(dte, day * 24, d * 24)
+        row.push(Math.sqrt(powerScore(L.frac, L.maxOff) * linkScore(D.frac, D.maxOff)))
+      }
+      grid.push(row)
+    }
+    return { t0: a.t0, days: a.days, durations: a.durations, grid }
   },
   /** Street View: per azimuth, the highest terrain elevation within distance bands (silhouettes shaded by distance). */
   async streetBands(a: { lon: number; lat: number; h: number; nAz: number }) {
