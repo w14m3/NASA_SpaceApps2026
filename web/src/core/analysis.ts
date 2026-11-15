@@ -324,6 +324,6 @@ export function siteCountdowns(eph: Ephemeris, site: SiteSpec, mask: Mask, sc: S
   return {
     sun: countdown(sunG, t, 45 * DAY, bands),
     earth: countdown(earthG, t, 45 * DAY, bands),
-    dte: countdown(dteG, t, 10 * DAY, bands),
+    dte: countdown(dteG, t, 45 * DAY, bands),
   }
 }

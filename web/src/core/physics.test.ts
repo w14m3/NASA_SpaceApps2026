@@ -84,7 +84,6 @@ describe('energy', () => {
     // (a) closed form: constant irradiance, full disk, flat panel with sin(el) = 0.5·(1 + sin(2πt/P)) clipped at 0
     const P = 10 * DAY
     const tr: SunSample[] = []
-    const t0 = 0
     for (let t = 0; t <= 30 * DAY; t += 600_000) {
       const se = Math.sin((2 * Math.PI * t) / P)
       tr.push({ t, az: 0, el: (Math.asin(Math.max(0, se) * 0.5) * 180) / Math.PI, f: se > 0 ? 1 : 0, s: S0_W_M2 })

@@ -1,0 +1,28 @@
+{
+ "region": {
+  "id": "connecting-ridge",
+  "name": "Shackleton – Connecting Ridge",
+  "anchor": "poi_site001_connecting_ridge",
+  "lon": -137.31,
+  "lat": -89.45,
+  "sizeKm": 15,
+  "spacingM": 250,
+  "status": "verified"
+ },
+ "n": 3721,
+ "nx": 61,
+ "heights": [
+  2,
+  10
+ ],
+ "n_az": 360,
+ "mask_step_deg": 0.1,
+ "slope_baseline_m": 720,
+ "dem_label": "LOLA 240 m (PGDA product 90, 80–90°S)",
+ "clipped_mask_values": 1436,
+ "file": "connecting-ridge.bin.gz",
+ "bytes_gzip": 1075865,
+ "built_utc": "2026-11-15T01:23:59.182Z",
+ "seconds": 765.042,
+ "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
+}

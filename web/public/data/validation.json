@@ -1,0 +1,368 @@
+{
+ "generated_utc": "2026-11-15T01:26:57.222Z",
+ "records": {
+  "O1": {
+   "id": "O1",
+   "test": "Runtime ephemeris + topocentric geometry vs reference/v1 rigorous SPICE az/el fixture (300 site/time rows, Sun and Earth)",
+   "criterion": "<= 0.001 deg",
+   "measured": {
+    "max_angular_deg": 0.00002693111196810459,
+    "max_el_deg": 0.00002693459853464475,
+    "rows": 300
+   },
+   "summary": "max 2.7e-5 deg",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:34.924Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "O2_240m": {
+   "id": "O2_240m",
+   "test": "Report only: live masks on the 240 m DEM vs v1 precomputed masks (80 m product + 240 m far field). Different DEM resolution, so not an algorithm check (see O2b)",
+   "criterion": "informative; O2 proper needs the 80 m product (unreachable in this environment)",
+   "measured": {
+    "im1_odysseus": {
+     "h2": 1.1376533210277557,
+     "h10": 1.4369634985923767,
+     "rms10": 0.3644296930989211,
+     "z0_v1": 2591.9477552566914,
+     "z0_240": 2591.933235771693
+    },
+    "im2_athena": {
+     "h2": 0.29026794433593706,
+     "h10": 0.2650656700134273,
+     "rms10": 0.052906913913580336,
+     "z0_v1": 5321.501553305143,
+     "z0_240": 5320.476141460658
+    },
+    "poi_bussey2010_A_shackleton_rim": {
+     "h2": 3.1953284740448,
+     "h10": 3.0931164622306824,
+     "rms10": 0.8368648297122424,
+     "z0_v1": 1591.2302682267762,
+     "z0_240": 1586.395472572735
+    },
+    "poi_bussey2010_B_connecting_ridge": {
+     "h2": 1.4242424964904785,
+     "h10": 1.0943222045898438,
+     "rms10": 0.21706253222708818,
+     "z0_v1": 1795.4558188279784,
+     "z0_240": 1793.8625528267855
+    },
+    "poi_bussey2010_C_degerlache_rim": {
+     "h2": 2.696487545967102,
+     "h10": 0.7802679538726807,
+     "rms10": 0.27991681647933897,
+     "z0_v1": 1764.977140014339,
+     "z0_240": 1756.5026740040773
+    },
+    "poi_bussey2010_D_peak_near_shackleton": {
+     "h2": 0.7925820350646973,
+     "h10": 0.4254780113697052,
+     "rms10": 0.1635758766023024,
+     "z0_v1": 1602.5087207341562,
+     "z0_240": 1601.6783424867679
+    },
+    "poi_bussey2010_M1_malapert": {
+     "h2": 1.6858346462249756,
+     "h10": 0.5889339447021484,
+     "rms10": 0.1817965042899865,
+     "z0_v1": 5062.600687782562,
+     "z0_240": 5060.3065215167335
+    },
+    "poi_bussey2010_M2_malapert": {
+     "h2": 0.7179489135742188,
+     "h10": 0.3508615493774414,
+     "rms10": 0.12060240793827388,
+     "z0_v1": 4759.181073541155,
+     "z0_240": 4758.097300624397
+    },
+    "poi_lpsc2024_connecting_ridge_candidate": {
+     "h2": 1.2118293046951294,
+     "h10": 0.17302560806274414,
+     "rms10": 0.04614516614797208,
+     "z0_v1": 1652.561130201172,
+     "z0_240": 1648.0880587864713
+    },
+    "poi_lpsc2024_peak_near_shackleton_candidate": {
+     "h2": 0.3446394056081772,
+     "h10": 0.20044475793838368,
+     "rms10": 0.026879383322654153,
+     "z0_v1": 1167.8993139587988,
+     "z0_240": 1165.5413834216
+    },
+    "poi_site001_connecting_ridge": {
+     "h2": 1.7574303299188614,
+     "h10": 0.557111382484436,
+     "rms10": 0.12377713242509004,
+     "z0_v1": 1954.3358658781126,
+     "z0_240": 1950.5804654198587
+    },
+    "poi_site004_shackleton_rim": {
+     "h2": 4.8554821610450745,
+     "h10": 0.2896689176559448,
+     "rms10": 0.03693561465787786,
+     "z0_v1": 1733.4108048813173,
+     "z0_240": 1730.0528213625164
+    }
+   },
+   "summary": "max |Δ| at 10 m: 3.09°",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:54.274Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "O2b": {
+   "id": "O2b",
+   "test": "Oracle: new horizon march (refinement off) vs the reference/v1 browser algorithm on the same LOLA 240 m DEM (4 sites x 2 heights, 720 azimuths). The production setting adds a golden-section refinement of each maximum, which only raises the horizon toward the exact maximum of the bilinear surface (V4 cone); its largest effect is reported",
+   "criterion": "<= 0.05 deg",
+   "measured": {
+    "base_vs_v1_deg": {
+     "connecting ridge h=2": 0,
+     "connecting ridge h=10": 0,
+     "shackleton rim 004 h=2": 0,
+     "shackleton rim 004 h=10": 0,
+     "IM-2 Athena h=2": 0,
+     "IM-2 Athena h=10": 0,
+     "Malapert M1 h=2": 0,
+     "Malapert M1 h=10": 0
+    },
+    "refinement_raises_by_deg": {
+     "connecting ridge h=2": 0.025124311447143555,
+     "connecting ridge h=10": 0.03533935546875,
+     "shackleton rim 004 h=2": 0.0969088077545166,
+     "shackleton rim 004 h=10": 0.02502298355102539,
+     "IM-2 Athena h=2": 0.01278918981552124,
+     "IM-2 Athena h=10": 0.013013899326324463,
+     "Malapert M1 h=2": 0.018764257431030273,
+     "Malapert M1 h=10": 0.01652216911315918
+    }
+   },
+   "summary": "max 0.0000° (refinement adds up to 0.097°)",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:48.584Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V1": {
+   "id": "V1",
+   "test": "Round trip lon/lat -> polar stereographic -> lon/lat -> map, and map -> DEM pixel -> map, 5000 random points 80-90 S",
+   "criterion": "<= 1 m and <= 0.5 px",
+   "measured": {
+    "max_m": 4.3679992143890217e-10,
+    "max_px": 4.3723063760068295e-13
+   },
+   "summary": "max 4.4e-10 m, 4.4e-13 px",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:36.201Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V10": {
+   "id": "V10",
+   "test": "Energy: (a) event-aware trapezoid vs closed form (clipped sinusoid, 30 d); (b) on real terrain (Connecting Ridge site 001, 10 m, 80 m-based mask, 365 days) vs a 1-minute reference, three layouts",
+   "criterion": "<= 0.1 %",
+   "measured": {
+    "closed_form_rel": 0.0000015865495640370947,
+    "terrain_rel": {
+     "track": 8.745407505149508e-11,
+     "vertical": 3.55966662815362e-8,
+     "flat": 3.5032055576749128e-9
+    },
+    "adaptive_samples": 87148,
+    "reference_samples": 525601
+   },
+   "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:37.144Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V11b": {
+   "id": "V11b",
+   "test": "Moon topocentric elevation at DSS-14, DSS-43, DSS-63 (runtime chain: DE421 Moon in CIRS + ERA(UT1), no polar motion) vs astropy (built-in ERFA Moon theory, full IERS-A chain), 720 rows 2026–2030. Substitute for V11 while JPL Horizons is unreachable",
+   "criterion": "<= 0.05 deg",
+   "measured": {
+    "max_deg": 0.002155278232119251,
+    "rms_deg": 0.0005147441200177617,
+    "n": 720
+   },
+   "summary": "max 0.0022°, RMS 0.0005° (n=720)",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:35.110Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V15": {
+   "id": "V15",
+   "test": "Least-squares plane fit through bilinear DEM samples: 4 synthetic tilted planes (5–20°, 4 directions, scale factor and meridian convergence applied) and a 10° cone 1 km from its apex",
+   "criterion": "slope <= 0.01°, azimuth <= 0.1°",
+   "measured": {
+    "plane_slope_max_deg": 6.794529561204854e-8,
+    "plane_azimuth_max_deg": 2.1460800780914724e-7,
+    "cone_slope_deg": 0.003212219749944012
+   },
+   "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:37.168Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V16": {
+   "id": "V16",
+   "test": "Tip-over screening model: M = 0 → v_crit = 0; flat-ground closed form; symmetry of σ vs δσ; length scaling v ∝ √s",
+   "criterion": "exact to 1e-9",
+   "measured": {
+    "m0": 0,
+    "flat": 0,
+    "symmetry": 0,
+    "scaling": 0
+   },
+   "summary": "max 0.0e+0 m/s",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:37.169Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V19": {
+   "id": "V19",
+   "test": "Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself",
+   "criterion": "<= 0.001 deg",
+   "measured": {
+    "de421_vs_spice_de440": {
+     "SUN": {
+      "max_deg": 0.000015584987858300537,
+      "rms_deg": 0.00000837719860783797
+     },
+     "EARTH": {
+      "max_deg": 0.000015162990854944584,
+      "rms_deg": 0.000010065471651007048
+     }
+    },
+    "fit_de421": {
+     "SUN": {
+      "max_deg": 6.285179956739081e-9,
+      "rms_deg": 2.337653754012354e-9,
+      "n_check": 4000
+     },
+     "EARTH": {
+      "max_deg": 2.0673820828749378e-7,
+      "rms_deg": 5.135504777379783e-8,
+      "n_check": 4000
+     }
+    },
+    "fit_de440_v1": {
+     "SUN": {
+      "max_deg": 2.9962469225721365e-9,
+      "rms_deg": 2.485910899278521e-10,
+      "max_deg_from_surface": 2.9962477804716955e-9
+     },
+     "EARTH": {
+      "max_deg": 3.8934481456798105e-9,
+      "rms_deg": 2.984760202215118e-10,
+      "max_deg_from_surface": 3.8960059357487915e-9
+     }
+    }
+   },
+   "summary": "max 1.6e-05 deg (DE421 vs DE440 + fit)",
+   "status": "pass",
+   "generated_utc": "2026-11-15T00:56:10+00:00"
+  },
+  "V2": {
+   "id": "V2",
+   "test": "Runtime ephemeris (SPICE DE440 piece) + site geometry vs JPL Horizons apparent az/el from lunar-surface sites, 2013 cached responses (DE441, MEAN_ME, airless), re-run offline",
+   "criterion": "<= 0.005 deg",
+   "measured": {
+    "SUN": {
+     "max_deg": 0.0000014787793334710982,
+     "rms_deg": 5.114431375951989e-7,
+     "n": 1006
+    },
+    "EARTH": {
+     "max_deg": 0.00002664539873259316,
+     "rms_deg": 0.000015723073571747864,
+     "n": 1006
+    }
+   },
+   "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:34.944Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V3": {
+   "id": "V3",
+   "test": "Apollo 11 touchdown 1969-07-20 20:17:40 UTC: Sun elevation from the DE421 pipeline vs the cached JPL Horizons response (DE441) and the planned value in NASA SP-4029 'Apollo by the Numbers' (10.8°, a planning value for the launch window, not a measurement at touchdown)",
+   "criterion": "<= 0.2 deg vs Horizons and vs the published value",
+   "measured": {
+    "pipeline_deg": 10.703309422535561,
+    "horizons_deg": 10.703314286,
+    "published_deg": 10.8
+   },
+   "summary": "pipeline 10.703°, Horizons 10.703°, published (planned) 10.8°",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:20+00:00",
+   "generator": "pytest"
+  },
+  "V4": {
+   "id": "V4",
+   "test": "Synthetic terrain: smooth-sphere dip at h = 1, 2, 10, 30 m; Gaussian ring wall (300 m, r = 15 km, 20 m grid); cone apex (400 m at 8 km)",
+   "criterion": "<= 1e-4 deg",
+   "measured": {
+    "sphere_max_deg": 5.556047510957285e-9,
+    "ring_max_deg": 0.000009324073641625574,
+    "cone_deg": 1.4373918943988429e-8
+   },
+   "summary": "sphere 5.6e-9°, ring 9.3e-6°, cone 1.4e-8°",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:35.682Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V5": {
+   "id": "V5",
+   "test": "Azimuth wrap for a site on the 180° meridian (89.5°S) with a hill across north; rays leaving a 80 km grid",
+   "criterion": "no seam (step at 0° no larger than elsewhere); voids flagged, not fatal",
+   "measured": {
+    "seam_deg": 0.0007016658782958984,
+    "max_neighbour_step_deg": 0.038333892822265625,
+    "rays_leaving_data": 720,
+    "void_fraction": 0.514529549481144
+   },
+   "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:36.061Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V6": {
+   "id": "V6",
+   "test": "Convergence on LOLA 240 m terrain (4 sites, h = 10 m): 720 -> 1440 azimuths, ray step x0.5, s_max 300 -> 600 km",
+   "criterion": "<= 0.02 deg",
+   "measured": {
+    "connecting ridge": 0.010212421417236328,
+    "shackleton rim 004": 0.008653402328491211,
+    "IM-2 Athena": 0.0005131065845489502,
+    "Malapert M1": 0.0018472671508789062
+   },
+   "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:43.411Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V8": {
+   "id": "V8",
+   "test": "Rise/set times from the 10-min scan + bisection vs a brute-force 1 s scan (Malapert M1, 10 m, 80 m-based mask, 5 events in 12 days)",
+   "criterion": "<= 5 s",
+   "measured": {
+    "events": 5,
+    "max_s": 0.5
+   },
+   "summary": "max 0.50 s over 5 events",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:35.212Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V9": {
+   "id": "V9",
+   "test": "Visible fraction of the solar disk above a straight horizon (production quadrature, 200 strips) vs the analytic circle segment, 9 offsets",
+   "criterion": "<= 1e-4",
+   "measured": {
+    "max_abs": 0.00006308265197524365
+   },
+   "summary": "max 6.3e-5",
+   "status": "pass",
+   "generated_utc": "2026-11-15T01:09:34.947Z",
+   "generator": "vitest (web/src/core)"
+  }
+ }
+}

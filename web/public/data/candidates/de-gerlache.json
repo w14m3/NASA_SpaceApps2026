@@ -1,0 +1,28 @@
+{
+ "region": {
+  "id": "de-gerlache",
+  "name": "de Gerlache rim",
+  "anchor": "poi_bussey2010_C_degerlache_rim",
+  "lon": -68.7,
+  "lat": -88.71,
+  "sizeKm": 15,
+  "spacingM": 250,
+  "status": "unverified"
+ },
+ "n": 3721,
+ "nx": 61,
+ "heights": [
+  2,
+  10
+ ],
+ "n_az": 360,
+ "mask_step_deg": 0.1,
+ "slope_baseline_m": 720,
+ "dem_label": "LOLA 240 m (PGDA product 90, 80–90°S)",
+ "clipped_mask_values": 15821,
+ "file": "de-gerlache.bin.gz",
+ "bytes_gzip": 1068964,
+ "built_utc": "2026-11-15T01:24:01.252Z",
+ "seconds": 767.055,
+ "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
+}

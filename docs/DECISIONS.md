@@ -30,3 +30,15 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   here. O2b validates the algorithm on the same DEM; the report `O2_240m` shows the 240 m vs 80 m-based horizons
   differ by up to 3.1° at 10 m, so curated sites use the validated v1 80 m masks and every 240 m result is labelled
   "LOLA 240 m — screening resolution".
+- **D8 — three.js instead of CesiumJS for the globe.** One 3D engine serves the globe, Site 3D and Street View
+  (lazy-loaded, ~127 KB gzip) instead of Cesium (~1.1 MB gzip plus static assets). The globe uses the same NASA Moon
+  Trek WMTS layer (LRO WAC mosaic, zoom 2) on the 1737.4 km sphere with the true Sun direction.
+- **D9 — Default landing date 2026-12-11 (the "next feasible window").** A 14-day window from 2026-12-01 has no
+  feasible candidate in the default region: Earth is below the horizon almost everywhere (libration in latitude).
+  `web/scripts/find-window.ts` scans 2-day steps; 2026-12-11 maximises feasible candidates (747 of 3,721) in the first
+  lunation. Scan recorded in `data/validation/default_window_scan.txt`.
+- **D10 — Candidate masks are uint8 at 0.1° above a per-candidate offset (contract §7.11).** Values more than 25.5°
+  above a candidate's lowest horizon are clipped (2 % of samples at Malapert, 0 at Peak near Shackleton); this has no
+  effect on visibility because the Sun and Earth never exceed ~12° elevation at 85–90°S.
+- **D11 — Gzip artifacts are accepted inflated or not.** Some servers add `Content-Encoding: gzip` to `.gz` files, so
+  the browser receives inflated bytes; loaders check the gzip magic number before inflating.

@@ -18,7 +18,11 @@ export interface DemMeta {
 
 export type Gunzip = (buf: ArrayBuffer) => Promise<ArrayBuffer>
 
+/** Gunzip in the browser; servers that add `Content-Encoding: gzip` deliver already-inflated bytes, so data without
+ *  the gzip magic number (1f 8b) is returned unchanged. */
 export const browserGunzip: Gunzip = async (buf) => {
+  const b = new Uint8Array(buf, 0, Math.min(2, buf.byteLength))
+  if (b[0] !== 0x1f || b[1] !== 0x8b) return buf
   const ds = new DecompressionStream('gzip')
   return new Response(new Blob([buf]).stream().pipeThrough(ds)).arrayBuffer()
 }

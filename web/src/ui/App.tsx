@@ -1,8 +1,55 @@
+import { lazy, Suspense, useEffect } from 'react'
+import { setState, useStore } from './store'
+import { useT } from './i18n'
+import { TopBar } from './TopBar'
+import { LeftPanel } from './LeftPanel'
+import { RightPanel } from './RightPanel'
+import { Stage } from './Stage'
+import { Timeline } from './Timeline'
+import { usePlayback } from './playback'
+import { Tour } from './Learn'
+
+const Trust = lazy(() => import('./Trust'))
+const Brief = lazy(() => import('./Brief'))
+const Compare = lazy(() => import('./Compare'))
+const Wizard = lazy(() => import('./Wizard'))
+
 export function App() {
+  const page = useStore((s) => s.page)
+  const wizard = useStore((s) => s.wizard)
+  const lang = useStore((s) => s.lang)
+  const { t } = useT()
+  usePlayback()
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
   return (
-    <main style={{ padding: 24 }}>
-      <h1>Sightline — Lunar Landing Site Navigator</h1>
-      <p>Build in progress (NASA Space Apps Challenge 2026). The science core is being validated first.</p>
-    </main>
+    <>
+      <a className="skip" href="#stage">
+        {t('nav.skip')}
+      </a>
+      <div className="app" aria-hidden={page !== 'main' ? true : undefined}>
+        <TopBar />
+        <aside className="left panel" aria-label={t('left.title')}>
+          <LeftPanel />
+        </aside>
+        <main className="stage" id="stage" tabIndex={-1}>
+          <Stage />
+        </main>
+        <aside className="right panel" aria-label={t('right.conditions')}>
+          <RightPanel />
+        </aside>
+        <section className="dock panel" aria-label={t('timeline.title')}>
+          <Timeline />
+        </section>
+      </div>
+      <Suspense fallback={<div className="toast">{t('loading')}</div>}>
+        {page === 'trust' && <Trust />}
+        {page === 'brief' && <Brief />}
+        {page === 'compare' && <Compare />}
+        {wizard && <Wizard onClose={() => setState({ wizard: false })} />}
+      </Suspense>
+      <Tour />
+    </>
   )
 }

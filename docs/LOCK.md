@@ -2,8 +2,8 @@
 
 - session: session_01E6ZbLzKgBjZSm5dfrvnAnd (Claude Code on the web, watchdog run)
 - session start: 2026-11-15 01:43 CET
-- last heartbeat: 2026-11-15 02:09 Europe/Paris
-- current objective: L3 — candidate grids + Top 3, then L2 UI
+- last heartbeat: 2026-11-15 02:32 Europe/Paris
+- current objective: L2/L3 — UI shell running, Top 3 live; next V7/V7b/V17 + e2e
 
 Rule: a new session that finds a heartbeat younger than 45 minutes written by another session appends
 "watchdog: active session detected" to docs/WORKLOG.md, pushes and ends.
