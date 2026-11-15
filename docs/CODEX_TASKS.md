@@ -105,7 +105,7 @@ sentence; candidate grids per hero region (§7.11); Top 3 engine, Pareto view, c
 §6.14); solar-energy efficiency module with optimizers, survival timeline and headline vs baseline (§6.8); Earth
 connectivity module with DSN and custom stations, DTE windows, antenna-pointing optimizer, FSPL, interference flag
 (§6.9).
-Objectives: P4, P5, P6, P7, V15, V16, V17, V7, V7b.
+Objectives: P4, P5, P6, P7, P16, C13, C14, V15, V16, V17, V7, V7b. Include the challenge-driven additions of §6.15 items 1, 2 and 4.
 Time box: 4 hours. Run the work loop until these objectives are met or the time box ends. End with the task summary
 of §0.6.
 ```
@@ -132,7 +132,7 @@ Read AGENTS.md and docs/MASTER_PROMPT_CODEX.md in full. Execute task T5 of docs/
 Scope, in this order (apply the cut list of §12 if late): value-added layers of §6.4; Site 3D view with true-Sun
 shadows (§6.6); Who blocks the Sun (§7.13); Moon Street View; lander attitude slider; mission replay for
 Chandrayaan-3, IM-1, IM-2 (V18); lunar porkchop plot; illumination compass; Moon Directions (§7.12, V20).
-Objectives: P3, P8, P9, P10, P11, C12, V18, V20.
+Objectives: P3, P8, P9, P10, P11, C12, V18, V20, then the season view (§6.15 item 3) and P17 if time remains.
 Time box: until 18:00 Europe/Paris. Run the work loop until these objectives are met or the time box ends. End with
 the task summary of §0.6.
 ```
@@ -144,7 +144,7 @@ Read AGENTS.md and docs/MASTER_PROMPT_CODEX.md in full. Execute task T6 of docs/
 Scope: hostile self-review of the whole product (§11.5) and fixes; accessibility (axe), Lighthouse, mobile 390 px,
 performance budgets; Trust page with generated validation, TRACEABILITY, METHODS with every equation and constant
 source; README with screenshots; Judge pass (§11.4) and its top fixes; final deploy check on the public URL.
-Objectives: V13, V12 (documented), P13, P14, and every remaining unmet objective that fits.
+Objectives: V13, V12 (documented), P13, P14, P15 (PWA), re-check of the Resources tab (§6.15 item 7), and every remaining unmet objective that fits.
 Time box: until 19:59 Europe/Paris — feature freeze. Run the work loop until these objectives are met or the time box
 ends. End with the task summary of §0.6.
 ```

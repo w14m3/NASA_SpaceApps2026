@@ -105,7 +105,8 @@ to the real state). 7. Time used vs the phase time box.
 ## 2. The challenge, distilled
 
 Read `docs/challenge/challenge_page.md` and the live page
-https://www.spaceappschallenge.org/2026/challenges/lunar-landing-site-navigator/ (including its Resources tab).
+https://www.spaceappschallenge.org/2026/challenges/lunar-landing-site-navigator/ (including its Resources tab). Re-check the Resources tab at the start of L0 and L5:
+resources may be added during the event.
 
 **Problem.** South-pole missions face extreme lighting and communication constraints. Tools that give Sun and Earth
 positions at candidate sites (Quickmap, Moon Trek, JPL Horizons) exist, but their complex interfaces make rapid
@@ -387,6 +388,27 @@ Compact URL state (view, time, layers, pins, scenario); CSV/JSON; PNG; **Mission
 with methods, assumptions, uncertainties and manifest; permanent **Methods & Trust** page (validation matrix,
 conventions, equations, limits, data credits, traceability).
 
+### 6.15 Challenge-driven additions (from a line-by-line reading of the challenge text)
+1. **Thermal conditions** — the challenge states that the Sun's position drives "power availability for solar arrays
+   and thermal conditions for equipment". Add the thermal proxy of §7.14 to the Workbench, the Top 3 cards and the
+   Mission Brief.
+2. **Site-date scenarios** — the challenge compares "site-date combinations". A scenario = site + landing date / window
+   + lander configuration; the compare view accepts 2–4 scenarios that may share a site and differ only in date (and
+   vice versa), with deltas between them.
+3. **Seasons** — conditions change "across different lunar days and seasons". Add a season view: for the selected site,
+   a 12-month heatmap (lunar day × day of lunation, or day of year × hour) of Sun visibility and Earth/DTE visibility,
+   with the best and worst lunar days highlighted.
+4. **Science–engineering coordination** — two constraint panels feed the Top 3 engine: Science (e.g. distance to
+   zero-illumination cells, region of interest) and Engineering (slope, tilt margin, sunlit %, longest night, DTE %).
+   The Mission Brief records both sets of constraints so both teams sign off on the same scenario.
+5. **Educational game (optional)** — the challenge lists "an educational game" among possible formats. In Learn mode,
+   "Land it!": the player picks a spot and a date near the pole; the core scores power, link and safety, then reveals the
+   Top 3 and explains the difference. Same core, no new physics.
+6. **Mobile app** — make the site an installable Progressive Web App (manifest + service worker caching the app shell
+   and artifacts) so it works offline in a classroom or a control room, responsive down to 390 px.
+7. **Resources tab** — re-check the challenge's Resources tab at the start of L0 and L5; integrate any resource added
+   during the event through the protocol of §4.3.
+
 ---
 
 ## 7. Physics and algorithms (exact definitions)
@@ -523,6 +545,15 @@ assumed speed (labelled).
 Using the stored horizon distance per azimuth: draw the ray from the site to the blocking terrain, and attribute every
 dark interval ("Night of 40 h from 3 Dec 04:10 UTC, caused by the ridge 12.4 km away at azimuth 135°").
 
+### 7.14 Thermal proxy (screening, labelled)
+- **Cold-soak duration** = longest continuous darkness at the instrument height (already computed, with ±).
+- **Survival-heater energy** E_heat = P_heater · T_dark (P_heater a user input, labelled assumption).
+- **Radiative-equilibrium temperature** of an isolated plate facing the Sun while lit:
+  T_eq = [α · S · f☉ · cos i / (ε · σ)]^(1/4), with σ = 5.670374419 × 10⁻⁸ W m⁻² K⁻⁴ (SI defined constant) and
+  absorptivity α, emissivity ε as labelled assumptions. In shadow, display "radiating to deep space — heaters
+  required", never an invented night temperature. Disclose: no conduction, no terrain infrared, no internal
+  dissipation.
+
 ---
 
 ## 8. Architecture
@@ -625,6 +656,8 @@ One row per objective: ID · description · acceptance criterion (automated wher
 | C10 | Real terrain horizon, no atmosphere | V4–V7 pass, method page |
 | C11 | Libration and orbital variations accounted for and shown | libration loop on sky plot; method page |
 | C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop |
+| C13 | Thermal conditions for equipment (proxy) | §7.14 shown in Workbench, Top 3 cards, Brief; unit tests |
+| C14 | Site-date scenario comparison and seasons | compare 2–4 scenarios incl. same site/different dates; season view; e2e |
 
 **Product and innovation objectives**
 | ID | Objective | Acceptance |
@@ -643,6 +676,9 @@ One row per objective: ID · description · acceptance criterion (automated wher
 | P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete |
 | P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it |
 | P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission text | files present and current |
+| P15 | Installable, offline-capable PWA (mobile) | Lighthouse PWA checks; offline reload works in e2e |
+| P16 | Science and Engineering constraint panels feeding the Top 3 and the Brief | e2e |
+| P17 | "Land it!" educational game (optional, first item of the cut list) | e2e |
 
 **Validation objectives**: every row of §10 (`met` = recorded pass; V12 and V18 = documented).
 
@@ -714,7 +750,10 @@ L4 → T5 · L5 → T6 · L6 → T7. A phase may need several tasks; each task e
 | **L5 Proof & polish** | → **19:59 feature freeze** | Accessibility, mobile, performance, Trust page, TRACEABILITY, PRODUCT, METHODS, SUBMISSION, DEMO_SCRIPT, PITCH, screenshots, final deploy | V13 pass; P13–P14 met |
 | **L6 Submission support** | 19:59 → 23:59 | Fix-only loop; hand the owner the demo shot list and submission text | — |
 
-**Cut list when late** (apply in order): Directions → compass → porkchop → ellipse cloud → real-time shadows (keep static
+**Challenge-driven additions (§6.15)**: scenario comparison and thermal proxy → L3; season view and constraint panels
+→ L3/L4; PWA → L5; "Land it!" → end of L4 if time remains.
+
+**Cut list when late** (apply in order): "Land it!" → Directions → compass → porkchop → ellipse cloud → real-time shadows (keep static
 lighting) → mission replay → Street View polish → FR translation (keep scaffold) → PDF (keep print page).
 **Never cut**: oracle-validated science core, Top 3, landing safety screening, DTE with DSN, solar-efficiency headline,
 Trust page, public URL.
