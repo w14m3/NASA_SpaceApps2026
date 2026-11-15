@@ -10,3 +10,4 @@ reference/v1/data/dem/
 reference/v1/data/kernels/
 web/public/cesium/
 reference/v1/web/public/cesium/
+data/cache/
