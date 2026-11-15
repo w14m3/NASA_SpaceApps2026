@@ -33,7 +33,7 @@ interface Feature {
   type?: string
 }
 
-function Search() {
+export function Search() {
   const { t } = useT()
   const sites = useSites()
   const features = useAsync('features', () => fetch(BASE + 'data/features.json').then((r) => r.json() as Promise<{ features: Feature[] }>)).data?.features ?? []

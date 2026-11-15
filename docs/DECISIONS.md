@@ -69,3 +69,10 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   is fitted to SPICE (`spkpos … MOON_ME, LT+S`), fit ≤ 4.1e-9°; DE421 becomes the independent cross-check (≤ 1.6e-5°)
   and the fallback when kernels are absent. The geocentric Moon for station geometry stays DE421-based (validated
   against Horizons, V11: 0.0005°).
+- **D21 (12:40) — Explore mode redesigned map-first (owner request: "simplify … a very good 3D moving map … higher
+  resolution").** Explore now opens a full-screen tiled 3D Moon (`web/src/ui/globe/`): NASA Moon Trek LRO WAC global
+  tiles to zoom 8 and, south of 79.9°S, a 3D polar cap textured with LOLA 30 m / 10 m shaded relief (to 33 m/px) and
+  displaced by LOLA heights (80 m windows / 240 m), with map-style controls (drag, wheel/pinch to cursor, rotate and
+  tilt, keyboard), flat "Map" or "Real Sun" lighting, and labelled vertical exaggeration (default ×2). One card answers
+  the three questions in plain words and lists the Top 3; the previous interface is unchanged as Plan mode. E2E tests of
+  the expert interface open `#mode=plan`; new tests cover Explore.

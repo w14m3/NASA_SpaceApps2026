@@ -2,7 +2,9 @@ import { expect, test, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
 const errors: string[] = []
+/** Most tests exercise the expert (Plan) interface; Explore has its own tests below. */
 async function open(page: Page, hash = '') {
+  if (!hash.includes('mode=')) hash = hash ? `${hash}&mode=plan` : '#mode=plan'
   errors.length = 0
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => {
@@ -10,6 +12,46 @@ async function open(page: Page, hash = '') {
   })
   await page.goto('/' + hash)
 }
+
+test.describe('explore', () => {
+  test('golden path explore: the simple screen answers the three questions and shows the Top 3 within 10 s, brief within 60 s', async ({ page }) => {
+    const t0 = Date.now()
+    await open(page, '#mode=explore')
+    await expect(page.getByTestId('explore')).toBeVisible()
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 10_000 })
+    const tTop3 = Date.now() - t0
+    await expect(page.getByTestId('answer-land')).toContainText(/Slope|terrain/, { timeout: 20_000 })
+    await expect(page.getByTestId('answer-power')).toContainText('Sunlit', { timeout: 20_000 })
+    await expect(page.getByTestId('answer-link')).toContainText('Direct link', { timeout: 20_000 })
+    await page.getByTestId('option-A').click()
+    await page.getByTestId('option-A').getByRole('button').first().click()
+    await page.getByTestId('full-analysis').click()
+    await expect(page.getByTestId('workbench')).toBeVisible()
+    await page.getByTestId('choose').click()
+    await expect(page.getByTestId('brief-page')).toBeVisible()
+    console.log(`explore golden path: top3 ${tTop3} ms, brief ${Date.now() - t0} ms`)
+    expect(tTop3).toBeLessThan(10_000)
+    expect(errors).toEqual([])
+  })
+
+  test('3D moon map: zoom, fly to the pole and the whole Moon, click to analyse a spot', async ({ page }) => {
+    await open(page, '#mode=explore')
+    const globe = page.getByTestId('moon-globe')
+    await expect(globe).toBeVisible({ timeout: 15_000 })
+    await page.getByTestId('zoom-in').click()
+    await page.getByTestId('fly-moon').click()
+    await page.waitForTimeout(2200)
+    await expect(page.getByTestId('globe-hud')).toContainText('km above the surface')
+    await page.getByTestId('fly-pole').click()
+    await page.waitForTimeout(2200)
+    const box = (await globe.boundingBox())!
+    await page.mouse.click(box.x + box.width * 0.62, box.y + box.height * 0.5)
+    await expect(page.getByTestId('place-card')).toContainText('°S', { timeout: 10_000 })
+    await page.getByTestId('light-sun').click()
+    await page.getByTestId('relief').fill('4')
+    expect(errors).toEqual([])
+  })
+})
 
 test.describe('golden path', () => {
   test('golden path: Top 3 within 10 s, option opens the workbench, brief within 60 s', async ({ page }) => {
@@ -318,7 +360,7 @@ test.describe('access', () => {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 })
     const page = await ctx.newPage()
     await page.goto('/')
-    await expect(page.getByTestId('polar-map')).toBeVisible()
+    await expect(page.getByTestId('moon-globe')).toBeVisible({ timeout: 15_000 })
     await expect(page.getByTestId('option-A')).toBeAttached({ timeout: 15_000 })
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
     expect(overflow).toBeLessThanOrEqual(1)

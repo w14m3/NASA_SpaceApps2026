@@ -8,6 +8,7 @@ import { Stage } from './Stage'
 import { Timeline } from './Timeline'
 import { usePlayback } from './playback'
 import { Tour } from './Learn'
+import { ExploreShell } from './ExploreShell'
 
 const Trust = lazy(() => import('./Trust'))
 const Brief = lazy(() => import('./Brief'))
@@ -17,6 +18,7 @@ const Wizard = lazy(() => import('./Wizard'))
 export function App() {
   const page = useStore((s) => s.page)
   const wizard = useStore((s) => s.wizard)
+  const mode = useStore((s) => s.mode)
   const lang = useStore((s) => s.lang)
   const { t } = useT()
   usePlayback()
@@ -25,9 +27,14 @@ export function App() {
   }, [lang])
   return (
     <>
-      <a className="skip" href="#stage">
+      <a className="skip" href={mode === 'explore' ? '#explore-map' : '#stage'}>
         {t('nav.skip')}
       </a>
+      {mode === 'explore' ? (
+        <div aria-hidden={page !== 'main' ? true : undefined}>
+          <ExploreShell />
+        </div>
+      ) : (
       <div className="app" aria-hidden={page !== 'main' ? true : undefined}>
         <TopBar />
         <aside className="left panel" aria-label={t('left.title')}>
@@ -43,6 +50,7 @@ export function App() {
           <Timeline />
         </section>
       </div>
+      )}
       <Suspense fallback={<div className="toast">{t('loading')}</div>}>
         {page === 'trust' && <Trust />}
         {page === 'brief' && <Brief />}

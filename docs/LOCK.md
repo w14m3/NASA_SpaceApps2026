@@ -2,8 +2,8 @@
 
 - session: session_01E6ZbLzKgBjZSm5dfrvnAnd (Claude Code on the web, watchdog run)
 - session start: 2026-11-15 01:43 CET
-- last heartbeat: 2026-11-15 11:50 Europe/Paris
-- current objective: 80 m candidate grids rebuilding (restarted, ~50 min)
+- last heartbeat: 2026-11-15 12:02 Europe/Paris
+- current objective: Explore redesign: map-first 3D Moon; grids rebuilding
 
 Rule: a new session that finds a heartbeat younger than 45 minutes written by another session appends
 "watchdog: active session detected" to docs/WORKLOG.md, pushes and ends.
