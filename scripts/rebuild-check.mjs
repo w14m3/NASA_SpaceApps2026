@@ -19,7 +19,7 @@ const h = (p) => {
   return createHash('sha256').update(b).digest('hex')
 }
 const files = [
-  D('ephem', 'sun_earth_de421_2017_2026.bin'),
+  D('ephem', existsSync(D('ephem', 'sun_earth_spice_2017_2026.bin')) ? 'sun_earth_spice_2017_2026.bin' : 'sun_earth_de421_2017_2026.bin'),
   D('ephem', 'sun_earth_de440_2026_2031.bin'),
   D('ephem', 'moon_cirs_2017_2031.bin'),
   D('ephem', 'ut1.json'),

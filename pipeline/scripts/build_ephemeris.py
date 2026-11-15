@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from lunarnav import cheby, ephem  # noqa: E402
+from lunarnav import cheby, ephem, spice  # noqa: E402
 from lunarnav.de421 import provenance  # noqa: E402
 from lunarnav.timescales import tai_minus_utc  # noqa: E402
 from lunarnav.v1ephem import V1, V1Ephem  # noqa: E402
@@ -56,15 +56,27 @@ def main() -> None:
     dtai = tai_minus_utc(np.linspace(START, END, 2000))
     assert np.allclose(dtai, 37.0), "a leap second falls inside the span: split the fit"
 
-    # --- DE421 piece 2017 -> 2026 (+1 segment overlap)
+    # --- 2017 -> 2026 piece (+1 segment overlap): SPICE DE440 when the NAIF kernels are in data/cache (primary,
+    # contract 7.3), otherwise the DE421 rebuild (fallback, D3). The other engine is the cross-check.
+    use_spice = spice.available()
+    primary = spice.moon_me if use_spice else ephem.moon_me
     n421 = int(np.ceil((SPLIT - START) / (SEG_S * 1000))) + 1
     coefs, errs = [], {}
     for body in ("sun", "earth"):
-        c, e = fit_and_check(lambda t, b=body: ephem.moon_me(b, t), START, n421, f"DE421 {body}", rng)
+        c, e = fit_and_check(lambda t, b=body: primary(b, t), START, n421, f"{'SPICE' if use_spice else 'DE421'} {body}", rng)
         coefs.append(c)
         errs[body.upper()] = e
-    f421 = OUT / "sun_earth_de421_2017_2026.bin"
+    f421 = OUT / ("sun_earth_spice_2017_2026.bin" if use_spice else "sun_earth_de421_2017_2026.bin")
     np.stack(coefs).astype("<f8").tofile(f421)
+    old = OUT / ("sun_earth_de421_2017_2026.bin" if use_spice else "sun_earth_spice_2017_2026.bin")
+    if old.exists():
+        old.unlink()
+    cross = {}
+    if use_spice:  # independent cross-check over 2017-2026: DE421 rebuild vs SPICE DE440
+        tc = rng.uniform(START, SPLIT, 3000)
+        for body in ("sun", "earth"):
+            d = cheby.angle_deg(ephem.moon_me(body, tc), spice.moon_me(body, tc))
+            cross[body.upper()] = {"max_deg": float(d.max()), "rms_deg": float(np.sqrt((d**2).mean()))}
 
     # --- DE440 piece: the v1 SPICE artifact, unchanged
     f440 = OUT / "sun_earth_de440_2026_2031.bin"
@@ -99,14 +111,24 @@ def main() -> None:
     for body in ("SUN", "EARTH"):
         d = cheby.angle_deg(ephem.moon_me(body.lower(), t), v1.position(body, t))
         v19[body] = {"max_deg": float(d.max()), "rms_deg": float(np.sqrt((d**2).mean()))}
-    worst = max(v["max_deg"] for v in v19.values()) + max(e["max_deg"] for e in errs.values())
+    if use_spice:
+        worst = max(e["max_deg"] for e in errs.values())
+        test = ("Runtime ephemeris 2017-2031 vs SPICE: the 2017-2026 piece is fitted to SPICE DE440 (spkpos MOON_ME, LT+S) "
+                "and checked against direct SPICE calls at 4000 random instants; the 2026-2031 piece is the v1 SPICE fit. "
+                "Independent cross-check: DE421 rebuild vs SPICE")
+        summary = f"max {worst:.1e} deg (fit vs SPICE); DE421 cross-check max {max(c['max_deg'] for c in cross.values()):.1e} deg"
+    else:
+        worst = max(v["max_deg"] for v in v19.values()) + max(e["max_deg"] for e in errs.values())
+        test = ("Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random "
+                "instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself")
+        summary = f"max {worst:.1e} deg (DE421 vs DE440 + fit)"
     rec = {
         "id": "V19",
-        "test": "Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random "
-                "instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself",
+        "test": test,
         "criterion": "<= 0.001 deg",
-        "measured": {"de421_vs_spice_de440": v19, "fit_de421": errs, "fit_de440_v1": v1.meta["max_error_deg"]},
-        "summary": f"max {worst:.1e} deg (DE421 vs DE440 + fit)",
+        "measured": {"fit_2017_2026": errs, "de421_vs_spice_2017_2026": cross, "de421_vs_spice_de440_2026_2031": v19,
+                     "fit_de440_v1": v1.meta["max_error_deg"]},
+        "summary": summary,
         "status": "pass" if worst <= 1e-3 else "fail",
         "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
     }
@@ -119,10 +141,11 @@ def main() -> None:
         "time": "UTC Unix ms; TAI-UTC = 37 s constant over the span (asserted at build)",
         "layout": "float64 little-endian [body][segment][axis xyz][coef 0..degree]",
         "pieces": [
-            {"id": "de421", "file": f421.name, "start_ms": START, "valid_until_ms": SPLIT, "seg_s": SEG_S,
-             "degree": DEG, "n_seg": n421, "bodies": ["SUN", "EARTH"],
-             "source": "JPL DE421 (PyPI de421 2008.1) rebuilt with LT+S and DE421 PA->ME rotation",
-             "provenance": provenance(), "fit_error_deg": errs, "vs_spice_de440_deg": v19, "sha256": sha(f421)},
+            {"id": "spice2017" if use_spice else "de421", "file": f421.name, "start_ms": START, "valid_until_ms": SPLIT,
+             "seg_s": SEG_S, "degree": DEG, "n_seg": n421, "bodies": ["SUN", "EARTH"],
+             "source": ("SPICE DE440 (spkpos MOON_ME LT+S; kernels " + ", ".join(spice.KERNELS) + ")") if use_spice
+             else "JPL DE421 (PyPI de421 2008.1) rebuilt with LT+S and DE421 PA->ME rotation",
+             "provenance": provenance(), "fit_error_deg": errs, "de421_cross_check_deg": cross, "sha256": sha(f421)},
             {"id": "de440", "file": f440.name, "start_ms": v1.start_ms, "valid_until_ms": v1.end_ms,
              "seg_s": v1.meta["seg_seconds"], "degree": v1.meta["degree"], "n_seg": v1.meta["n_segments"],
              "bodies": v1.meta["targets"], "source": "SPICE DE440 via reference/v1 build (kernels and SHA-256 in "

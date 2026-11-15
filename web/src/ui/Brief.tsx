@@ -118,7 +118,7 @@ export default function Brief() {
               <li>Region centre from the curated point "{r?.anchor}" ({r?.status}).</li>
             </ul>
             <h2>Provenance</h2>
-            <p className="hint">Ephemeris: SPICE DE440 (2026–2031) and JPL DE421 (2017–2026), LT+S, MOON_ME. Terrain: LOLA PGDA product 90. Validation records: see Methods & Trust. Same URL, same result (seeded, deterministic).</p>
+            <p className="hint">Ephemeris: SPICE DE440 2017–2031 (LT+S, MOON_ME), cross-checked with JPL DE421 and JPL Horizons. Terrain: LOLA PGDA product 90. Validation records: see Methods & Trust. Same URL, same result (seeded, deterministic).</p>
           </>
         )}
       </div>

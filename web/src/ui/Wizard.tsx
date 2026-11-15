@@ -62,7 +62,7 @@ export default function Wizard({ onClose }: { onClose: () => void }) {
                   ))}
                 </select>
               </div>
-              <p className="hint">Ephemeris span 2017-01-01 → 2031-01-02 (SPICE DE440 from 2026, DE421 before).</p>
+              <p className="hint">Ephemeris span 2017-01-01 → 2031-01-02 (SPICE DE440).</p>
             </fieldset>
           )}
           {step === 2 && (

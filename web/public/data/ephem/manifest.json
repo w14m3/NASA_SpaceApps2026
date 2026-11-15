@@ -6,8 +6,8 @@
  "layout": "float64 little-endian [body][segment][axis xyz][coef 0..degree]",
  "pieces": [
   {
-   "id": "de421",
-   "file": "sun_earth_de421_2017_2026.bin",
+   "id": "spice2017",
+   "file": "sun_earth_spice_2017_2026.bin",
    "start_ms": 1483228800000.0,
    "valid_until_ms": 1767225600000.0,
    "seg_s": 345600.0,
@@ -17,7 +17,7 @@
     "SUN",
     "EARTH"
    ],
-   "source": "JPL DE421 (PyPI de421 2008.1) rebuilt with LT+S and DE421 PA->ME rotation",
+   "source": "SPICE DE440 (spkpos MOON_ME LT+S; kernels naif0012.tls, pck00011.tpc, moon_pa_de440_200625.bpc, moon_de440_250416.tf, de440s.bsp)",
    "provenance": {
     "product": "JPL DE421 planetary and lunar ephemeris (Folkner, Williams & Boggs 2009, IPN PR 42-178)",
     "package": "de421==2008.1",
@@ -29,27 +29,27 @@
    },
    "fit_error_deg": {
     "SUN": {
-     "max_deg": 6.285179956739081e-09,
-     "rms_deg": 2.337653754012354e-09,
+     "max_deg": 3.1228671904068447e-09,
+     "rms_deg": 2.9530176751056384e-10,
      "n_check": 4000
     },
     "EARTH": {
-     "max_deg": 2.0673820828749378e-07,
-     "rms_deg": 5.135504777379783e-08,
+     "max_deg": 4.089469417625136e-09,
+     "rms_deg": 3.808517544440201e-10,
      "n_check": 4000
     }
    },
-   "vs_spice_de440_deg": {
+   "de421_cross_check_deg": {
     "SUN": {
-     "max_deg": 1.5584987858300537e-05,
-     "rms_deg": 8.37719860783797e-06
+     "max_deg": 1.5788577141589476e-05,
+     "rms_deg": 8.578354242970373e-06
     },
     "EARTH": {
-     "max_deg": 1.5162990854944584e-05,
-     "rms_deg": 1.0065471651007048e-05
+     "max_deg": 1.3604570191651213e-05,
+     "rms_deg": 9.44391012266306e-06
     }
    },
-   "sha256": "dcbc952e063afc2203baa427cb9bb9c24445336822fbe19e6e2c7a9def87e4cf"
+   "sha256": "081d4127509e5d162c55bd0cd6afc516ce0d2b727beeda4e3f6eaa62c57cb04a"
   },
   {
    "id": "de440",
@@ -96,12 +96,12 @@
   "n_seg": 1279,
   "source": "DE421 apparent geocentric Moon (LT+S) rotated GCRS->CIRS with ERFA c2i06a (IAU 2006/2000A)",
   "fit_error_deg": {
-   "max_deg": 2.1060580687008803e-07,
-   "rms_deg": 5.127876705165687e-08,
+   "max_deg": 1.909336772693202e-07,
+   "rms_deg": 5.156812687017819e-08,
    "n_check": 4000
   },
   "sha256": "e6a31700eea11124bfc165355cb58494ced3c75598feda890777f6405cf2e9d8"
  },
  "ut1": "ut1.json",
- "built_utc": "2026-11-15T03:53:23+00:00"
+ "built_utc": "2026-11-15T10:33:44+00:00"
 }

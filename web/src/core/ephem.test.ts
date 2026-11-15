@@ -83,10 +83,10 @@ describe('ephemeris oracles', () => {
     expect(worst).toBeLessThanOrEqual(5e-3)
   })
 
-  it('pieces join without a seam at 2026-01-01 (DE421 -> SPICE DE440)', async () => {
+  it('pieces join without a seam at 2026-01-01 (SPICE 2017 piece -> SPICE DE440 v1 piece)', async () => {
     const eph = await testEphemeris()
     const t = Date.UTC(2026, 0, 1)
-    expect(eph.sourceAt(t - 1)).toBe('de421')
+    expect(eph.sourceAt(t - 1)).toBe('spice2017')
     expect(eph.sourceAt(t + 1)).toBe('de440')
     const a = eph.pieces[0].eval(1, t, [0, 0, 0])
     const b = eph.pieces[1].eval(1, t, [0, 0, 0])

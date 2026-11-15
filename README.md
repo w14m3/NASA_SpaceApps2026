@@ -58,7 +58,7 @@ Rebuild the artifacts from their inputs and check the hashes (V14): `python pipe
 ## Architecture
 
 ```
-pipeline/   Python: DE421 reader with LT+S and the DE421 PA→ME rotation, ERFA time scales, Chebyshev fits,
+pipeline/   Python: SPICE (spiceypy) and an independent DE421 reader (LT+S, PA→ME), ERFA time scales, Chebyshev fits,
             artifact builders (ephemeris, DEM, sites, fixtures), pytest
 web/src/core/   framework-free TypeScript science: ephemeris, topocentric geometry, horizon masks, disk visibility,
             events, energy, stations/link, safety, thermal, Top 3, who-blocks, traverse (+ Vitest validation tests)
@@ -85,7 +85,7 @@ Equations and constants: [`docs/METHODS.md`](docs/METHODS.md).
 
 - Built without access to NASA servers from the build machine (see `docs/DECISIONS.md`): custom sites and candidate
   grids use the LOLA 240 m DEM (screening resolution; horizons can differ by ~3° from 80 m-based ones); curated
-  south-pole sites use validated 80 m-based masks. 2017–2026 ephemeris from JPL DE421 (≤ 1.6e-5° from DE440).
+  south-pole sites use validated 80 m-based masks.
 - Not modelled: reflected light from terrain, thermal and dust effects, lander self-shadowing, antenna patterns,
   leg dynamics, soil failure, rocks smaller than a pixel. Several literature coordinates are flagged "unverified".
 

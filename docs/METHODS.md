@@ -10,7 +10,7 @@ Validation results: `docs/VALIDATION.md` (generated) and the in-app **Methods & 
 | Item | Choice |
 |---|---|
 | Time | UTC in and out. TDB inside the pipeline (ERFA `utctai`, `taitt`, `dtdb`). TAI−UTC = 37 s over 2017-01-01 → 2031-01-03 (asserted by `build_ephemeris.py`), so the browser interpolates in UTC milliseconds |
-| Lunar frame | MOON_ME (Mean Earth/Polar Axis). 2026-01-01 → 2031-01-03: SPICE DE440 realisation (`moon_de440_250416.tf` + `moon_pa_de440_200625.bpc`, built by reference/v1). 2017-01-01 → 2026-01-01: DE421 Euler angles + the DE421 PA→ME rotation (D3, D4) |
+| Lunar frame | MOON_ME (Mean Earth/Polar Axis), SPICE DE440 realisation (`moon_de440_250416.tf` + `moon_pa_de440_200625.bpc`) over the whole runtime span 2017-01-01 → 2031-01-03 (D20). JPL DE421 with its PA→ME rotation is kept as an independent cross-check (≤ 1.6e-5°, V19) |
 | LOLA frame | MOON_ME of DE421 (product metadata). DE421-vs-DE440 ME direction difference measured ≤ 1.6e-5° (V19), < 1 m at the surface |
 | Coordinates | Planetocentric latitude, east-positive longitude (−180…180) |
 | Reference surface | Sphere R = 1737.4 km; terrain heights z relative to it |
@@ -37,11 +37,11 @@ Validation results: `docs/VALIDATION.md` (generated) and the in-app **Methods & 
 
 - **2026–2031**: the SPICE DE440 Chebyshev artifact of reference/v1 (`spkpos(target, et, "MOON_ME", "LT+S",
   "MOON")`, degree 15 on 4-day segments, fit error 3e-9°), copied byte for byte.
-- **2017–2026**: rebuilt here from JPL DE421 (PyPI `de421`, D3). Apparent vector from the Moon's centre:
-  light time iterated 4× (Newtonian, `|r_target(t−τ) − r_moon(t)| / c`), then stellar aberration (rotation of the unit
-  vector toward the Moon's barycentric velocity by asin(|û × v/c|), as SPICE `STELAB`). ICRF → MOON_PA by the DE421
-  Euler angles, R₃(ψ) R₁(θ) R₃(φ); MOON_PA → MOON_ME by the transpose of [67.92″]₃[78.56″]₂[0.30″]₁ (DE421 values,
-  composition fixed by the DE440 oracle, D4). Fitted with the same Chebyshev layout (fit error ≤ 2.1e-7°).
+- **2017–2026**: fitted here to SPICE DE440 (`spkpos(target, et, "MOON_ME", "LT+S", "MOON")`, kernels from
+  `codex/fetch_nasa_data.py`), same layout, fit error ≤ 4.1e-9° (V19). Independent cross-check: JPL DE421 (PyPI
+  `de421`) with converged light time, stellar aberration (as SPICE `STELAB`), the DE421 Euler angles R₃(ψ) R₁(θ) R₃(φ)
+  and the DE421 PA→ME rotation (transpose of [67.92″]₃[78.56″]₂[0.30″]₁, composition fixed against DE440, D4):
+  ≤ 1.6e-5° from SPICE over 2017–2031. DE421 is also the fallback when the kernels are absent (D3).
 - **Moon from Earth stations**: apparent geocentric Moon (DE421, LT+S for the geocentre) rotated GCRS → CIRS with
   ERFA `c2i06a` (IAU 2006/2000A), Chebyshev-fitted 2017–2031. At runtime CIRS → TIRS by the Earth Rotation Angle
   ERA = 2π (0.7790572732640 + 1.00273781191135448 (JD_UT1 − 2451545.0)) (IERS Conventions 2010, eq. 5.15), with

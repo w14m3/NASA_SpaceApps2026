@@ -1,28 +1,38 @@
 {
  "id": "V19",
- "test": "Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself",
+ "test": "Runtime ephemeris 2017-2031 vs SPICE: the 2017-2026 piece is fitted to SPICE DE440 (spkpos MOON_ME, LT+S) and checked against direct SPICE calls at 4000 random instants; the 2026-2031 piece is the v1 SPICE fit. Independent cross-check: DE421 rebuild vs SPICE",
  "criterion": "<= 0.001 deg",
  "measured": {
-  "de421_vs_spice_de440": {
+  "fit_2017_2026": {
    "SUN": {
-    "max_deg": 1.5584987858300537e-05,
-    "rms_deg": 8.37719860783797e-06
+    "max_deg": 3.1228671904068447e-09,
+    "rms_deg": 2.9530176751056384e-10,
+    "n_check": 4000
    },
    "EARTH": {
-    "max_deg": 1.5162990854944584e-05,
-    "rms_deg": 1.0065471651007048e-05
+    "max_deg": 4.089469417625136e-09,
+    "rms_deg": 3.808517544440201e-10,
+    "n_check": 4000
    }
   },
-  "fit_de421": {
+  "de421_vs_spice_2017_2026": {
    "SUN": {
-    "max_deg": 6.285179956739081e-09,
-    "rms_deg": 2.337653754012354e-09,
-    "n_check": 4000
+    "max_deg": 1.5788577141589476e-05,
+    "rms_deg": 8.578354242970373e-06
    },
    "EARTH": {
-    "max_deg": 2.0673820828749378e-07,
-    "rms_deg": 5.135504777379783e-08,
-    "n_check": 4000
+    "max_deg": 1.3604570191651213e-05,
+    "rms_deg": 9.44391012266306e-06
+   }
+  },
+  "de421_vs_spice_de440_2026_2031": {
+   "SUN": {
+    "max_deg": 1.5592750509474208e-05,
+    "rms_deg": 8.411138465484316e-06
+   },
+   "EARTH": {
+    "max_deg": 1.5190883297475427e-05,
+    "rms_deg": 1.0014876911817882e-05
    }
   },
   "fit_de440_v1": {
@@ -38,7 +48,7 @@
    }
   }
  },
- "summary": "max 1.6e-05 deg (DE421 vs DE440 + fit)",
+ "summary": "max 4.1e-09 deg (fit vs SPICE); DE421 cross-check max 1.6e-05 deg",
  "status": "pass",
- "generated_utc": "2026-11-15T03:53:23+00:00"
+ "generated_utc": "2026-11-15T10:33:44+00:00"
 }

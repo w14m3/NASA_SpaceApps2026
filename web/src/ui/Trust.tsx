@@ -59,11 +59,11 @@ export default function Trust() {
             ))}
           </tbody>
         </table>
-        <p className="hint">Generated {val.data?.generated_utc}. Not run here: V11 against JPL Horizons and O2 against the LOLA 80 m product (both hosts unreachable from the build environment; substitutes V11b and O2b are shown), V12 (QuickMap, manual).</p>
+        <p className="hint">Generated {val.data?.generated_utc}. V11 (JPL Horizons) and O2 (LOLA 80 m) were run once the NASA hosts became reachable; V11b and O2b remain as additional checks. Not run: V12 (QuickMap, manual).</p>
         <h2>Conventions</h2>
         <ul>
           <li>Time: UTC in and out; TDB inside the ephemeris pipeline (ERFA). No leap second between 2017-01-01 and 2031-01-03 (asserted), so the browser uses UTC milliseconds.</li>
-          <li>Frame: MOON_ME (Mean Earth/Polar Axis). 2026–2031: SPICE DE440 realisation (reference build). 2017–2026: JPL DE421 with the DE421 PA→ME rotation; measured difference from DE440 ≤ 1.6e-5° (V19).</li>
+          <li>Frame: MOON_ME (Mean Earth/Polar Axis), SPICE DE440 realisation over 2017–2031 (fit error ≤ 4e-9°, V19); independent cross-check with JPL DE421 (≤ 1.6e-5°).</li>
           <li>East-positive longitude, planetocentric latitude, reference sphere R = 1737.4 km; heights relative to it.</li>
           <li>Azimuth clockwise from local north; elevation above the local horizontal. Instrument (mast) height above terrain is always shown.</li>
           <li>Aberration: apparent positions with light time and stellar aberration (SPICE "LT+S" semantics); Earth direction taken from the site (parallax up to 0.26°).</li>
@@ -82,7 +82,7 @@ export default function Trust() {
         <h2>Limits (read before trusting a number)</h2>
         <ul>
           <li>Illumination is not electrical power; geometric visibility is not link closure; slope screening is not certification.</li>
-          <li>Custom sites and candidate grids use the LOLA 240 m DEM: their horizons can differ from 80 m-based ones by up to ~3° (report O2_240m). Curated south-pole sites use validated 80 m-based masks.</li>
+          <li>Candidate grids and curated south-pole sites use LOLA 80 m (+240 m far field); live custom sites use 80 m inside the four hero-region windows and 240 m elsewhere (horizons from 240 m can differ by ~3°, report O2_240m). No 5 m DEM: confidence grade A is never reached.</li>
           <li>No light reflected by terrain, no thermal or dust effects, no lander self-shadowing; DEMs cannot resolve rocks smaller than their pixel.</li>
           <li>Lander presets are generic and illustrative; every parameter is an assumption.</li>
           <li>Several south-pole coordinates come from the literature via secondary sources and are flagged "unverified".</li>
@@ -90,7 +90,7 @@ export default function Trust() {
         <h2>Data and credits</h2>
         <ul>
           <li>LOLA south-pole DEMs — NASA GSFC Planetary Geodesy Data Archive, product 90 (Barker et al. 2023, PSJ 4, 183).</li>
-          <li>Ephemerides — JPL DE440 via NASA/JPL NAIF SPICE (reference build); JPL DE421 (Folkner, Williams & Boggs 2009) via the PyPI package "de421".</li>
+          <li>Ephemerides — JPL DE440 via NASA/JPL NAIF SPICE; JPL DE421 (Folkner, Williams & Boggs 2009) via the PyPI package "de421" as cross-check and for the geocentric Moon.</li>
           <li>Earth orientation — IERS finals2000A (Bulletin A) via astropy-iers-data; ERFA (SOFA) algorithms.</li>
           <li>Validation — JPL Horizons responses cached on 2026-11-14; astropy for the station cross-check.</li>
           <li>Imagery — LRO WAC global mosaic, NASA/GSFC/Arizona State University, streamed from NASA Moon Trek.</li>

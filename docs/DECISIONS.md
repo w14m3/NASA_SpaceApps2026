@@ -9,7 +9,7 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   approvals, the session does not block on a network-access request; it builds from `reference/v1` artifacts and PyPI.
   The owner can add the Appendix A domains (cloud environment → Network access) so a later session can fetch the
   80 m / 20 m / 5 m LOLA products and SPICE kernels.
-- **D3 — Ephemeris before 2026 from JPL DE421 via PyPI.** The `de421` package (2008.1, sha256 `a66faf7b…`) contains
+- **D3 — (superseded at 12:00 by D20) Ephemeris before 2026 from JPL DE421 via PyPI.** The `de421` package (2008.1, sha256 `a66faf7b…`) contains
   the DE421 Chebyshev series including lunar librations. The pipeline rebuilds apparent (`LT+S`) Sun/Earth vectors in
   MOON_ME from it. Measured against the SPICE DE440 oracle of v1 over 2026–2031 (3,000 random instants): max
   1.6e-5° (Earth and Sun). Runtime ephemeris = DE421 piece 2017-01-01 → 2026-01-01 + SPICE DE440 piece
@@ -65,3 +65,7 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   each WMTSCapabilities.xml; CORS `*`). The LOLA 10 m relief is the default basemap above the offline hillshade.
 - **D19 — Challenge Resources tab not re-checked.** www.spaceappschallenge.org fails TLS verification from this
   environment (incomplete certificate chain, as in v1); certificate checks are not bypassed.
+- **D20 (12:00) — SPICE DE440 over the whole runtime span.** With the NAIF kernels downloaded, the 2017–2026 piece
+  is fitted to SPICE (`spkpos … MOON_ME, LT+S`), fit ≤ 4.1e-9°; DE421 becomes the independent cross-check (≤ 1.6e-5°)
+  and the fallback when kernels are absent. The geocentric Moon for station geometry stays DE421-based (validated
+  against Horizons, V11: 0.0005°).

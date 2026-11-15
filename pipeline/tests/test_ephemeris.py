@@ -77,3 +77,14 @@ def test_cheby_roundtrip():
     c = cheby.fit_segments(lambda t: ephem.moon_me("earth", t), start, 4 * 86400.0, 3, 15)
     t = np.linspace(start, start + 11 * 86400e3, 200)
     assert cheby.angle_deg(cheby.evaluate(c, start, 4 * 86400.0, t), ephem.moon_me("earth", t)).max() < 1e-6
+
+
+@pytest.mark.skipif(not __import__("lunarnav.spice", fromlist=["available"]).available(), reason="NAIF kernels not in data/cache")
+def test_spice_reproduces_v1_de440_artifact():
+    """The v1 DE440 Chebyshev artifact is a SPICE fit: direct SPICE calls agree to < 1e-7 deg (V19 context)."""
+    from lunarnav import spice
+    from lunarnav.v1ephem import V1Ephem
+    v1 = V1Ephem()
+    t = np.random.default_rng(9).uniform(v1.start_ms, v1.end_ms - 1e6, 200)
+    for body in ("SUN", "EARTH"):
+        assert cheby.angle_deg(spice.moon_me(body.lower(), t), v1.position(body, t)).max() < 1e-7
