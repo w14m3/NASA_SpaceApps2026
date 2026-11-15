@@ -47,7 +47,7 @@ const D = {
   'top3.feasible': { en: '{f} of {n} candidates pass the constraints', fr: '{f} candidats sur {n} satisfont les contraintes' },
   'top3.choose': { en: 'Choose this site', fr: 'Choisir ce site' },
   'top3.option': { en: 'Option {k}', fr: 'Option {k}' },
-  'top3.bestDate': { en: 'Best landing date in the window: {d}', fr: 'Meilleure date d’alunissage dans la fenêtre : {d}' },
+  'top3.bestDate': { en: 'Best landing date within ±7 days of yours: {d}', fr: 'Meilleure date d’alunissage à ±7 jours de la vôtre : {d}' },
   'top3.risk': { en: 'Main risk', fr: 'Risque principal' },
   'top3.region': { en: 'Region', fr: 'Région' },
   'strength.safest': { en: 'Safest', fr: 'La plus sûre' },

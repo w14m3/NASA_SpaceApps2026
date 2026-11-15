@@ -298,6 +298,22 @@ test.describe('workbench panels', () => {
   })
 })
 
+test.describe('mission date', () => {
+  test('Top 3 follows the mission date: same region, different landing dates give different options', async ({ page }) => {
+    await open(page, '#land=2026-12-11T00:00Z')
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 15_000 })
+    const a = await page.getByTestId('top3').innerText()
+    expect(a).toMatch(/\d+ of 3721/)
+    // Earth librates north of the equator late in December: from the south pole it sinks below the horizon
+    await page.getByTestId('landing-date').fill('2026-12-27')
+    await expect(page.getByTestId('relax')).toBeVisible({ timeout: 20_000 })
+    await expect(page.getByText('No candidate passes every constraint.')).toBeVisible()
+    await page.getByTestId('landing-date').fill('2027-01-10')
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 20_000 })
+    expect(await page.getByTestId('top3').innerText()).not.toBe(a)
+  })
+})
+
 test.describe('compare', () => {
   test('compare: overlaid sky plots, deltas and bars for pinned sites', async ({ page }) => {
     await open(page)
