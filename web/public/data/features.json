@@ -1,0 +1,736 @@
+{
+ "source": "USGS Gazetteer of Planetary Nomenclature (IAU WGPSN), https://planetarynames.wr.usgs.gov/",
+ "fetched": "2026-11-15",
+ "sha256_source_page": "e561a0e3004407937ce72a2b1ee24da07149a326e8ef5f57cdfc2c27db332e59",
+ "columns": [
+  "Feature ID",
+  "Feature Name",
+  "Clean Feature Name",
+  "Target",
+  "Diameter",
+  "Center Latitude",
+  "Center Longitude",
+  "Northernmost Latitude",
+  "Southernmost Latitude",
+  "Easternmost Longitude",
+  "Westernmost Longitude",
+  "Coordinate System",
+  "Continent",
+  "Ethnicity",
+  "Feature Type",
+  "Feature Type Code",
+  "Quad",
+  "Approval Status",
+  "Approval Date",
+  "Reference",
+  "Origin",
+  "Additional Info",
+  "Last Updated"
+ ],
+ "n": 78,
+ "features": [
+  {
+   "id": 1645,
+   "name": "Drygalski",
+   "lat": -79.57,
+   "lon": -87.18,
+   "diameter_km": 162.49,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 422,
+   "name": "Ashbrook",
+   "lat": -81.1,
+   "lon": -110.58,
+   "diameter_km": 157.68,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16070,
+   "name": "Mons Mouton",
+   "lat": -84.6,
+   "lon": 31.0,
+   "diameter_km": 130.0,
+   "type": "Mons, montes",
+   "status": "Approved"
+  },
+  {
+   "id": 5395,
+   "name": "Scott",
+   "lat": -82.35,
+   "lon": 48.52,
+   "diameter_km": 107.82,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 247,
+   "name": "Amundsen",
+   "lat": -84.44,
+   "lon": 83.07,
+   "diameter_km": 103.39,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 953,
+   "name": "Cabeus",
+   "lat": -85.33,
+   "lon": -42.13,
+   "diameter_km": 100.58,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16415,
+   "name": "Lacus Tenebrarum",
+   "lat": -86.71,
+   "lon": -87.67,
+   "diameter_km": 85.0,
+   "type": "Lacus, lac\u016bs",
+   "status": "Approved"
+  },
+  {
+   "id": 4321,
+   "name": "Nobile",
+   "lat": -85.28,
+   "lon": 53.27,
+   "diameter_km": 79.27,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 2620,
+   "name": "Hedervari",
+   "lat": -81.77,
+   "lon": 85.6,
+   "diameter_km": 74.14,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 3603,
+   "name": "Malapert",
+   "lat": -85.0,
+   "lon": 11.4,
+   "diameter_km": 72.38,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16394,
+   "name": "Mons Kocher",
+   "lat": -85.46,
+   "lon": -118.06,
+   "diameter_km": 67.0,
+   "type": "Mons, montes",
+   "status": "Approved"
+  },
+  {
+   "id": 16338,
+   "name": "Mons Malapert",
+   "lat": -85.98,
+   "lon": -1.67,
+   "diameter_km": 67.0,
+   "type": "Mons, montes",
+   "status": "Approved"
+  },
+  {
+   "id": 11610,
+   "name": "Newton A",
+   "lat": -80.05,
+   "lon": -20.82,
+   "diameter_km": 62.26,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 2650,
+   "name": "Idel son",
+   "lat": -81.35,
+   "lon": 112.69,
+   "diameter_km": 59.82,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 8058,
+   "name": "Cabeus B",
+   "lat": -82.26,
+   "lon": -54.58,
+   "diameter_km": 59.62,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16449,
+   "name": "Oberbeck",
+   "lat": -83.55,
+   "lon": 68.14,
+   "diameter_km": 58.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14538,
+   "name": "Nefed ev",
+   "lat": -81.07,
+   "lon": 135.77,
+   "diameter_km": 52.94,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 5494,
+   "name": "Shoemaker",
+   "lat": -88.14,
+   "lon": 45.91,
+   "diameter_km": 51.82,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14502,
+   "name": "Haworth",
+   "lat": -87.45,
+   "lon": -5.17,
+   "diameter_km": 51.42,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 11611,
+   "name": "Newton B",
+   "lat": -81.45,
+   "lon": -16.72,
+   "diameter_km": 45.98,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16004,
+   "name": "Henson",
+   "lat": -88.57,
+   "lon": -130.63,
+   "diameter_km": 43.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16396,
+   "name": "Mons Cabeus",
+   "lat": -83.67,
+   "lon": -36.16,
+   "diameter_km": 43.0,
+   "type": "Mons, montes",
+   "status": "Approved"
+  },
+  {
+   "id": 1919,
+   "name": "Faustini",
+   "lat": -87.18,
+   "lon": 84.31,
+   "diameter_km": 42.48,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 8057,
+   "name": "Cabeus A",
+   "lat": -82.08,
+   "lon": -40.24,
+   "diameter_km": 40.88,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 6541,
+   "name": "Wiechert",
+   "lat": -84.03,
+   "lon": 164.7,
+   "diameter_km": 40.82,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 11083,
+   "name": "Malapert C",
+   "lat": -80.98,
+   "lon": 10.08,
+   "diameter_km": 38.99,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 13889,
+   "name": "Wiechert P",
+   "lat": -85.13,
+   "lon": 151.76,
+   "diameter_km": 38.62,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16397,
+   "name": "Mons Amundsen",
+   "lat": -82.57,
+   "lon": 75.71,
+   "diameter_km": 38.0,
+   "type": "Mons, montes",
+   "status": "Approved"
+  },
+  {
+   "id": 13888,
+   "name": "Wiechert J",
+   "lat": -85.2,
+   "lon": -177.64,
+   "diameter_km": 34.89,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 11081,
+   "name": "Malapert A",
+   "lat": -80.18,
+   "lon": -3.79,
+   "diameter_km": 33.33,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 5782,
+   "name": "Sverdrup",
+   "lat": -88.32,
+   "lon": -153.39,
+   "diameter_km": 32.83,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 1439,
+   "name": "de Gerlache",
+   "lat": -88.48,
+   "lon": -88.34,
+   "diameter_km": 32.71,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 13890,
+   "name": "Wiechert U",
+   "lat": -83.43,
+   "lon": 149.04,
+   "diameter_km": 29.96,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 13015,
+   "name": "Scott E",
+   "lat": -81.17,
+   "lon": 35.7,
+   "diameter_km": 29.22,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 10114,
+   "name": "Idel son L",
+   "lat": -83.99,
+   "lon": 118.56,
+   "diameter_km": 28.04,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 8838,
+   "name": "Drygalski P",
+   "lat": -80.97,
+   "lon": -99.69,
+   "diameter_km": 27.98,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 13886,
+   "name": "Wiechert A",
+   "lat": -82.38,
+   "lon": 168.64,
+   "diameter_km": 26.87,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 15325,
+   "name": "Slater",
+   "lat": -88.08,
+   "lon": 111.29,
+   "diameter_km": 25.12,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 7236,
+   "name": "Amundsen C",
+   "lat": -80.76,
+   "lon": 85.21,
+   "diameter_km": 24.22,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 14535,
+   "name": "Kocher",
+   "lat": -84.47,
+   "lon": -134.02,
+   "diameter_km": 24.03,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 8719,
+   "name": "Demonax B",
+   "lat": -81.47,
+   "lon": 72.05,
+   "diameter_km": 23.17,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16250,
+   "name": "Burbidge",
+   "lat": -86.35,
+   "lon": 48.6,
+   "diameter_km": 21.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 5450,
+   "name": "Shackleton",
+   "lat": -89.67,
+   "lon": 129.78,
+   "diameter_km": 20.92,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 13887,
+   "name": "Wiechert E",
+   "lat": -83.56,
+   "lon": 176.02,
+   "diameter_km": 20.87,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16395,
+   "name": "Whitaker",
+   "lat": -84.67,
+   "lon": 0.69,
+   "diameter_km": 20.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 8616,
+   "name": "De Forest P",
+   "lat": -79.73,
+   "lon": -176.92,
+   "diameter_km": 19.47,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 11084,
+   "name": "Malapert E",
+   "lat": -83.94,
+   "lon": 19.83,
+   "diameter_km": 19.47,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 13016,
+   "name": "Scott M",
+   "lat": -83.86,
+   "lon": 34.74,
+   "diameter_km": 17.85,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16195,
+   "name": "Brill",
+   "lat": -88.27,
+   "lon": -93.41,
+   "diameter_km": 17.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16416,
+   "name": "Cartwright",
+   "lat": -87.65,
+   "lon": -46.95,
+   "diameter_km": 17.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16418,
+   "name": "Haynes",
+   "lat": -88.75,
+   "lon": 167.39,
+   "diameter_km": 17.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16011,
+   "name": "Stose",
+   "lat": -86.38,
+   "lon": 32.13,
+   "diameter_km": 16.7,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14536,
+   "name": "Kuhn",
+   "lat": -84.48,
+   "lon": -152.48,
+   "diameter_km": 16.61,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 11614,
+   "name": "Newton E",
+   "lat": -79.86,
+   "lon": -37.36,
+   "diameter_km": 16.2,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 12948,
+   "name": "Schomberger L",
+   "lat": -80.69,
+   "lon": 17.27,
+   "diameter_km": 15.98,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 14539,
+   "name": "Svedberg",
+   "lat": -81.68,
+   "lon": 65.15,
+   "diameter_km": 15.34,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14540,
+   "name": "von Baeyer",
+   "lat": -81.8,
+   "lon": 61.87,
+   "diameter_km": 13.46,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16007,
+   "name": "Spudis",
+   "lat": -89.51,
+   "lon": -84.61,
+   "diameter_km": 13.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14537,
+   "name": "Laveran",
+   "lat": -81.8,
+   "lon": -159.78,
+   "diameter_km": 12.52,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14534,
+   "name": "Ibn Bajja",
+   "lat": -86.3,
+   "lon": -75.04,
+   "diameter_km": 11.98,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 14541,
+   "name": "Wapowski",
+   "lat": -83.08,
+   "lon": 53.79,
+   "diameter_km": 11.45,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 11085,
+   "name": "Malapert F",
+   "lat": -81.53,
+   "lon": 14.73,
+   "diameter_km": 11.41,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 14564,
+   "name": "Braude",
+   "lat": -81.82,
+   "lon": 158.88,
+   "diameter_km": 11.28,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 12943,
+   "name": "Schomberger F",
+   "lat": -80.18,
+   "lon": 20.17,
+   "diameter_km": 10.65,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 8720,
+   "name": "Demonax C",
+   "lat": -80.28,
+   "lon": 56.29,
+   "diameter_km": 10.37,
+   "type": "Satellite Feature",
+   "status": "Approved"
+  },
+  {
+   "id": 16251,
+   "name": "Floss",
+   "lat": -84.28,
+   "lon": 42.27,
+   "diameter_km": 9.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 15242,
+   "name": "Malinkin",
+   "lat": -87.22,
+   "lon": 75.94,
+   "diameter_km": 8.28,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 15938,
+   "name": "Tooley",
+   "lat": -88.04,
+   "lon": 51.31,
+   "diameter_km": 7.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16008,
+   "name": "Marvin",
+   "lat": -89.13,
+   "lon": -87.78,
+   "diameter_km": 4.6,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16273,
+   "name": "Rubin",
+   "lat": -82.82,
+   "lon": 77.65,
+   "diameter_km": 4.0,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16417,
+   "name": "Bay",
+   "lat": -88.76,
+   "lon": -36.85,
+   "diameter_km": 3.5,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16268,
+   "name": "Jaci",
+   "lat": -85.42,
+   "lon": 31.23,
+   "diameter_km": 1.8,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16317,
+   "name": "Lhamu",
+   "lat": -85.92,
+   "lon": -1.62,
+   "diameter_km": 1.4,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16269,
+   "name": "Masina",
+   "lat": -85.42,
+   "lon": 32.15,
+   "diameter_km": 1.4,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 16270,
+   "name": "Dawa",
+   "lat": -85.45,
+   "lon": 31.66,
+   "diameter_km": 0.65,
+   "type": "Crater, craters",
+   "status": "Approved"
+  },
+  {
+   "id": 7235,
+   "name": "Amundsen A",
+   "lat": -81.8,
+   "lon": 83.1,
+   "diameter_km": 0.0,
+   "type": "Satellite Feature",
+   "status": "Dropped"
+  },
+  {
+   "id": 8839,
+   "name": "Drygalski Q",
+   "lat": -81.1,
+   "lon": -111.9,
+   "diameter_km": 0.0,
+   "type": "Satellite Feature",
+   "status": "Dropped"
+  },
+  {
+   "id": 13014,
+   "name": "Scott A",
+   "lat": -85.1,
+   "lon": 50.2,
+   "diameter_km": 0.0,
+   "type": "Satellite Feature",
+   "status": "Dropped"
+  }
+ ],
+ "built_utc": "2026-11-15T10:30:25+00:00"
+}

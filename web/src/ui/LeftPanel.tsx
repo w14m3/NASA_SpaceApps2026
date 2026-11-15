@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { HERO_REGIONS } from '../core/regions'
 import { fmtLat, fmtLon, fmtUtc, useT } from './i18n'
-import { effectiveHeight, useSites, useTop3 } from './hooks'
+import { effectiveHeight, useAsync, useSites, useTop3 } from './hooks'
+import { BASE } from './data'
 import { sameRef, setState, useStore, type SiteRef } from './store'
 import type { CuratedSite } from './data'
 import { ConstraintsPanel } from './Constraints'
@@ -23,18 +24,31 @@ export function parseCoords(q: string): { lat: number; lon: number } | null {
   return { lat, lon: ((lon + 540) % 360) - 180 }
 }
 
+interface Feature {
+  id: number
+  name: string
+  lat: number
+  lon: number
+  diameter_km: number | null
+  type?: string
+}
+
 function Search() {
   const { t } = useT()
   const sites = useSites()
+  const features = useAsync('features', () => fetch(BASE + 'data/features.json').then((r) => r.json() as Promise<{ features: Feature[] }>)).data?.features ?? []
   const [q, setQ] = useState('')
   const coords = parseCoords(q)
   const hits = useMemo(() => {
     const s = q.trim().toLowerCase()
     if (s.length < 2 || coords) return []
-    const regionHits = HERO_REGIONS.filter((r) => r.name.toLowerCase().includes(s)).map((r) => ({ kind: 'region' as const, id: r.id, name: r.name }))
-    const siteHits = sites.filter((x) => (x.name + ' ' + x.description).toLowerCase().includes(s)).map((x) => ({ kind: 'site' as const, id: x.id, name: x.name }))
-    return [...siteHits, ...regionHits].slice(0, 8)
-  }, [q, sites, coords])
+    const regionHits = HERO_REGIONS.filter((r) => r.name.toLowerCase().includes(s)).map((r) => ({ kind: 'region' as const, id: r.id, name: r.name, lat: r.lat, lon: r.lon }))
+    const siteHits = sites.filter((x) => (x.name + ' ' + x.description).toLowerCase().includes(s)).map((x) => ({ kind: 'site' as const, id: x.id, name: x.name, lat: x.lat, lon: x.lon }))
+    const featHits = features
+      .filter((f) => f.name.toLowerCase().includes(s))
+      .map((f) => ({ kind: 'feature' as const, id: String(f.id), name: `${f.name} (IAU${f.type ? ', ' + f.type.toLowerCase() : ''}${f.diameter_km ? `, ${f.diameter_km} km` : ''})`, lat: f.lat, lon: f.lon }))
+    return [...siteHits, ...featHits, ...regionHits].slice(0, 10)
+  }, [q, sites, coords, features])
   return (
     <div className="field" role="search">
       <label htmlFor="search">{t('search.label')}</label>
@@ -48,6 +62,7 @@ function Search() {
           if (e.key !== 'Enter') return
           if (coords) selectSite({ kind: 'custom', ...coords }, sites)
           else if (hits[0]?.kind === 'site') selectSite({ kind: 'curated', id: hits[0].id }, sites)
+          else if (hits[0]?.kind === 'feature') selectSite({ kind: 'custom', lat: hits[0].lat, lon: hits[0].lon }, sites)
           else if (hits[0]?.kind === 'region') setState({ region: hits[0].id, view: 'pole' })
         }}
         aria-describedby="search-results"
@@ -63,7 +78,9 @@ function Search() {
           <ul className="sites">
             {hits.map((h) => (
               <li key={h.kind + h.id}>
-                <button onClick={() => (h.kind === 'site' ? selectSite({ kind: 'curated', id: h.id }, sites) : setState({ region: h.id, view: 'pole' }))}>{h.name}</button>
+                <button onClick={() => (h.kind === 'site' ? selectSite({ kind: 'curated', id: h.id }, sites) : h.kind === 'feature' ? selectSite({ kind: 'custom', lat: h.lat, lon: h.lon }, sites) : setState({ region: h.id, view: 'pole' }))}>
+                  {h.name}
+                </button>
               </li>
             ))}
           </ul>

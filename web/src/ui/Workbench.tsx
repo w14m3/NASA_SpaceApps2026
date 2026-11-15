@@ -137,7 +137,7 @@ export function Workbench() {
           <button className="btn small" onClick={() => setState({ view: 'street' })}>
             {t('wb.street')}
           </button>
-          <a className="btn small" href="https://quickmap.lroc.asu.edu/" target="_blank" rel="noreferrer" title="QuickMap has no documented deep-link scheme we could verify: this opens its home page; copy the coordinates shown above.">
+          <a className="btn small" href="https://quickmap.lroc.im-ldi.com/" target="_blank" rel="noreferrer" title="QuickMap (now hosted at quickmap.lroc.im-ldi.com) keeps its view in undocumented URL parameters, so this opens its home page; copy the coordinates shown above.">
             {t('wb.quickmap')} ↗
           </a>
         </div>

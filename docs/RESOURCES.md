@@ -1,11 +1,10 @@
 # Resource integration log (contract §4)
 
 Decision per resource: **INTEGRATE / VALIDATE-AGAINST / REFERENCE / REJECT**. "Read" means fetched and read in a
-session; this build session (2026-11-15) could not reach any NASA/JPL/USGS/CSA/ASU host (network policy, preflight in
-`docs/WORKLOG.md`), so findings below come from (a) the reference/v1 session of 2026-11-14, which did read several of
-them and recorded its findings in `reference/v1/docs/RESOURCES.md` and `reference/v1/data/sites_research.json`, and
-(b) artifacts already in the repository. Anything not read by anyone is marked **not read**. The challenge Resources
-tab could not be re-checked (§6.15 item 7); `docs/challenge/challenge_page.md` (copied 2026-11-14) is the text used.
+session. Until 11:00 on 2026-11-15 no NASA/JPL/USGS/CSA/ASU host was reachable from the build environment; from 11:12
+(network opened by the owner) the hosts below were read directly through the session proxy — see **Update 11:12** at
+the end, which supersedes the earlier rows where they differ. The challenge Resources tab could still not be
+re-checked: www.spaceappschallenge.org fails TLS verification (incomplete certificate chain; not bypassed).
 
 | Resource | Decision | Evidence and use |
 |---|---|---|
@@ -43,3 +42,27 @@ tab could not be re-checked (§6.15 item 7); `docs/challenge/challenge_page.md` 
 **Owner action that would unlock more**: allow the Appendix A domains in the cloud environment's network settings;
 a later session can then fetch the 80 m / 20 m / 5 m LOLA products, run O2 and V11 against their real oracles, and
 add Moon Trek polar tiles and Gazetteer search.
+
+## Update 11:12–12:30, 2026-11-15 (hosts reachable)
+
+| Resource | Decision | What was read and done |
+|---|---|---|
+| LOLA PGDA product 90 (80 m, 80 m `_ERR`, 240 m 60°S) | **INTEGRATE** | Downloaded with `codex/fetch_nasa_data.py` (SHA-256 in `data/cache/SHA256SUMS`). CRS read from the files: "Moon (2015) – Sphere / Ocentric / South Polar", 80 m grid 7600², 240 m grid 7760². O2 run against the v1 masks (max 0.0010°); candidate grids and live terrain windows now use 80 m (D15–D17). `_ERR` median 0.29 m. |
+| NAIF generic kernels | **INTEGRATE (available)** | naif0012, pck00011, moon_pa_de440_200625, moon_de440_250416, de440s, earth_1962_260806_2126_combined, earthstns_itrf93_260814, earth_topo_260814 downloaded. The runtime still uses the v1 SPICE DE440 piece (2026–2031) and DE421 before 2026 (≤ 1.6e-5° apart, V19). |
+| JPL Horizons API | **VALIDATE-AGAINST** | V11 run live: Moon az/el from DSS-14/63/43, 240 instants, max 0.0005° (responses cached in `data/raw/horizons_dsn/`). Long TLIST URLs (80 instants) were refused with HTTP 502; 20 per query works. CORS for browser calls not needed (pipeline only). |
+| NASA Moon Trek | **INTEGRATE** | Layer catalogue read through `https://trek.nasa.gov/moon/TrekServices/ws/index/polar/searchItems` (URL template from the API page's `config.json`): **71 south-polar layers** (e.g. LOLA 10 m and 30 m shaded relief, LRO WAC mosaic 100 m, LOLA PSR 240 m, LOLA slope 120 m, roughness, LAMP albedo, Mini-SAR, NAC mosaics). WMTSCapabilities read for four of them (tile matrix set `default028mm`, top-left −1,095,930/+1,095,930 m, level-0 8,561.95 m/px; CORS `*`). They are basemaps/overlay on the polar map (D18). |
+| LROC QuickMap | **REFERENCE** | Now hosted at https://quickmap.lroc.im-ldi.com (the help page says the asu.edu address "will be retired soon"). The app stores its view in undocumented URL parameters (`prjExtent`, `proj`, `stack`, `defs`), so no deep link is built; the "Open in QuickMap" button opens the new address. V12 (manual screenshot comparison) not done. |
+| USGS Gazetteer of Planetary Nomenclature | **INTEGRATE** | Search results for target Moon read (9,206 features, 23 columns incl. centre lat/lon, approval status). 78 approved features south of 79.5°S feed the search box (`pipeline/scripts/build_features.py`, `web/public/data/features.json`). |
+| NASA (IM-1, IM-2 pages), ISRO (Chandrayaan-3) | **VALIDATE-AGAINST** | Read for V18 (quotes in `data/validation/V18.json`). The NSSDCA IM-1 catalogue page returned an error page. |
+| Canadian Space Agency | **REFERENCE (not read)** | www.asc-csa.gc.ca resets the connection through the proxy; no CSA content used. |
+| core2.gsfc.nasa.gov (LOLA 5 m site DEMs) | **REFERENCE (unreachable)** | Gateway 502; grade-A confidence (5 m) therefore still unavailable. |
+
+### Answers to the contract questions (§4.3), updated
+1. **Moon Trek south-polar layers**: 71 layers; four integrated as zoomable tiles (LOLA 10 m relief to 33 m/px over
+   87.5–90°S, LOLA 30 m relief, WAC mosaic, PSR). The static hillshade stays underneath for offline use.
+2. **Trek services from a static site**: tiles and the catalogue service are reachable; tiles send CORS `*`. The
+   catalogue is used at build time only.
+3. **QuickMap deep link**: no documented scheme (state in undocumented parameters); plain link to the new address.
+4. **Horizons CORS**: not needed — Horizons is used by the pipeline (V2, V3, V11).
+5. **CSA content**: not reachable (connection reset); none used.
+6. **Gazetteer list**: yes — 78 approved south-polar features integrated in search.
