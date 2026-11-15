@@ -35,7 +35,7 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   Trek WMTS layer (LRO WAC mosaic, zoom 2) on the 1737.4 km sphere with the true Sun direction.
 - **D9 — Default landing date 2026-12-11 (the "next feasible window").** A 14-day window from 2026-12-01 has no
   feasible candidate in the default region: Earth is below the horizon almost everywhere (libration in latitude).
-  `web/scripts/find-window.ts` scans 2-day steps; 2026-12-11 maximises feasible candidates (747 of 3,721) in the first
+  `web/scripts/find-window.ts` scans 2-day steps; 2026-12-11 maximises feasible candidates (747 of 3,721 on the 240 m grids; 615 on the 80 m grids, D22) in the first
   lunation. Scan recorded in `data/validation/default_window_scan.txt`.
 - **D10 — Candidate masks are uint8 at 0.1° above a per-candidate offset (contract §7.11).** Values more than 25.5°
   above a candidate's lowest horizon are clipped (2 % of samples at Malapert, 0 at Peak near Shackleton); this has no
@@ -76,3 +76,7 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   tilt, keyboard), flat "Map" or "Real Sun" lighting, and labelled vertical exaggeration (default ×2). One card answers
   the three questions in plain words and lists the Top 3; the previous interface is unchanged as Plan mode. E2E tests of
   the expert interface open `#mode=plan`; new tests cover Explore.
+- **D22 (13:05) — Candidate grids rebuilt on LOLA 80 m + 240 m.** Horizons on the same cascade as the validated
+  curated masks; plane-fit slopes over 240 m (3 pixels of 80 m) instead of 720 m, so slopes are steeper and fewer
+  candidates pass the 8° limit (default scenario: 615 of 3,721 instead of 747). The default landing date stays
+  2026-12-11 (still the best in the first lunation, `data/validation/default_window_scan.txt`).

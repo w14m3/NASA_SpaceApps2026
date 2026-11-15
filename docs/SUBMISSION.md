@@ -28,7 +28,7 @@ combinations quickly is hard for non-specialists.
 
 **What Sightline does.**
 - *Answer first*: opens on a computed scenario (Connecting Ridge region, 14 days from 2026-12-11, generic medium
-  lander, 10 m mast) with the Top 3 already ranked; 747 of 3,721 candidates pass the default constraints.
+  lander, 10 m mast) with the Top 3 already ranked; 615 of 3,721 candidates pass the default constraints.
 - *Explore*: a full-screen 3D Moon explored like an online map (zoom toward the cursor, rotate, tilt), NASA Moon Trek
   imagery that sharpens as you zoom down to 33 m per pixel at the pole on real 3D LOLA terrain, true-Sun lighting with
   shadows, and one plain-language card with the three answers and the best three spots.

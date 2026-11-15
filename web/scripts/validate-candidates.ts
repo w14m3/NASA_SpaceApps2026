@@ -14,8 +14,14 @@ import { LANDERS } from '../src/core/safety'
 import { DSN } from '../src/core/stations'
 import { record } from '../src/core/record'
 import { testDem, testEphemeris, testGrid } from '../src/core/testdata'
+import { hasCachedDem, loadCachedDem } from '../src/core/cachedem'
+import type { DemGrid } from '../src/core/dem'
 
-const g = await testDem()
+// same terrain as the grid build: LOLA 80 m + 240 m (60°S) when cached, else the 240 m artifact
+const cascade: DemGrid[] = hasCachedDem('LDEM_80S_80MPP_ADJ')
+  ? [loadCachedDem('LDEM_80S_80MPP_ADJ', 'LOLA 80 m', 0.29), loadCachedDem('LDEM_60S_240MPP_ADJ', 'LOLA 240 m', 3)]
+  : [await testDem()]
+const g = cascade[0]
 const eph = await testEphemeris()
 const grid = testGrid('connecting-ridge')
 const rnd = mulberry32(7)
@@ -27,17 +33,24 @@ function naive(lon: number, lat: number, h: number, nAz: number, step = 10, sMax
   const east = [-Math.sin(lo), Math.cos(lo), 0]
   const north = [up[1] * east[2] - up[2] * east[1], up[2] * east[0] - up[0] * east[2], up[0] * east[1] - up[1] * east[0]]
   const [sx, sy] = unitToXY(up[0], up[1], up[2])
-  const z0 = bilinearXY(g, sx, sy)
+  const zAt = (x: number, y: number) => {
+    for (const gg of cascade) {
+      const z = bilinearXY(gg, x, y)
+      if (!Number.isNaN(z)) return z
+    }
+    return NaN
+  }
+  const z0 = zAt(sx, sy)
   const rho0 = R_MOON_M + z0 + h
   const out = new Float32Array(nAz)
   for (let i = 0; i < nAz; i++) {
     const a = (2 * Math.PI * i) / nAz
     const d = [0, 1, 2].map((k) => north[k] * Math.cos(a) + east[k] * Math.sin(a))
     let best = -90
-    for (let s = 2; s <= sMax; s += s < 2000 ? 1 : step) {
+    for (let s = 2; s <= sMax; s += s < 2000 ? 1 : s < 80_000 ? step : 40) {
       const th = s / R_MOON_M
       const [x, y] = unitToXY(up[0] * Math.cos(th) + d[0] * Math.sin(th), up[1] * Math.cos(th) + d[1] * Math.sin(th), up[2] * Math.cos(th) + d[2] * Math.sin(th))
-      const z = bilinearXY(g, x, y)
+      const z = zAt(x, y)
       if (Number.isNaN(z)) continue
       const e = Math.atan2((R_MOON_M + z) * Math.cos(th) - rho0, (R_MOON_M + z) * Math.sin(th)) * R2D
       if (e > best) best = e
@@ -52,7 +65,7 @@ let v7 = 0
 let quant = 0
 for (let k = 0; k < 12; k++) {
   const i = Math.floor(rnd() * grid.n)
-  const prod = computeHorizon([g], grid.lon[i], grid.lat[i], 10, { nAz: 360, bands: false })!
+  const prod = computeHorizon(cascade, grid.lon[i], grid.lat[i], 10, { nAz: 360, bands: false })!
   const nv = naive(grid.lon[i], grid.lat[i], 10, 72)
   const q = candidateMask(grid, i, 1)
   for (let j = 0; j < 72; j++) {
@@ -78,7 +91,7 @@ let sum = 0
 const n = Number(process.argv[2] ?? 200)
 for (let k = 0; k < n; k++) {
   const i = Math.floor(rnd() * grid.n)
-  const full = computeHorizon([g], grid.lon[i], grid.lat[i], 10, { nAz: 1440, bands: false })!
+  const full = computeHorizon(cascade, grid.lon[i], grid.lat[i], 10, { nAz: 1440, bands: false })!
   const a = analyseSite(eph, { lon: grid.lon[i], lat: grid.lat[i], z0: full.z0, h: 10 }, full.mask, { ...defaultScenario(t0, 14), stations: [] }, { hourly: false })
   const d = Math.abs(a.litFrac.value - r.all[i].lit) * 100
   worst = Math.max(worst, d)

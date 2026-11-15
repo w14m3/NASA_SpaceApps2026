@@ -17,12 +17,13 @@
  ],
  "n_az": 360,
  "mask_step_deg": 0.1,
- "slope_baseline_m": 720,
- "dem_label": "LOLA 240 m (PGDA product 90, 80–90°S)",
- "clipped_mask_values": 15821,
+ "slope_baseline_m": 240,
+ "dem_label": "LOLA 80 m + 240 m",
+ "finest_px": 80,
+ "clipped_mask_values": 18136,
  "file": "de-gerlache.bin.gz",
- "bytes_gzip": 1068964,
- "built_utc": "2026-11-15T04:07:03.194Z",
- "seconds": 817.463,
- "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
+ "bytes_gzip": 1102887,
+ "built_utc": "2026-11-15T11:38:55.818Z",
+ "seconds": 2904.221,
+ "method": "computeHorizon (web/src/core/horizon.ts) on LOLA 80 m + 240 m, 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 240 m disk (3 pixels of the finest grid)"
 }

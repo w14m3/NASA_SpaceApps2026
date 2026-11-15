@@ -17,12 +17,13 @@
  ],
  "n_az": 360,
  "mask_step_deg": 0.1,
- "slope_baseline_m": 720,
- "dem_label": "LOLA 240 m (PGDA product 90, 80–90°S)",
+ "slope_baseline_m": 240,
+ "dem_label": "LOLA 80 m + 240 m",
+ "finest_px": 80,
  "clipped_mask_values": 0,
  "file": "peak-near-shackleton.bin.gz",
- "bytes_gzip": 938287,
- "built_utc": "2026-11-15T04:07:07.664Z",
- "seconds": 821.968,
- "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
+ "bytes_gzip": 970609,
+ "built_utc": "2026-11-15T11:39:40.053Z",
+ "seconds": 2948.377,
+ "method": "computeHorizon (web/src/core/horizon.ts) on LOLA 80 m + 240 m, 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 240 m disk (3 pixels of the finest grid)"
 }
