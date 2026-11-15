@@ -1,0 +1,19 @@
+{
+  "name": "sightline",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sightline — Lunar Landing Site Navigator (NASA Space Apps Challenge 2026)",
+  "workspaces": ["web"],
+  "scripts": {
+    "dev": "npm --workspace web run dev",
+    "lint": "npm --workspace web run lint",
+    "typecheck": "npm --workspace web run typecheck",
+    "test": "npm --workspace web run test",
+    "test:py": "node scripts/verify.mjs pytest",
+    "build": "npm --workspace web run build",
+    "e2e": "npm --workspace web run e2e",
+    "objectives": "node scripts/objectives.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

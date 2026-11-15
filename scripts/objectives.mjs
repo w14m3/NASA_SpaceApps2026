@@ -1,0 +1,142 @@
+// Computes the Status column of docs/OBJECTIVES.md from machine-readable test output (never typed by hand).
+// Inputs: reports/vitest.json (Vitest JSON reporter), reports/pytest.xml (JUnit), reports/e2e.json (Playwright
+// JSON reporter), data/validation/<ID>.json ({ "status": "pass" | "fail" | "documented" | "not run" }).
+// Also writes web/public/data/objectives.json for the Trust page.
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..')
+const P = (...a) => join(root, ...a)
+
+function readJson(p) {
+  try {
+    return JSON.parse(readFileSync(p, 'utf8'))
+  } catch {
+    return null
+  }
+}
+
+// ---- collect test outcomes: name -> 'pass' | 'fail'
+const vitest = new Map()
+const vj = readJson(P('reports', 'vitest.json'))
+if (vj?.testResults) {
+  for (const f of vj.testResults)
+    for (const a of f.assertionResults ?? []) {
+      const name = [...(a.ancestorTitles ?? []), a.title].join(' ')
+      vitest.set(name, a.status === 'passed' ? 'pass' : a.status === 'failed' ? 'fail' : 'skip')
+    }
+}
+
+const pytest = new Map()
+if (existsSync(P('reports', 'pytest.xml'))) {
+  const xml = readFileSync(P('reports', 'pytest.xml'), 'utf8')
+  const re = /<testcase\b([^>]*?)(\/>|>([\s\S]*?)<\/testcase>)/g
+  let m
+  while ((m = re.exec(xml))) {
+    const name = /name="([^"]*)"/.exec(m[1])?.[1] ?? ''
+    const cls = /classname="([^"]*)"/.exec(m[1])?.[1] ?? ''
+    const body = m[3] ?? ''
+    const st = /<(failure|error)\b/.test(body) ? 'fail' : /<skipped\b/.test(body) ? 'skip' : 'pass'
+    pytest.set(`${cls}.${name}`, st)
+  }
+}
+
+const e2e = new Map()
+const ej = readJson(P('reports', 'e2e.json'))
+function walk(suite, prefix) {
+  for (const s of suite.suites ?? []) walk(s, [...prefix, s.title])
+  for (const spec of suite.specs ?? []) {
+    const name = [...prefix, spec.title].filter(Boolean).join(' ')
+    const ok = spec.tests?.every((t) => t.results?.some((r) => r.status === 'passed') && t.status !== 'unexpected')
+    e2e.set(name, ok ? 'pass' : 'fail')
+  }
+}
+if (ej?.suites) for (const s of ej.suites) walk(s, [])
+
+function matchAll(map, frag) {
+  const hits = [...map.entries()].filter(([k]) => k.toLowerCase().includes(frag.toLowerCase()))
+  if (!hits.length) return 'missing'
+  if (hits.some(([, v]) => v === 'fail')) return 'fail'
+  if (hits.every(([, v]) => v === 'skip')) return 'missing'
+  return 'pass'
+}
+
+function evalRef(ref) {
+  const i = ref.indexOf(':')
+  const kind = ref.slice(0, i).trim()
+  const arg = ref.slice(i + 1).trim()
+  switch (kind) {
+    case 'vt':
+      return matchAll(vitest, arg)
+    case 'py':
+      return matchAll(pytest, arg)
+    case 'e2e':
+      return matchAll(e2e, arg)
+    case 'val': {
+      const r = readJson(P('data', 'validation', `${arg}.json`))
+      if (!r) return 'missing'
+      if (r.status === 'pass' || r.status === 'documented') return 'pass'
+      if (r.status === 'fail') return 'fail'
+      return 'missing'
+    }
+    case 'doc': {
+      const p = P(arg)
+      return existsSync(p) && statSync(p).size > 200 ? 'pass' : 'missing'
+    }
+    case 'blocked':
+      return 'blocked'
+    default:
+      return 'missing'
+  }
+}
+
+// ---- rewrite the status column
+const path = P('docs', 'OBJECTIVES.md')
+const lines = readFileSync(path, 'utf8').split('\n')
+const out = []
+const summary = []
+let header = null
+for (const line of lines) {
+  if (!line.startsWith('|')) {
+    header = null
+    out.push(line)
+    continue
+  }
+  const cells = line.split('|').slice(1, -1).map((c) => c.trim())
+  if (cells[0] === 'ID') {
+    header = cells
+    out.push(line)
+    continue
+  }
+  if (!header || /^-+$/.test(cells[0].replace(/[: ]/g, '')) || cells[0].startsWith('---')) {
+    out.push(line)
+    continue
+  }
+  const iEv = header.indexOf('Evidence')
+  const iSt = header.indexOf('Status')
+  const refs = (cells[iEv] ?? '').split(';').map((s) => s.trim()).filter(Boolean)
+  const res = refs.map((r) => ({ ref: r, result: evalRef(r) }))
+  let status = 'todo'
+  if (res.some((r) => r.result === 'blocked')) status = 'blocked'
+  else if (!res.length) status = 'todo'
+  else if (res.some((r) => r.result === 'fail')) status = 'failing'
+  else if (res.every((r) => r.result === 'pass')) status = 'met'
+  else if (res.some((r) => r.result === 'pass')) status = 'in progress'
+  else status = 'todo'
+  cells[iSt] = status
+  summary.push({ id: cells[0], objective: cells[1], acceptance: cells[2], status, evidence: res })
+  out.push(`| ${cells.join(' | ')} |`)
+}
+writeFileSync(path, out.join('\n'))
+mkdirSync(P('web', 'public', 'data'), { recursive: true })
+writeFileSync(
+  P('web', 'public', 'data', 'objectives.json'),
+  JSON.stringify({ generated_utc: new Date().toISOString(), objectives: summary }, null, 1),
+)
+const counts = summary.reduce((a, s) => ((a[s.status] = (a[s.status] ?? 0) + 1), a), {})
+console.log('objectives:', JSON.stringify(counts))
+for (const s of summary.filter((x) => x.status !== 'met'))
+  console.log(`  ${s.id.padEnd(4)} ${s.status.padEnd(11)} ${s.evidence.filter((e) => e.result !== 'pass').map((e) => `${e.ref} [${e.result}]`).join('; ')}`)
+// unused import guard for linters
+void readdirSync

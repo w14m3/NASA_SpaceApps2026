@@ -12,3 +12,7 @@ web/public/cesium/
 reference/v1/web/public/cesium/
 data/cache/
 data/autopilot/
+reports/
+test-results/
+playwright-report/
+*.tsbuildinfo
