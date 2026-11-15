@@ -55,3 +55,10 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
 - Plan: V11 vs JPL Horizons (DSN Moon elevation, ≥ 200 instants); fetch LOLA 80 m + _ERR, run O2 against the v1
   masks; move candidate grids to the 80 m + 240 m cascade if O2 passes; re-read resources (challenge Resources tab,
   Moon Trek polar layers, QuickMap, Gazetteer, CSA) and update RESOURCES.md; then V18 from published accounts.
+
+## 2026-11-15 ~12:00 — progress (same session)
+- Done since 11:12: V11 vs JPL Horizons (0.0005°), O2 on LOLA 80 m (0.0010°), V18 documented (ISRO/NASA quotes),
+  ephemeris fully SPICE DE440 2017–2031, Moon Trek south-polar layers, 78 IAU features in search, 80 m live terrain
+  windows, IM-1 mask recomputed on 80 m (v1 defect 1), RESOURCES updated.
+- The first 80 m candidate-grid rebuild was stopped by the 30-min background limit at ~55 % (nothing written);
+  restarted with a 2-h limit. After it: re-run V7, V7b, V17, default-window scan, verify, screenshots.
