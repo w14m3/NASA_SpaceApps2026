@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T04:09:20.700Z",
+ "generated_utc": "2026-11-15T10:17:05.352Z",
  "objectives": [
   {
    "id": "C1",
@@ -347,6 +347,10 @@
    "acceptance": "V11 + e2e",
    "status": "met",
    "evidence": [
+    {
+     "ref": "val:V11",
+     "result": "pass"
+    },
     {
      "ref": "val:V11b",
      "result": "pass"
@@ -717,15 +721,15 @@
    "id": "V11",
    "objective": "Moon elevation at DSN sites vs Horizons, ≥ 200 instants",
    "acceptance": "≤ 0.05°",
-   "status": "blocked",
+   "status": "in progress",
    "evidence": [
     {
-     "ref": "blocked:JPL Horizons unreachable from the build environment (D2)",
-     "result": "blocked"
+     "ref": "vt:V11 Moon elevation",
+     "result": "missing"
     },
     {
-     "ref": "substitute V11b",
-     "result": "missing"
+     "ref": "val:V11",
+     "result": "pass"
     }
    ]
   },

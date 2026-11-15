@@ -2,8 +2,8 @@
 
 - session: session_01E6ZbLzKgBjZSm5dfrvnAnd (Claude Code on the web, watchdog run)
 - session start: 2026-11-15 01:43 CET
-- last heartbeat: 2026-11-15 05:09 Europe/Paris
-- current objective: Fix-only/polish; waiting for owner to enable GitHub Pages (P13)
+- last heartbeat: 2026-11-15 11:12 Europe/Paris
+- current objective: Resume 11:12 — deploy check, polish from the judge pass
 
 Rule: a new session that finds a heartbeat younger than 45 minutes written by another session appends
 "watchdog: active session detected" to docs/WORKLOG.md, pushes and ends.

@@ -48,3 +48,10 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
 - V13: Lighthouse 12.8.2 on the built site: performance 91, accessibility 97, best practices 100, SEO 91.
 - `npm run verify`: all steps PASS (27 Vitest, 8 pytest, 37 Playwright). Objectives: 51 met, 4 blocked
   (O2, V11, V12, V18 — unreachable hosts, substitutes recorded), 1 failing (P13 — GitHub Pages not enabled: owner action).
+
+## 2026-11-15 11:12 — resume (same session, lock refreshed)
+- Preflight: pgda.gsfc.nasa.gov, ssd.jpl.nasa.gov, trek.nasa.gov now answer 200 (network opened by the owner).
+  GitHub Pages still 404 (owner action pending, D13).
+- Plan: V11 vs JPL Horizons (DSN Moon elevation, ≥ 200 instants); fetch LOLA 80 m + _ERR, run O2 against the v1
+  masks; move candidate grids to the 80 m + 240 m cascade if O2 passes; re-read resources (challenge Resources tab,
+  Moon Trek polar layers, QuickMap, Gazetteer, CSA) and update RESOURCES.md; then V18 from published accounts.

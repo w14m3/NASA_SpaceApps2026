@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T04:09:20.701Z",
+ "generated_utc": "2026-11-15T10:17:05.354Z",
  "records": {
   "DEPLOY": {
    "id": "DEPLOY",
@@ -12,7 +12,7 @@
    },
    "summary": "HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions)",
    "status": "fail",
-   "generated_utc": "2026-11-15T03:57:43.396Z",
+   "generated_utc": "2026-11-15T10:12:51.763Z",
    "generator": "scripts/check-deploy.mjs"
   },
   "LIGHTHOUSE": {
@@ -206,6 +206,21 @@
    "generated_utc": "2026-11-15T04:07:43.844Z",
    "generator": "vitest (web/src/core)"
   },
+  "V11": {
+   "id": "V11",
+   "test": "Moon topocentric elevation at DSS-14, DSS-63, DSS-43: runtime chain (DE421 Moon in CIRS + ERA(UT1), no polar motion) vs JPL Horizons apparent airless az/el, 240 seeded instants 2026–2030 (responses cached in data/raw/horizons_dsn/)",
+   "criterion": "<= 0.05 deg",
+   "measured": {
+    "max_el_deg": 0.0004884915317409089,
+    "rms_el_deg": 0.0001754682502358346,
+    "max_az_cos_el_deg": 0.0003896667649481407,
+    "n": 240
+   },
+   "summary": "elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240)",
+   "status": "pass",
+   "generated_utc": "2026-11-15T10:16:53.329Z",
+   "generator": "vitest (web/src/core)"
+  },
   "V11b": {
    "id": "V11b",
    "test": "Moon topocentric elevation at DSS-14, DSS-43, DSS-63 (runtime chain: DE421 Moon in CIRS + ERA(UT1), no polar motion) vs astropy (built-in ERFA Moon theory, full IERS-A chain), 720 rows 2026–2030. Substitute for V11 while JPL Horizons is unreachable",
@@ -217,7 +232,7 @@
    },
    "summary": "max 0.0022°, RMS 0.0005° (n=720)",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:44.504Z",
+   "generated_utc": "2026-11-15T10:16:53.337Z",
    "generator": "vitest (web/src/core)"
   },
   "V14": {

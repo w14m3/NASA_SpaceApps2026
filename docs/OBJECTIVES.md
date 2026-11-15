@@ -38,7 +38,7 @@ result yet; `todo` without evidence.
 | P4 | Top 3 + crew choice + Mission Brief | V17 + e2e | L3 | 1 | val:V17; e2e:golden path | met |
 | P5 | Landing safety: slope, roughness, tip-over, ellipse | V15, V16 + e2e | L3 | 1 | val:V15; val:V16; e2e:safety | met |
 | P6 | Solar-efficiency optimizers + headline + survival timeline | V10 + e2e | L3 | 1 | val:V10; e2e:energy | met |
-| P7 | Earth connectivity: DSN + custom stations, DTE, pointing, FSPL, interference | V11 + e2e | L3 | 1 | val:V11b; e2e:connectivity | met |
+| P7 | Earth connectivity: DSN + custom stations, DTE, pointing, FSPL, interference | V11 + e2e | L3 | 1 | val:V11; val:V11b; e2e:connectivity | met |
 | P8 | Moon Street View | e2e | L4 | 2 | e2e:street view | met |
 | P9 | Moon Directions | V20 + e2e | L4 | 3 | vt:V20; val:V20; e2e:directions | met |
 | P10 | Site 3D with true-Sun shadows | e2e screenshot, ≥ 30 fps | L4 | 2 | e2e:site 3d | met |
@@ -68,7 +68,7 @@ result yet; `todo` without evidence.
 | V8 | Event times vs brute-force 1 s scan | ≤ 5 s | L1 | 1 | vt:V8; val:V8 | met |
 | V9 | Sun-disk occlusion vs analytic circle segment | ≤ 1e-4 | L1 | 1 | vt:V9; val:V9 | met |
 | V10 | Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d | ≤ 0.1 % | L1 | 1 | vt:V10; val:V10 | met |
-| V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | blocked:JPL Horizons unreachable from the build environment (D2); substitute V11b | blocked |
+| V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | vt:V11 Moon elevation; val:V11 | in progress |
 | V11b | Moon elevation at DSN sites vs an independent astropy/ERFA chain (substitute for V11) | ≤ 0.05° | L1 | 1 | vt:V11b; val:V11b | met |
 | V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | blocked:manual comparison; quickmap.lroc.asu.edu unreachable from the build environment | blocked |
 | V13 | Front end: e2e golden path; axe critical = 0; Lighthouse; mobile | pass | L5 | 1 | e2e:golden path; e2e:axe; e2e:mobile; val:LIGHTHOUSE | met |

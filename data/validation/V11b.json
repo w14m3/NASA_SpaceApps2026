@@ -9,6 +9,6 @@
  },
  "summary": "max 0.0022°, RMS 0.0005° (n=720)",
  "status": "pass",
- "generated_utc": "2026-11-15T04:07:44.504Z",
+ "generated_utc": "2026-11-15T10:16:53.337Z",
  "generator": "vitest (web/src/core)"
 }

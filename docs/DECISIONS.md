@@ -48,3 +48,6 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
 - **D13 — Pages deployment needs the owner.** CI builds and uploads the site on every push to `main`, but the deploy
   step returns 404 until GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions). `configure-pages` now
   asks for enablement, which only works if the workflow token is allowed to; otherwise the owner must click it once.
+- **D14 (11:15) — Network opened; real oracles run.** NASA/JPL hosts became reachable. V11 now runs against JPL
+  Horizons (240 cached responses in `data/raw/horizons_dsn/`, 20 instants per query because longer TLIST URLs were
+  refused with HTTP 502). V11b stays as an additional independent check.

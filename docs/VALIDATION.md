@@ -1,6 +1,6 @@
 # Validation results (generated)
 
-Generated 2026-11-15T04:09:20.737Z by `scripts/gen-docs.mjs` from the records in `data/validation/`, which are written by the tests (`web/src/core/*.test.ts`, `pipeline/tests/`, `web/scripts/validate-candidates.ts`) and the pipeline. Statuses are never typed by hand. Contract §10 checks that cannot run in this build environment are listed at the end.
+Generated 2026-11-15T10:17:05.405Z by `scripts/gen-docs.mjs` from the records in `data/validation/`, which are written by the tests (`web/src/core/*.test.ts`, `pipeline/tests/`, `web/scripts/validate-candidates.ts`) and the pipeline. Statuses are never typed by hand. Contract §10 checks that cannot run in this build environment are listed at the end.
 
 | ID | Test | Criterion | Measured | Status | Recorded |
 |---|---|---|---|---|---|
@@ -18,7 +18,7 @@ Generated 2026-11-15T04:09:20.737Z by `scripts/gen-docs.mjs` from the records in
 | V8 | Rise/set times from the 10-min scan + bisection vs a brute-force 1 s scan (Malapert M1, 10 m, 80 m-based mask, 5 events in 12 days) | <= 5 s | max 0.50 s over 5 events | **pass** | 2026-11-15T04:07 |
 | V9 | Visible fraction of the solar disk above a straight horizon (production quadrature, 200 strips) vs the analytic circle segment, 9 offsets | <= 1e-4 | max 6.3e-5 | **pass** | 2026-11-15T04:07 |
 | V10 | Energy: (a) event-aware trapezoid vs closed form (clipped sinusoid, 30 d); (b) on real terrain (Connecting Ridge site 001, 10 m, 80 m-based mask, 365 days) vs a 1-minute reference, three layouts | <= 0.1 % | closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples | **pass** | 2026-11-15T04:07 |
-| V11b | Moon topocentric elevation at DSS-14, DSS-43, DSS-63 (runtime chain: DE421 Moon in CIRS + ERA(UT1), no polar motion) vs astropy (built-in ERFA Moon theory, full IERS-A chain), 720 rows 2026–2030. Substitute for V11 while JPL Horizons is unreachable | <= 0.05 deg | max 0.0022°, RMS 0.0005° (n=720) | **pass** | 2026-11-15T04:07 |
+| V11b | Moon topocentric elevation at DSS-14, DSS-43, DSS-63 (runtime chain: DE421 Moon in CIRS + ERA(UT1), no polar motion) vs astropy (built-in ERFA Moon theory, full IERS-A chain), 720 rows 2026–2030. Substitute for V11 while JPL Horizons is unreachable | <= 0.05 deg | max 0.0022°, RMS 0.0005° (n=720) | **pass** | 2026-11-15T10:16 |
 | V14 | Rebuild from inputs with one command (node scripts/rebuild-check.mjs --candidates): ephemeris pieces, UT1 table, DEM, sites, masks, test fixtures, candidate grids; content hashes compared with the committed artifacts | identical hashes (pass) or documented | 25 files rebuilt with identical content hashes | **pass** | 2026-11-15T04:07 |
 | V15 | Least-squares plane fit through bilinear DEM samples: 4 synthetic tilted planes (5–20°, 4 directions, scale factor and meridian convergence applied) and a 10° cone 1 km from its apex | slope <= 0.01°, azimuth <= 0.1° | slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3° | **pass** | 2026-11-15T04:07 |
 | V16 | Tip-over screening model: M = 0 → v_crit = 0; flat-ground closed form; symmetry of σ vs δσ; length scaling v ∝ √s | exact to 1e-9 | max 0.0e+0 m/s | **pass** | 2026-11-15T04:07 |
@@ -26,7 +26,8 @@ Generated 2026-11-15T04:09:20.737Z by `scripts/gen-docs.mjs` from the records in
 | V19 | Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself | <= 0.001 deg | max 1.6e-05 deg (DE421 vs DE440 + fit) | **pass** | 2026-11-15T03:53 |
 | V20 | Moon Directions: A* (straight-line heuristic) vs brute-force Dijkstra on 50 seeded random slope grids (20–40 cells, 15 % forbidden cells, S_max 20°, S_ref 10°) | exact cost match; no forbidden cell on the route | 38 routes: max relative cost difference 0.0e+0, 0 forbidden cells | **pass** | 2026-11-15T04:07 |
 | LIGHTHOUSE | Lighthouse 12.8.2 on http://localhost:4173/ (mobile, simulate throttling) | performance >= 85, accessibility >= 95 (contract §8) | performance 91, accessibility 97, best-practices 100, seo 91 | **pass** | 2026-11-15T04:07 |
-| DEPLOY | Public URL https://w14m3.github.io/NASA_SpaceApps2026/ returns 200 and the golden-path e2e passes against it | HTTP 200 and golden path pass | HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions) | **fail** | 2026-11-15T03:57 |
+| DEPLOY | Public URL https://w14m3.github.io/NASA_SpaceApps2026/ returns 200 and the golden-path e2e passes against it | HTTP 200 and golden path pass | HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions) | **fail** | 2026-11-15T10:12 |
+| V11 | Moon topocentric elevation at DSS-14, DSS-63, DSS-43: runtime chain (DE421 Moon in CIRS + ERA(UT1), no polar motion) vs JPL Horizons apparent airless az/el, 240 seeded instants 2026–2030 (responses cached in data/raw/horizons_dsn/) | <= 0.05 deg | elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240) | **pass** | 2026-11-15T10:16 |
 
 ## Not run here (and why)
 
