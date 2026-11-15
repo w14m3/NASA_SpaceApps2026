@@ -164,8 +164,8 @@ export function Top3Cards({ compact = false }: { compact?: boolean }) {
                 {t('top3.option', { k: LETTERS[k] })} · {t(`strength.${o.label}`)}
               </button>
               <span className="spacer" />
-              <span className="badge grade-B" title={t('grade.B')}>
-                {o.nearShare > 0.25 ? 'C' : 'B'}
+              <span className={`badge grade-${o.nearShare >= 0.25 ? 'C' : 'B'}`} title={t(`grade.${o.nearShare >= 0.25 ? 'C' : 'B'}`)}>
+                {o.nearShare >= 0.25 ? 'C' : 'B'}
               </span>
             </h3>
             <div className="hint">

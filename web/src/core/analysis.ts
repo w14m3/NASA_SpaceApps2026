@@ -88,7 +88,7 @@ export interface SiteAnalysis {
   longestLitH: number
   longestDteGapH: number
   longestDteGap: Interval | null
-  energy: { electricWh: number; incidentWhM2: number; capacityFactor: number; perLunarDayWh: number }
+  energy: { electricWh: number; incidentWhM2: number; capacityFactor: number; perLunarDayWh: number; layout: string; azimuth: number; optimisedAzimuth: boolean }
   storage: { wh: number; massKg: number }
   survival: { emptyAtHour: number; minSoc: number; soc: Float32Array }
   link: {
@@ -148,7 +148,18 @@ export function analyseSite(eph: Ephemeris, site: SiteSpec, mask: Mask, sc: Scen
   const ll = longest(sun)
 
   const track = sunTrack(eph, f, mask, t0, t1, 'mid')
-  const en = integrate(sc.array, sc.attitude, track)
+  // a vertical array with azimuth < 0 means "optimise": pick the facing (15° steps) that maximises window energy
+  let array = sc.array
+  if (array.layout === 'vertical' && array.azimuth < 0) {
+    let best = { az: 0, wh: -1 }
+    for (let az = 0; az < 360; az += 15) {
+      const wh = integrate({ ...array, azimuth: az }, sc.attitude, track).electricWh
+      if (wh > best.wh) best = { az, wh }
+    }
+    array = { ...array, azimuth: best.az }
+  }
+  if (array.azimuth < 0) array = { ...array, azimuth: 0 } // box4 keeps facets N/E/S/W
+  const en = integrate(array, sc.attitude, track)
   const darkHours = darkH(sun)
   const stor = storageForDarkness(sc.loadW, darkHours, sc.battery)
   const surv = survival(en.hourlyW, sc.loadW, sc.battery)
@@ -223,7 +234,7 @@ export function analyseSite(eph: Ephemeris, site: SiteSpec, mask: Mask, sc: Scen
     longestLitH: ll ? (ll.end - ll.start) / HOUR : 0,
     longestDteGapH: dteGap ? (dteGap.end - dteGap.start) / HOUR : 0,
     longestDteGap: dteGap,
-    energy: { electricWh: en.electricWh, incidentWhM2: en.incidentWhM2, capacityFactor: en.capacityFactor, perLunarDayWh: (en.electricWh * SYNODIC_MS) / span },
+    energy: { electricWh: en.electricWh, incidentWhM2: en.incidentWhM2, capacityFactor: en.capacityFactor, perLunarDayWh: (en.electricWh * SYNODIC_MS) / span, layout: array.layout, azimuth: array.azimuth, optimisedAzimuth: sc.array.azimuth < 0 },
     storage: stor,
     survival: { emptyAtHour: surv.emptyAtHour, minSoc: surv.minSoc, soc: surv.soc },
     link: {

@@ -291,6 +291,8 @@ function EnergyPanel({ a, opt }: { a: SiteAnalysis; opt: ReturnType<typeof useEn
     <div className="section" data-testid="energy">
       <h2>{t('wb.energy')}</h2>
       <p>
+        Array: {a.energy.layout === 'vertical' ? `vertical panel facing ${a.energy.azimuth}°` : a.energy.layout === 'box4' ? `four vertical facets (rotated ${a.energy.azimuth}°)` : a.energy.layout}
+        {a.energy.optimisedAzimuth ? ' (azimuth optimised for this window)' : ''}, 2 m², η 30 %, losses 15 % (assumptions).{' '}
         <Def k="energy">Array energy</Def>: <b>{n(a.energy.electricWh / 1000, 2)} kWh</b> over the window ({n(a.energy.perLunarDayWh / 1000, 2)} kWh per lunar day) · <Def k="cf">capacity factor</Def> {n(a.energy.capacityFactor * 100, 1)} %
       </p>
       <p>

@@ -25,3 +25,11 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
 - Plan L4 (this iteration): Who blocks the Sun (C12, §7.13) + illumination compass (C12) in the workbench;
   Moon Directions A* with V20 (P9); PWA manifest + service worker (P15); "Land it!" (P17); then L5 docs
   (METHODS, RESOURCES, TRACEABILITY, PRODUCT, SUBMISSION, DEMO_SCRIPT, PITCH, README) and the deploy check.
+
+## 2026-11-15 05:00 — phase report L3–L5 (same session)
+- Built: Top 3 engine + candidate grids (4 regions × 3,721), constraints panels, Mission Brief, compare with site-date
+  scenarios and seasons, Who blocks the Sun, compass, Moon Directions, Land it!, PWA, Trust page, docs.
+- Verified: `npm run verify` green (lint, typecheck, 27 Vitest, 8 pytest, build, 36 Playwright e2e incl. axe and
+  offline). Objectives 50 met / 56 before V14; blocked O2, V11, V18 (unreachable hosts) with substitutes.
+- Deploy: CI builds and uploads; deploy step 404 until the owner enables GitHub Pages (D13).
+- Review and Judge pass: `docs/REVIEW_L5.md`; high-severity findings fixed.

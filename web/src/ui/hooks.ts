@@ -68,7 +68,7 @@ export function stationsFor(s: Pick<AppState, 'station' | 'minEl'>): Station[] {
 }
 
 export function arrayFor(s: Pick<AppState, 'layout' | 'panelAz'>, optimisedAz?: number): ArraySpec {
-  return { ...DEFAULT_ARRAY, layout: s.layout, azimuth: s.panelAz >= 0 ? s.panelAz : optimisedAz ?? 0 }
+  return { ...DEFAULT_ARRAY, layout: s.layout, azimuth: s.panelAz >= 0 ? s.panelAz : optimisedAz ?? -1 }
 }
 
 const anaCache = new Map<string, Promise<SiteAnalysis>>()
@@ -95,14 +95,11 @@ export function useAnalysis(site: ResolvedSite | null) {
   const panelAz = useStore((s) => s.panelAz)
   const loadW = useStore((s) => s.loadW)
   const stations = stationsFor({ station, minEl })
-  const array = arrayFor({ layout, panelAz }, site?.lat !== undefined ? optimalAzGuess() : 0)
+  const array = arrayFor({ layout, panelAz })
   const job = site ? analyseCached(site, t0, t1, stations, array, loadW) : null
   return useAsync(job?.key ?? null, () => job!.promise)
 }
 
-function optimalAzGuess() {
-  return 0
-}
 
 export type Top3Result = Awaited<ReturnType<typeof rpc.rank>>
 const rankCache = new Map<string, Promise<Top3Result>>()

@@ -1,0 +1,13 @@
+{
+ "id": "V14",
+ "test": "Rebuild from inputs with one command (node scripts/rebuild-check.mjs): ephemeris pieces, UT1 table, DEM, sites, masks, test fixtures (candidate grids: run with --candidates, ~12 min); content hashes compared with the committed artifacts",
+ "criterion": "identical hashes (pass) or documented",
+ "measured": {
+  "files": 21,
+  "differing": []
+ },
+ "summary": "21 files rebuilt with identical content hashes (candidates not rebuilt in this run)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T03:53:14.765Z",
+ "generator": "scripts/rebuild-check.mjs"
+}

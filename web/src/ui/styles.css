@@ -112,7 +112,7 @@ details > summary { cursor: pointer; color: var(--muted); }
 .float.dte { top: 10px; right: 10px; max-width: 280px; }
 .float .big { font-size: 34px; font-weight: 750; color: var(--sun); line-height: 1; font-variant-numeric: tabular-nums; }
 .float .label { color: var(--muted); font-size: 12px; }
-.float.label-site { bottom: 12px; left: 50%; transform: translateX(-50%); padding: 6px 12px; }
+.float.label-site { bottom: 36px; left: 50%; transform: translateX(-50%); padding: 6px 12px; white-space: nowrap; }
 .exag { position: absolute; bottom: 8px; right: 10px; z-index: 5; font-size: 11.5px; color: var(--muted); background: rgba(0, 0, 0, 0.6); padding: 3px 8px; border-radius: 6px; }
 canvas.map { width: 100%; height: 100%; display: block; touch-action: none; cursor: crosshair; }
 .probe { position: absolute; bottom: 8px; left: 10px; z-index: 5; font-size: 12px; background: rgba(0, 0, 0, 0.65); padding: 4px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
@@ -167,6 +167,16 @@ abbr[title], .def { text-decoration: underline dotted; cursor: help; }
   .dock { min-height: 190px; }
   .float.solar { max-width: 200px; }
   .float .big { font-size: 26px; }
+}
+@media (max-width: 700px) {
+  .views { right: 10px; overflow-x: auto; white-space: nowrap; }
+  .float.dte { display: none; }
+  .float.solar { top: 54px; max-width: 168px; padding: 6px 8px; }
+  .float.solar .label { font-size: 11px; }
+  .float.solar .label:nth-of-type(3) { display: none; }
+  .float.label-site { bottom: 40px; font-size: 12px; }
+  .exag { font-size: 10px; left: 10px; right: 10px; }
+  .legend { display: none; }
   .tour { right: 8px; left: 8px; width: auto; bottom: 8px; }
 }
 @media print {

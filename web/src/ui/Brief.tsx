@@ -85,7 +85,7 @@ export default function Brief() {
                 <Row label="Safe-area fraction (500 m)" vals={opts.map((o) => `${Math.round(o.safeArea * 100)} %`)} />
                 <Row label="Scores S / P / L / R" vals={opts.map((o) => `${Math.round(o.scores.safety)} / ${Math.round(o.scores.power)} / ${Math.round(o.scores.link)} / ${Math.round(o.scores.robustness)}`)} />
                 <Row label="Combined (viability)" vals={opts.map((o) => String(Math.round(o.combined)))} />
-                <Row label="Confidence" vals={opts.map((o) => (o.nearShare > 0.25 ? 'C' : 'B'))} />
+                <Row label="Confidence" vals={opts.map((o) => (o.nearShare >= 0.25 ? 'C' : 'B'))} />
               </tbody>
             </table>
             <h2>Constraints signed off by both teams</h2>

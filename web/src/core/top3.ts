@@ -374,7 +374,7 @@ export function explain(o: CandidateScore, median: RankResult['median']): { reas
   const eng = sorted.filter((r) => r.key !== 'reason.ice')
   const worst = eng[eng.length - 1]
   let risk: Reason = { ...worst, key: worst.key.replace('reason.', 'risk.') }
-  if (o.nearShare > 0.25) risk = { key: 'risk.nearfield', v: { pct: o.nearShare * 100 }, weight: 1 }
+  if (o.nearShare >= 0.25) risk = { key: 'risk.nearfield', v: { pct: o.nearShare * 100 }, weight: 1 }
   return { reasons, risk }
 }
 
