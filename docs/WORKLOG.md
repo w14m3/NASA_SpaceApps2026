@@ -19,3 +19,9 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
 - Plan L0: REFERENCE_AUDIT ✔, OBJECTIVES ✔ (status computed by scripts/objectives.mjs), DECISIONS, RESOURCES,
   scaffold (root verify, web Vite/React/TS, pipeline), CI + Pages deploy.
 - DE421 (PyPI) → MOON_ME matches the v1 SPICE DE440 oracle to 1.6e-5° (D3, D4).
+
+## 2026-11-15 04:45 — resume (same session, after a usage-limit pause; lock refreshed)
+- State: objectives 42 met / 56; verify green except typecheck fixed after the last run.
+- Plan L4 (this iteration): Who blocks the Sun (C12, §7.13) + illumination compass (C12) in the workbench;
+  Moon Directions A* with V20 (P9); PWA manifest + service worker (P15); "Land it!" (P17); then L5 docs
+  (METHODS, RESOURCES, TRACEABILITY, PRODUCT, SUBMISSION, DEMO_SCRIPT, PITCH, README) and the deploy check.
