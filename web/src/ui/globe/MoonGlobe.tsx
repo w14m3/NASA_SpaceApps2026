@@ -96,8 +96,9 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
     stars.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3))
     scene.add(new THREE.Points(stars, new THREE.PointsMaterial({ color: 0x8899bb, size: 1.2, sizeAttenuation: false })))
     // base sphere under the tiles (grey, no texture) so nothing is ever see-through
-    // (open around the south pole: the cap's terrain goes kilometres below the reference sphere)
-    const base = new THREE.Mesh(new THREE.SphereGeometry(R_MOON_KM - 0.5, 96, 64, 0, Math.PI * 2, 0, Math.PI * (170.1 / 180)), new THREE.MeshBasicMaterial({ color: 0x55585e }))
+    // (open around the south pole: the cap terrain goes kilometres below the reference sphere; 15 km below so the
+    // chords of coarse tiles, which sag up to ~1 km under the sphere, never let it show through)
+    const base = new THREE.Mesh(new THREE.SphereGeometry(R_MOON_KM - 15, 96, 64, 0, Math.PI * 2, 0, Math.PI * (170.1 / 180)), new THREE.MeshBasicMaterial({ color: 0x55585e }))
     scene.add(base)
     const camera = new THREE.PerspectiveCamera(45, el.clientWidth / el.clientHeight, 0.01, 60000)
     const tiles = new MoonTiles()
@@ -113,6 +114,7 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
     const s: GlobeState = { renderer, scene, camera, tiles, sun, ambient, view, anim: null, dirty: true, grids: null, markers: [], labelEls: new Map<string, HTMLButtonElement>(), sunDir }
     st.current = s
     tiles.onChange = () => (s.dirty = true)
+    ;(window as unknown as { __sightlineTiles?: MoonTiles }).__sightlineTiles = tiles // debugging aid (read-only)
     loadTerrain().then((g) => {
       s.grids = g
       tiles.setTerrain(g)

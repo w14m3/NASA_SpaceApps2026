@@ -20,6 +20,8 @@ const CAP_HALF = 304_000 // m: extent of the runtime DEM (80–90°S square)
 const SP10_HALF = 75_840
 /** the polar cap mesh covers everything south of this latitude (the DEM square reaches 80.0°S at its edge midpoints) */
 export const EQ_SOUTH_LIMIT = -79.9
+/** map radius of 80.0°S on the polar stereographic sphere: 2R·tan(5°) */
+const CAP_DISC = 2 * 1_737_400 * Math.tan((5 * Math.PI) / 180)
 
 /** MOON_ME (km) → three.js world (Y up): (x, z, −y). */
 export function meToWorld(x: number, y: number, z: number, out = new THREE.Vector3()) {
@@ -213,8 +215,14 @@ export class MoonTiles {
           lonLatToWorld(lon, lat, R_MOON_KM, v)
         } else {
           const S = 256 * (SP_R0 / 2 ** t.z)
-          const x = SP_X0 + (t.c + u) * S
-          const y = SP_Y0 - (t.r + w) * S
+          let x = SP_X0 + (t.c + u) * S
+          let y = SP_Y0 - (t.r + w) * S
+          // keep the cap a disc reaching 80.0°S (where the flat global mosaic stops): pull outer vertices in
+          const rr = Math.hypot(x, y)
+          if (rr > CAP_DISC) {
+            x *= CAP_DISC / rr
+            y *= CAP_DISC / rr
+          }
           const [lon, lat] = xyToLonLat(x, y)
           let h = this.grids ? heightXY(this.grids, x, y) : 0
           if (Number.isNaN(h)) h = 0

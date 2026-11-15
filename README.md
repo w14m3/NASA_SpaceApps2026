@@ -8,11 +8,11 @@ down, powered by the Sun, in contact with Earth — and see why.*
 **Live site**: https://w14m3.github.io/NASA_SpaceApps2026/ (GitHub Pages — the owner must enable Pages once:
 Settings → Pages → Source: GitHub Actions; CI already builds and uploads the site on every push to `main`).
 
-![Sightline on desktop: Top 3 options, south-pole map, solar elevation card, sky plot and timeline](docs/screenshots/desktop.png)
+![Sightline Explore: 3D south pole on LOLA terrain with the three answers and the best three spots](docs/screenshots/explore.png)
 
-| Street View (Malapert, 2 m mast) | Phone (390 px) | Methods & Trust |
-|---|---|---|
-| ![Street View](docs/screenshots/streetview.png) | ![Mobile](docs/screenshots/mobile390.png) | ![Trust page](docs/screenshots/trust.png) |
+| Whole Moon (zoom out) | Real Sun and shadows | Plan mode (expert workbench) | Phone (390 px) |
+|---|---|---|---|
+| ![Whole Moon](docs/screenshots/explore-moon.png) | ![Real Sun](docs/screenshots/explore-sun.png) | ![Plan mode](docs/screenshots/desktop.png) | ![Mobile](docs/screenshots/mobile390.png) |
 
 ## What it does
 

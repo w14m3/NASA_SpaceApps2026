@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T10:19:41.683Z",
+ "generated_utc": "2026-11-15T11:54:58.851Z",
  "records": {
   "DEPLOY": {
    "id": "DEPLOY",
@@ -45,7 +45,7 @@
    },
    "summary": "max 2.7e-5 deg",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:44.275Z",
+   "generated_utc": "2026-11-15T11:45:28.874Z",
    "generator": "vitest (web/src/core)"
   },
   "O2": {
@@ -260,7 +260,7 @@
    },
    "summary": "max |Δ| at 10 m: 3.09°",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:08:00.892Z",
+   "generated_utc": "2026-11-15T11:45:50.537Z",
    "generator": "vitest (web/src/core)"
   },
   "O2b": {
@@ -291,7 +291,7 @@
    },
    "summary": "max 0.0000° (refinement adds up to 0.097°)",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:55.367Z",
+   "generated_utc": "2026-11-15T11:45:43.617Z",
    "generator": "vitest (web/src/core)"
   },
   "V1": {
@@ -304,7 +304,7 @@
    },
    "summary": "max 4.4e-10 m, 4.4e-13 px",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:42.877Z",
+   "generated_utc": "2026-11-15T11:45:27.720Z",
    "generator": "vitest (web/src/core)"
   },
   "V10": {
@@ -323,7 +323,7 @@
    },
    "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:43.844Z",
+   "generated_utc": "2026-11-15T11:45:28.469Z",
    "generator": "vitest (web/src/core)"
   },
   "V11": {
@@ -338,7 +338,7 @@
    },
    "summary": "elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240)",
    "status": "pass",
-   "generated_utc": "2026-11-15T10:16:53.329Z",
+   "generated_utc": "2026-11-15T11:45:28.709Z",
    "generator": "vitest (web/src/core)"
   },
   "V11b": {
@@ -352,20 +352,20 @@
    },
    "summary": "max 0.0022°, RMS 0.0005° (n=720)",
    "status": "pass",
-   "generated_utc": "2026-11-15T10:16:53.337Z",
+   "generated_utc": "2026-11-15T11:45:28.718Z",
    "generator": "vitest (web/src/core)"
   },
   "V14": {
    "id": "V14",
-   "test": "Rebuild from inputs with one command (node scripts/rebuild-check.mjs --candidates): ephemeris pieces, UT1 table, DEM, sites, masks, test fixtures, candidate grids; content hashes compared with the committed artifacts",
+   "test": "Rebuild from inputs with one command (node scripts/rebuild-check.mjs): ephemeris pieces, UT1 table, DEM, sites, masks, test fixtures (candidate grids: run with --candidates, ~12 min); content hashes compared with the committed artifacts",
    "criterion": "identical hashes (pass) or documented",
    "measured": {
-    "files": 25,
+    "files": 21,
     "differing": []
    },
-   "summary": "25 files rebuilt with identical content hashes",
+   "summary": "21 files rebuilt with identical content hashes (candidates not rebuilt in this run)",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:08.758Z",
+   "generated_utc": "2026-11-15T11:48:22.984Z",
    "generator": "scripts/rebuild-check.mjs"
   },
   "V15": {
@@ -379,7 +379,7 @@
    },
    "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:43.866Z",
+   "generated_utc": "2026-11-15T11:45:28.501Z",
    "generator": "vitest (web/src/core)"
   },
   "V16": {
@@ -394,7 +394,7 @@
    },
    "summary": "max 0.0e+0 m/s",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:43.867Z",
+   "generated_utc": "2026-11-15T11:45:28.503Z",
    "generator": "vitest (web/src/core)"
   },
   "V17": {
@@ -406,32 +406,32 @@
      "deterministic": true,
      "feasible": true,
      "min_separation_m": 1061,
-     "n_feasible": 747,
+     "n_feasible": 615,
      "top": [
       1920,
       1740,
-      1570
+      1571
      ]
     },
     "connecting-ridge/crewSafety": {
      "deterministic": true,
      "feasible": true,
      "min_separation_m": 1061,
-     "n_feasible": 747,
+     "n_feasible": 615,
      "top": [
       1920,
-      1570,
-      1740
+      1740,
+      1571
      ]
     },
     "malapert/balanced": {
      "deterministic": true,
      "feasible": true,
      "min_separation_m": 1030,
-     "n_feasible": 297,
+     "n_feasible": 245,
      "top": [
       1684,
-      1428,
+      1429,
       1619
      ]
     },
@@ -439,7 +439,7 @@
      "deterministic": true,
      "feasible": true,
      "min_separation_m": 1030,
-     "n_feasible": 297,
+     "n_feasible": 245,
      "top": [
       1684,
       1428,
@@ -447,36 +447,216 @@
      ]
     }
    },
-   "summary": "connecting-ridge/balanced: 747 feasible, min sep 1061 m; connecting-ridge/crewSafety: 747 feasible, min sep 1061 m; malapert/balanced: 297 feasible, min sep 1030 m; malapert/crewSafety: 297 feasible, min sep 1030 m",
+   "summary": "connecting-ridge/balanced: 615 feasible, min sep 1061 m; connecting-ridge/crewSafety: 615 feasible, min sep 1061 m; malapert/balanced: 245 feasible, min sep 1030 m; malapert/crewSafety: 245 feasible, min sep 1030 m",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:48.055Z",
+   "generated_utc": "2026-11-15T11:45:34.526Z",
    "generator": "vitest (web/src/core)"
+  },
+  "V18": {
+   "id": "V18",
+   "test": "Mission replay: Sightline predictions at the published touchdowns of Chandrayaan-3 (2023-08-23), IM-1 (2024-02-22), IM-2 (2025-03-06) vs published accounts (ISRO, NASA), instrument height 2 m",
+   "criterion": "documented (qualitative agreement, differences explained)",
+   "measured": {
+    "predictions": {
+     "chandrayaan3_vikram": {
+      "touchdown_utc_used": "2023-08-23T12:34:00Z",
+      "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+      "z0_m": 529.7234449007652,
+      "sun_el_at_touchdown_deg": 8.614631290524173,
+      "sun_az_deg": 62.04254398047639,
+      "sun_visible_fraction_at_touchdown": 1,
+      "earth_el_at_touchdown_deg": 12.995105343717047,
+      "earth_visible_fraction_at_touchdown": 1,
+      "first_sunset_utc": "2023-09-04T07:22Z",
+      "days_of_sunlight_after_touchdown": 11.783938937717014,
+      "first_dark_interval": {
+       "start": "2023-09-04T07:22Z",
+       "end": "2023-09-19T22:54Z",
+       "hours": 375.5323893229167
+      },
+      "near_share": 0.08194444444444444,
+      "finest_px": 240,
+      "dte_hours_first_7_days": 156,
+      "earth_in_view_fraction_35d": 1
+     },
+     "im1_odysseus": {
+      "touchdown_utc_used": "2024-02-22T23:23:53Z",
+      "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+      "z0_m": 2591.9477552566914,
+      "sun_el_at_touchdown_deg": 10.472821039976452,
+      "sun_az_deg": 18.603822052688162,
+      "sun_visible_fraction_at_touchdown": 1,
+      "earth_el_at_touchdown_deg": 15.432075598259816,
+      "earth_visible_fraction_at_touchdown": 1,
+      "first_sunset_utc": "2024-03-02T17:46Z",
+      "days_of_sunlight_after_touchdown": 8.76591322157118,
+      "first_dark_interval": {
+       "start": "2024-03-02T17:46Z",
+       "end": "2024-03-19T22:40Z",
+       "hours": 412.8987630208333
+      },
+      "near_share": 0.0625,
+      "finest_px": 80,
+      "dte_hours_first_7_days": 168,
+      "earth_in_view_fraction_35d": 1
+     },
+     "im2_athena": {
+      "touchdown_utc_used": "2025-03-06T17:30:00Z",
+      "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+      "z0_m": 5321.501553305143,
+      "sun_el_at_touchdown_deg": 2.465422508195838,
+      "sun_az_deg": 65.67046542024448,
+      "sun_visible_fraction_at_touchdown": 1,
+      "earth_el_at_touchdown_deg": 11.192631864070902,
+      "earth_visible_fraction_at_touchdown": 1,
+      "first_sunset_utc": "2025-03-19T22:43Z",
+      "days_of_sunlight_after_touchdown": 13.217987060546875,
+      "first_dark_interval": {
+       "start": "2025-03-19T22:43Z",
+       "end": "2025-04-04T19:14Z",
+       "hours": 380.5091145833333
+      },
+      "near_share": 0,
+      "finest_px": 80,
+      "dte_hours_first_7_days": 167,
+      "earth_in_view_fraction_35d": 0.8236543201264881
+     }
+    },
+    "published": {
+     "chandrayaan3_vikram": {
+      "source": "ISRO, Chandrayaan-3 mission page, https://www.isro.gov.in/Chandrayaan3.html",
+      "quotes": [
+       "August 23, 2023 … Chandrayaan-3 has successfully soft-landed on the moon.",
+       "September 04, 2023 The lander and rover are in sleep mode. Awaiting their awakening around September 22, 2023.",
+       "September 22, 2023 Efforts to establish communication with lander and rover are underway."
+      ],
+      "comparison": "Predicted first sunset 2023-09-04 07:22 UTC (instrument 2 m, LOLA 240 m 60°S — the site is outside the 80 m product) matches the published sleep date (4 Sep); predicted next sunrise 2023-09-19 22:54 UTC precedes the published expected awakening \"around September 22\" by ~2–3 days, consistent with waiting for the Sun to climb and batteries to charge."
+     },
+     "im1_odysseus": {
+      "source": "NASA, \"NASA Collects First Surface Science in Decades via Commercial Moon Mission\" (page last updated 4 Mar 2024), https://www.nasa.gov/missions/artemis/clps/nasa-collects-first-surface-science-in-decades-via-commercial-moon-mission/",
+      "quotes": [
+       "The six instruments ceased science and technology operations seven days after landing in the lunar South Pole region aboard Intuitive Machines’ Odysseus, meeting pre-launch projected mission operations.",
+       "After landing, NASA payload data was acquired consistent with the communications and other constraints resulting from the lander orientation."
+      ],
+      "comparison": "Operations ceased ~7 days after the 2024-02-22 touchdown (~2024-02-29), about 1.8 days before Sightline’s predicted geometric sunset at the site (2024-03-02 17:46 UTC, 2 m, LOLA 80 m). Documented difference: the lander came to rest tilted (NASA cites \"lander orientation\" constraints) and its panels and power budget are not modelled; geometry alone gives the upper bound."
+     },
+     "im2_athena": {
+      "source": "NASA release 25-025, \"NASA Receives Some Data Before Intuitive Machines Ends Lunar Mission\" (7 Mar 2025), https://www.nasa.gov/news-release/nasa-receives-some-data-before-intuitive-machines-ends-lunar-mission/",
+      "quotes": [
+       "Planned to land at Mons Mouton, IM-2 touched down at approximately 11:30 a.m. … March 6, more than 1,300 feet (400 meters) from its intended landing site.",
+       "The lunar lander is on its side about 820 feet from the intended landing site, Mons Mouton.",
+       "Intuitive Machines said images collected later confirmed the lander was on its side, preventing it from fully operating the drill and other instruments before its batteries were depleted.",
+       "… calling an early end of mission at 12:15 a.m. CST Friday."
+      ],
+      "comparison": "Sightline predicts the Sun only 2.5° above the horizontal at touchdown and ~13 days of geometric sunlight at the 80 m DEM scale. The mission ended ~13 h after touchdown because the lander lay on its side inside a ~20 m crater (LROC, sites.json) — relief smaller than one DEM pixel and an attitude outside the screening model. This is the documented limit \"DEMs cannot resolve rocks or craters smaller than their pixel\"; with the Sun 2.5° up, a few metres of local relief can shade a lander for days."
+     }
+    }
+   },
+   "summary": "Chandrayaan-3: predicted sunset 4 Sep = published sleep 4 Sep, next sunrise 19 Sep vs awakening expected ~22 Sep; IM-1: ops ended ~1.8 d before predicted sunset (tilted lander, not modelled); IM-2: 2.5° Sun, ended in a sub-pixel crater on its side (outside DEM-scale screening)",
+   "status": "documented",
+   "generated_utc": "2026-11-15T10:29:03.761Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V18_predictions": {
+   "chandrayaan3_vikram": {
+    "touchdown_utc_used": "2023-08-23T12:34:00Z",
+    "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+    "z0_m": 529.7234449007652,
+    "sun_el_at_touchdown_deg": 8.614631290524173,
+    "sun_az_deg": 62.04254398047639,
+    "sun_visible_fraction_at_touchdown": 1,
+    "earth_el_at_touchdown_deg": 12.995105343717047,
+    "earth_visible_fraction_at_touchdown": 1,
+    "first_sunset_utc": "2023-09-04T07:22Z",
+    "days_of_sunlight_after_touchdown": 11.783938937717014,
+    "first_dark_interval": {
+     "start": "2023-09-04T07:22Z",
+     "end": "2023-09-19T22:54Z",
+     "hours": 375.5323893229167
+    },
+    "near_share": 0.08194444444444444,
+    "finest_px": 240,
+    "dte_hours_first_7_days": 156,
+    "earth_in_view_fraction_35d": 1
+   },
+   "im1_odysseus": {
+    "touchdown_utc_used": "2024-02-22T23:23:53Z",
+    "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+    "z0_m": 2591.9477552566914,
+    "sun_el_at_touchdown_deg": 10.472821039976452,
+    "sun_az_deg": 18.603822052688162,
+    "sun_visible_fraction_at_touchdown": 1,
+    "earth_el_at_touchdown_deg": 15.432075598259816,
+    "earth_visible_fraction_at_touchdown": 1,
+    "first_sunset_utc": "2024-03-02T17:46Z",
+    "days_of_sunlight_after_touchdown": 8.76591322157118,
+    "first_dark_interval": {
+     "start": "2024-03-02T17:46Z",
+     "end": "2024-03-19T22:40Z",
+     "hours": 412.8987630208333
+    },
+    "near_share": 0.0625,
+    "finest_px": 80,
+    "dte_hours_first_7_days": 168,
+    "earth_in_view_fraction_35d": 1
+   },
+   "im2_athena": {
+    "touchdown_utc_used": "2025-03-06T17:30:00Z",
+    "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+    "z0_m": 5321.501553305143,
+    "sun_el_at_touchdown_deg": 2.465422508195838,
+    "sun_az_deg": 65.67046542024448,
+    "sun_visible_fraction_at_touchdown": 1,
+    "earth_el_at_touchdown_deg": 11.192631864070902,
+    "earth_visible_fraction_at_touchdown": 1,
+    "first_sunset_utc": "2025-03-19T22:43Z",
+    "days_of_sunlight_after_touchdown": 13.217987060546875,
+    "first_dark_interval": {
+     "start": "2025-03-19T22:43Z",
+     "end": "2025-04-04T19:14Z",
+     "hours": 380.5091145833333
+    },
+    "near_share": 0,
+    "finest_px": 80,
+    "dte_hours_first_7_days": 167,
+    "earth_in_view_fraction_35d": 0.8236543201264881
+   }
   },
   "V19": {
    "id": "V19",
-   "test": "Runtime ephemeris 2017-2031 vs SPICE: DE421 rebuild vs SPICE DE440 (v1) over 2026-2031, 5000 random instants, plus the Chebyshev fit error of the DE421 piece; the 2026-2031 piece is SPICE itself",
+   "test": "Runtime ephemeris 2017-2031 vs SPICE: the 2017-2026 piece is fitted to SPICE DE440 (spkpos MOON_ME, LT+S) and checked against direct SPICE calls at 4000 random instants; the 2026-2031 piece is the v1 SPICE fit. Independent cross-check: DE421 rebuild vs SPICE",
    "criterion": "<= 0.001 deg",
    "measured": {
-    "de421_vs_spice_de440": {
+    "fit_2017_2026": {
      "SUN": {
-      "max_deg": 0.000015584987858300537,
-      "rms_deg": 0.00000837719860783797
+      "max_deg": 3.1228671904068447e-9,
+      "rms_deg": 2.9530176751056384e-10,
+      "n_check": 4000
      },
      "EARTH": {
-      "max_deg": 0.000015162990854944584,
-      "rms_deg": 0.000010065471651007048
+      "max_deg": 4.089469417625136e-9,
+      "rms_deg": 3.808517544440201e-10,
+      "n_check": 4000
      }
     },
-    "fit_de421": {
+    "de421_vs_spice_2017_2026": {
      "SUN": {
-      "max_deg": 6.285179956739081e-9,
-      "rms_deg": 2.337653754012354e-9,
-      "n_check": 4000
+      "max_deg": 0.000015788577141589476,
+      "rms_deg": 0.000008578354242970373
      },
      "EARTH": {
-      "max_deg": 2.0673820828749378e-7,
-      "rms_deg": 5.135504777379783e-8,
-      "n_check": 4000
+      "max_deg": 0.000013604570191651213,
+      "rms_deg": 0.00000944391012266306
+     }
+    },
+    "de421_vs_spice_de440_2026_2031": {
+     "SUN": {
+      "max_deg": 0.000015592750509474208,
+      "rms_deg": 0.000008411138465484316
+     },
+     "EARTH": {
+      "max_deg": 0.000015190883297475427,
+      "rms_deg": 0.000010014876911817882
      }
     },
     "fit_de440_v1": {
@@ -492,9 +672,9 @@
      }
     }
    },
-   "summary": "max 1.6e-05 deg (DE421 vs DE440 + fit)",
+   "summary": "max 4.1e-09 deg (fit vs SPICE); DE421 cross-check max 1.6e-05 deg",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:53:23+00:00"
+   "generated_utc": "2026-11-15T11:48:20+00:00"
   },
   "V2": {
    "id": "V2",
@@ -514,7 +694,7 @@
    },
    "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:44.295Z",
+   "generated_utc": "2026-11-15T11:45:28.892Z",
    "generator": "vitest (web/src/core)"
   },
   "V20": {
@@ -528,7 +708,7 @@
    },
    "summary": "38 routes: max relative cost difference 0.0e+0, 0 forbidden cells",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:44.106Z",
+   "generated_utc": "2026-11-15T11:45:29.120Z",
    "generator": "vitest (web/src/core)"
   },
   "V3": {
@@ -542,7 +722,7 @@
    },
    "summary": "pipeline 10.703°, Horizons 10.703°, published (planned) 10.8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:08:01+00:00",
+   "generated_utc": "2026-11-15T11:45:50+00:00",
    "generator": "pytest"
   },
   "V4": {
@@ -556,7 +736,7 @@
    },
    "summary": "sphere 5.6e-9°, ring 9.3e-6°, cone 1.4e-8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:42.270Z",
+   "generated_utc": "2026-11-15T11:45:26.955Z",
    "generator": "vitest (web/src/core)"
   },
   "V5": {
@@ -571,7 +751,7 @@
    },
    "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:42.733Z",
+   "generated_utc": "2026-11-15T11:45:27.573Z",
    "generator": "vitest (web/src/core)"
   },
   "V6": {
@@ -586,7 +766,7 @@
    },
    "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:49.803Z",
+   "generated_utc": "2026-11-15T11:45:36.743Z",
    "generator": "vitest (web/src/core)"
   },
   "V7": {
@@ -594,12 +774,12 @@
    "test": "Candidate-grid horizon march (360 azimuths, 1 % step capped at 120 m, golden-section refinement) vs a naive fixed-step march (1 m to 2 km, then 10 m to 300 km, no refinement), 12 seeded candidates x 72 azimuths, h = 10 m, LOLA 240 m; the uint8 storage quantisation is reported separately",
    "criterion": "<= 0.01 deg",
    "measured": {
-    "max_deg": 0.007888317108154297,
-    "storage_quantisation_max_deg": 0.0499875545501709
+    "max_deg": 0.0047380924224853516,
+    "storage_quantisation_max_deg": 0.0518336296081543
    },
-   "summary": "max 0.0079° (storage quantisation ≤ 0.050°, accounted for in V7b)",
+   "summary": "max 0.0047° (storage quantisation ≤ 0.052°, accounted for in V7b)",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:34:18.543Z",
+   "generated_utc": "2026-11-15T11:40:08.403Z",
    "generator": "vitest (web/src/core)"
   },
   "V7b": {
@@ -607,13 +787,13 @@
    "test": "Sunlit time over 14 days (2026-12-11, h = 10 m): fast path (360-azimuth uint8 masks, straight-horizon 1 % criterion, hourly samples) vs full 1440-azimuth masks with exact 200-strip disk fractions and events, 200 seeded candidates (Connecting Ridge)",
    "criterion": "<= 2 percentage points",
    "measured": {
-    "max_pp": 0.9540376209077384,
-    "mean_pp": 0.13412293933686764,
+    "max_pp": 0.8071415008060523,
+    "mean_pp": 0.11487143380301353,
     "n": 200
    },
-   "summary": "max 0.95 pp, mean 0.13 pp (n=200)",
+   "summary": "max 0.81 pp, mean 0.11 pp (n=200)",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:35:47.862Z",
+   "generated_utc": "2026-11-15T11:45:07.079Z",
    "generator": "vitest (web/src/core)"
   },
   "V8": {
@@ -626,7 +806,7 @@
    },
    "summary": "max 0.50 s over 5 events",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:41.870Z",
+   "generated_utc": "2026-11-15T11:45:26.456Z",
    "generator": "vitest (web/src/core)"
   },
   "V9": {
@@ -638,7 +818,7 @@
    },
    "summary": "max 6.3e-5",
    "status": "pass",
-   "generated_utc": "2026-11-15T04:07:41.602Z",
+   "generated_utc": "2026-11-15T11:45:26.135Z",
    "generator": "vitest (web/src/core)"
   }
  }

@@ -9,6 +9,6 @@
  },
  "summary": "38 routes: max relative cost difference 0.0e+0, 0 forbidden cells",
  "status": "pass",
- "generated_utc": "2026-11-15T04:07:44.106Z",
+ "generated_utc": "2026-11-15T11:45:29.120Z",
  "generator": "vitest (web/src/core)"
 }

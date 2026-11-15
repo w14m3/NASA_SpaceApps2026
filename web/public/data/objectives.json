@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T10:19:41.681Z",
+ "generated_utc": "2026-11-15T11:54:58.850Z",
  "objectives": [
   {
    "id": "C1",
@@ -412,6 +412,10 @@
    "status": "met",
    "evidence": [
     {
+     "ref": "val:V18",
+     "result": "pass"
+    },
+    {
      "ref": "val:V19",
      "result": "pass"
     },
@@ -717,11 +721,11 @@
    "id": "V11",
    "objective": "Moon elevation at DSN sites vs Horizons, ≥ 200 instants",
    "acceptance": "≤ 0.05°",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "vt:V11 Moon elevation",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V11",
@@ -849,15 +853,11 @@
    "id": "V18",
    "objective": "Mission replay vs published accounts (cited)",
    "acceptance": "documented",
-   "status": "blocked",
+   "status": "met",
    "evidence": [
     {
-     "ref": "blocked:published end-of-mission accounts unreadable here (hosts unreachable)",
-     "result": "blocked"
-    },
-    {
-     "ref": "touchdown facts only, see docs/VALIDATION.md",
-     "result": "missing"
+     "ref": "val:V18",
+     "result": "pass"
     }
    ]
   },

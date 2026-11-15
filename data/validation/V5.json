@@ -10,6 +10,6 @@
  },
  "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
  "status": "pass",
- "generated_utc": "2026-11-15T04:07:42.733Z",
+ "generated_utc": "2026-11-15T11:45:27.573Z",
  "generator": "vitest (web/src/core)"
 }

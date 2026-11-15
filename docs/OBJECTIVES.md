@@ -68,7 +68,7 @@ result yet; `todo` without evidence.
 | V8 | Event times vs brute-force 1 s scan | ≤ 5 s | L1 | 1 | vt:V8; val:V8 | met |
 | V9 | Sun-disk occlusion vs analytic circle segment | ≤ 1e-4 | L1 | 1 | vt:V9; val:V9 | met |
 | V10 | Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d | ≤ 0.1 % | L1 | 1 | vt:V10; val:V10 | met |
-| V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | vt:V11 Moon elevation; val:V11 | in progress |
+| V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | vt:V11 Moon elevation; val:V11 | met |
 | V11b | Moon elevation at DSN sites vs an independent astropy/ERFA chain (substitute for V11) | ≤ 0.05° | L1 | 1 | vt:V11b; val:V11b | met |
 | V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | blocked:manual comparison; quickmap.lroc.asu.edu unreachable from the build environment | blocked |
 | V13 | Front end: e2e golden path; axe critical = 0; Lighthouse; mobile | pass | L5 | 1 | e2e:golden path; e2e:axe; e2e:mobile; val:LIGHTHOUSE | met |
@@ -76,6 +76,6 @@ result yet; `todo` without evidence.
 | V15 | Plane fit on synthetic tilted planes and a cone | slope ≤ 0.01°, azimuth ≤ 0.1° | L3 | 1 | vt:V15; val:V15 | met |
 | V16 | Tip-over analytic cases | exact to 1e-9 | L3 | 1 | vt:V16; val:V16 | met |
 | V17 | Top 3: determinism, constraints, diversity | pass | L3 | 1 | vt:V17; val:V17 | met |
-| V18 | Mission replay vs published accounts (cited) | documented | L4 | 2 | val:V18 | blocked |
+| V18 | Mission replay vs published accounts (cited) | documented | L4 | 2 | val:V18 | met |
 | V19 | Ephemeris 2017–2031 vs SPICE | ≤ 0.001° | L1 | 1 | py:test_pa_to_me_convention; val:V19 | met |
 | V20 | Moon Directions: A* vs Dijkstra; no forbidden cell | exact cost match | L4 | 3 | vt:V20; val:V20 | met |

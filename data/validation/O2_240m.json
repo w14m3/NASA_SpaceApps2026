@@ -90,6 +90,6 @@
  },
  "summary": "max |Δ| at 10 m: 3.09°",
  "status": "pass",
- "generated_utc": "2026-11-15T04:08:00.892Z",
+ "generated_utc": "2026-11-15T11:45:50.537Z",
  "generator": "vitest (web/src/core)"
 }

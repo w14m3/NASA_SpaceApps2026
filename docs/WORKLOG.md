@@ -62,3 +62,12 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
   windows, IM-1 mask recomputed on 80 m (v1 defect 1), RESOURCES updated.
 - The first 80 m candidate-grid rebuild was stopped by the 30-min background limit at ~55 % (nothing written);
   restarted with a 2-h limit. After it: re-run V7, V7b, V17, default-window scan, verify, screenshots.
+
+## 2026-11-15 ~13:20 — redesign + 80 m grids verified (same session)
+- Owner asked for a simpler app with a Google-Maps-like 3D Moon at higher resolution: Explore mode rebuilt map-first
+  (D21) with a tiled 3D Moon (Moon Trek WAC to zoom 8, LOLA 30/10 m relief on 3D LOLA terrain at the pole, true-Sun
+  GPU shadows labelled visual), plain-language answer card, time bar, hover readout; Plan mode keeps the workbench.
+- Owner asked whether the Top 3 uses the mission date: yes — demonstrated with `web/scripts/date-dependence.ts` and an
+  e2e test (Earth libration drives feasibility: 0 options on 27 Dec 2026, 552–615 on 11 Dec / 10 Jan).
+- 80 m candidate grids: V7 0.0047°, V7b 0.81 pp, V17 pass; V14 21 artifacts identical. `npm run verify` all PASS
+  (28 Vitest, 9 pytest, 40 Playwright). Objectives 54 met, V12 blocked (manual), P13 failing (Pages not enabled).
