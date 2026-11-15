@@ -11,6 +11,7 @@ import { useAsync } from './hooks'
 import { useCurrentSite, useInstant } from './current'
 import { rpc } from './workerClient'
 import type { ResolvedSite } from './data'
+import { Insights } from './Insights'
 
 export function useSafety() {
   const { site } = useCurrentSite()
@@ -221,6 +222,7 @@ export function Workbench() {
           <EnergyPanel a={a} opt={opt} />
           <ConnectivityPanel a={a} />
           <SafetyPanel />
+          <Insights site={site} />
           <div className="section">
             <h2>{t('wb.thermal')}</h2>
             <p data-testid="thermal">

@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T01:40:02.027Z",
+ "generated_utc": "2026-11-15T03:48:11.755Z",
  "records": {
   "O1": {
    "id": "O1",
@@ -12,7 +12,7 @@
    },
    "summary": "max 2.7e-5 deg",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:19.541Z",
+   "generated_utc": "2026-11-15T03:46:31.272Z",
    "generator": "vitest (web/src/core)"
   },
   "O2_240m": {
@@ -107,7 +107,7 @@
    },
    "summary": "max |Δ| at 10 m: 3.09°",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:36.379Z",
+   "generated_utc": "2026-11-15T03:46:49.127Z",
    "generator": "vitest (web/src/core)"
   },
   "O2b": {
@@ -138,7 +138,7 @@
    },
    "summary": "max 0.0000° (refinement adds up to 0.097°)",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:30.591Z",
+   "generated_utc": "2026-11-15T03:46:43.572Z",
    "generator": "vitest (web/src/core)"
   },
   "V1": {
@@ -151,7 +151,7 @@
    },
    "summary": "max 4.4e-10 m, 4.4e-13 px",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:18.440Z",
+   "generated_utc": "2026-11-15T03:46:29.962Z",
    "generator": "vitest (web/src/core)"
   },
   "V10": {
@@ -170,7 +170,7 @@
    },
    "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:19.358Z",
+   "generated_utc": "2026-11-15T03:46:30.869Z",
    "generator": "vitest (web/src/core)"
   },
   "V11b": {
@@ -184,7 +184,7 @@
    },
    "summary": "max 0.0022°, RMS 0.0005° (n=720)",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:19.761Z",
+   "generated_utc": "2026-11-15T03:46:31.458Z",
    "generator": "vitest (web/src/core)"
   },
   "V15": {
@@ -198,7 +198,7 @@
    },
    "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:19.388Z",
+   "generated_utc": "2026-11-15T03:46:30.898Z",
    "generator": "vitest (web/src/core)"
   },
   "V16": {
@@ -213,7 +213,7 @@
    },
    "summary": "max 0.0e+0 m/s",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:19.389Z",
+   "generated_utc": "2026-11-15T03:46:30.899Z",
    "generator": "vitest (web/src/core)"
   },
   "V17": {
@@ -268,7 +268,7 @@
    },
    "summary": "connecting-ridge/balanced: 747 feasible, min sep 1061 m; connecting-ridge/crewSafety: 747 feasible, min sep 1061 m; malapert/balanced: 297 feasible, min sep 1030 m; malapert/crewSafety: 297 feasible, min sep 1030 m",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:23.720Z",
+   "generated_utc": "2026-11-15T03:46:35.888Z",
    "generator": "vitest (web/src/core)"
   },
   "V19": {
@@ -333,7 +333,21 @@
    },
    "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:19.556Z",
+   "generated_utc": "2026-11-15T03:46:31.292Z",
+   "generator": "vitest (web/src/core)"
+  },
+  "V20": {
+   "id": "V20",
+   "test": "Moon Directions: A* (straight-line heuristic) vs brute-force Dijkstra on 50 seeded random slope grids (20–40 cells, 15 % forbidden cells, S_max 20°, S_ref 10°)",
+   "criterion": "exact cost match; no forbidden cell on the route",
+   "measured": {
+    "routes": 38,
+    "max_relative_cost_diff": 0,
+    "forbidden_cells_on_routes": 0
+   },
+   "summary": "38 routes: max relative cost difference 0.0e+0, 0 forbidden cells",
+   "status": "pass",
+   "generated_utc": "2026-11-15T03:46:31.097Z",
    "generator": "vitest (web/src/core)"
   },
   "V3": {
@@ -347,7 +361,7 @@
    },
    "summary": "pipeline 10.703°, Horizons 10.703°, published (planned) 10.8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:36+00:00",
+   "generated_utc": "2026-11-15T03:46:51+00:00",
    "generator": "pytest"
   },
   "V4": {
@@ -361,7 +375,7 @@
    },
    "summary": "sphere 5.6e-9°, ring 9.3e-6°, cone 1.4e-8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:17.925Z",
+   "generated_utc": "2026-11-15T03:46:29.443Z",
    "generator": "vitest (web/src/core)"
   },
   "V5": {
@@ -376,7 +390,7 @@
    },
    "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:18.295Z",
+   "generated_utc": "2026-11-15T03:46:29.818Z",
    "generator": "vitest (web/src/core)"
   },
   "V6": {
@@ -391,7 +405,7 @@
    },
    "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:25.290Z",
+   "generated_utc": "2026-11-15T03:46:37.320Z",
    "generator": "vitest (web/src/core)"
   },
   "V7": {
@@ -431,7 +445,7 @@
    },
    "summary": "max 0.50 s over 5 events",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:17.507Z",
+   "generated_utc": "2026-11-15T03:46:28.939Z",
    "generator": "vitest (web/src/core)"
   },
   "V9": {
@@ -443,7 +457,7 @@
    },
    "summary": "max 6.3e-5",
    "status": "pass",
-   "generated_utc": "2026-11-15T01:38:17.244Z",
+   "generated_utc": "2026-11-15T03:46:28.627Z",
    "generator": "vitest (web/src/core)"
   }
  }

@@ -46,6 +46,10 @@ export interface AppState {
   scen: string
   /** user constraints for the Top 3 (engineering and science panels), "key=value,…" */
   cons: string
+  /** Moon Directions target: '' | 'zero' | 'A' | 'B' | 'C' */
+  to: string
+  /** Land it! game active */
+  game: boolean
 }
 
 /** Default scenario (contract §6.2): south-pole hero region, generic medium lander, mast 10 m. The landing date is
@@ -81,6 +85,8 @@ export const DEFAULTS: AppState = {
   wizard: false,
   scen: '',
   cons: '',
+  to: '',
+  game: false,
 }
 
 export function refToString(r: SiteRef): string {
@@ -140,6 +146,7 @@ export function toHash(s: AppState): string {
   if (s.relax) p.set('relax', s.relax)
   if (s.scen) p.set('scen', s.scen)
   if (s.cons) p.set('cons', s.cons)
+  if (s.to) p.set('to', s.to)
   return '#' + p.toString()
 }
 
@@ -188,6 +195,8 @@ export function fromHash(hash: string): AppState {
     wizard: false,
     scen: p.get('scen') ?? '',
     cons: p.get('cons') ?? '',
+    to: p.get('to') ?? '',
+    game: false,
   }
 }
 
@@ -217,7 +226,7 @@ if (typeof window !== 'undefined')
   window.addEventListener('hashchange', () => {
     const next = fromHash(location.hash)
     if (toHash(next) !== toHash(state)) {
-      state = { ...next, playing: state.playing, speed: state.speed, tour: state.tour, wizard: state.wizard }
+      state = { ...next, playing: state.playing, speed: state.speed, tour: state.tour, wizard: state.wizard, game: state.game }
       for (const l of listeners) l()
     }
   })

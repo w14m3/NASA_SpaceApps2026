@@ -326,3 +326,49 @@ test.describe('access', () => {
     await expect(page.getByTestId('objectives-table')).toBeVisible()
   })
 })
+
+test.describe('value-added', () => {
+  test('who blocks the Sun attributes nights to terrain or the limb', async ({ page }) => {
+    await open(page, '#site=c:poi_bussey2010_M1_malapert&h=2&dur=30')
+    await expect(page.getByTestId('who-blocks')).toContainText(/Night of \d+ h|No night/, { timeout: 30_000 })
+  })
+
+  test('illumination compass shows neighbour gains and snaps to the best', async ({ page }) => {
+    await open(page, '#site=x:-89.40000,-140.00000')
+    await expect(page.getByTestId('compass')).toContainText('sunlit', { timeout: 40_000 })
+  })
+
+  test('directions: least-effort route to Option B is drawn with distance and slope', async ({ page }) => {
+    await open(page)
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 10_000 })
+    await page.getByTestId('route-to').selectOption('B')
+    await expect(page.getByTestId('route-summary')).toContainText('km', { timeout: 30_000 })
+    await expect(page.getByTestId('route-summary')).toContainText('max slope')
+  })
+
+  test('land it game scores a clicked spot and reveals the Top 3', async ({ page }) => {
+    await open(page)
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 10_000 })
+    await page.getByRole('button', { name: 'Learn' }).click()
+    await page.getByTestId('play-land-it').click()
+    await expect(page.getByTestId('land-it')).toBeVisible()
+    const box = (await page.getByTestId('polar-map').boundingBox())!
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2)
+    await expect(page.getByTestId('land-it-score')).toContainText('/100', { timeout: 10_000 })
+  })
+
+  test('offline: the installed app reloads without network', async ({ page, context }) => {
+    await open(page)
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 10_000 })
+    await page.evaluate(() => navigator.serviceWorker.ready.then(() => true))
+    await page.reload()
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 10_000 })
+    await expect(page.getByTestId('ground-chip')).toBeVisible({ timeout: 15_000 })
+    await page.waitForTimeout(1500)
+    await context.setOffline(true)
+    await page.reload()
+    await expect(page.getByTestId('option-A')).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByTestId('solar-el')).toBeVisible()
+    await context.setOffline(false)
+  })
+})

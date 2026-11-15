@@ -8,7 +8,9 @@ import { browserGunzip, loadDem } from '../core/demload'
 import { loadEphemeris, type Ephemeris } from '../core/ephem'
 import { computeHorizon } from '../core/horizon'
 import type { Mask } from '../core/mask'
-import { xyToLonLat } from '../core/projection'
+import { destination, xyToLonLat } from '../core/projection'
+import { whoBlocks } from '../core/whoblocks'
+import { route } from '../core/traverse'
 import { HERO_REGIONS } from '../core/regions'
 import { ellipseMonteCarlo, LANDERS, planeFit, SLOPE_UNCERTAINTY_DEG, tipOver, type Ellipse } from '../core/safety'
 import { DSN, moonFromStation, stationFrame, type Station } from '../core/stations'
@@ -200,8 +202,98 @@ const api = {
         zero: layer((o) => (o.zeroIllum ? 1 : 0)),
         gain: gain ?? layer(() => NaN),
         feasible: layer((o) => (o.feasible ? 1 : 0)),
+        power: layer((o) => o.scores.power),
+        link: layer((o) => o.scores.link),
+        safety: layer((o) => o.scores.safety),
       },
     }
+  },
+  /** Who blocks the Sun (§7.13) for every night of at least one hour in the window. */
+  async whoBlocks(a: { site: SiteSpec; mask: Mask; t0: number; t1: number }) {
+    const e = await eph()
+    const f = siteFrame(a.site)
+    const iv = intervals(bodyFn(e, f, a.mask, 'SUN', DEFAULT_THRESHOLDS, 'mid'), a.t0, a.t1)
+    return whoBlocks(e, f, a.mask, a.site.h, iv, a.t0, a.t1)
+  },
+  /** Illumination compass (§6.12): sunlit fraction at 8 neighbours r metres away (LOLA 240 m live masks). */
+  async compass(a: { lon: number; lat: number; h: number; t0: number; t1: number; r: number }) {
+    const e = await eph()
+    const g = await dem()
+    const out: { az: number; lon: number; lat: number; lit: number }[] = []
+    const sunlit = (lon: number, lat: number) => {
+      const hz = computeHorizon([g], lon, lat, a.h, { nAz: 360, bands: false })
+      if (!hz) return NaN
+      const f = siteFrame({ lon, lat, z0: hz.z0, h: a.h })
+      let on = 0
+      let n = 0
+      for (let t = a.t0 + 1_800_000; t < a.t1; t += 3_600_000) {
+        if (diskFraction(hz.mask, azel(e, 'SUN', t, f)) >= 0.01) on++
+        n++
+      }
+      return n ? on / n : NaN
+    }
+    const centre = sunlit(a.lon, a.lat)
+    for (let k = 0; k < 8; k++) {
+      const [lon, lat] = destination(a.lon, a.lat, k * 45, a.r)
+      out.push({ az: k * 45, lon, lat, lit: sunlit(lon, lat) })
+    }
+    return { centre, r: a.r, neighbours: out }
+  },
+  /** Moon Directions (§7.12): least-effort route on the LOLA 240 m slope grid between two points. */
+  async route(a: { from: { lon: number; lat: number }; to: { lon: number; lat: number }; sMax: number; sRef: number; t: number }) {
+    const g = await dem()
+    const e = await eph()
+    const [x0, y0] = lonLatXY(a.from.lon, a.from.lat)
+    const [x1, y1] = lonLatXY(a.to.lon, a.to.lat)
+    const margin = 3000
+    const minx = Math.min(x0, x1) - margin
+    const maxy = Math.max(y0, y1) + margin
+    const px = g.px
+    const nx = Math.ceil((Math.max(x0, x1) + margin - minx) / px) + 1
+    const ny = Math.ceil((maxy - (Math.min(y0, y1) - margin)) / px) + 1
+    if (nx * ny > 400_000) return { error: 'too far (route box larger than 400,000 cells)' }
+    const slope = new Float32Array(nx * ny)
+    const z = new Float32Array(nx * ny)
+    for (let j = 0; j < ny; j++)
+      for (let i = 0; i < nx; i++) {
+        const x = minx + i * px
+        const y = maxy - j * px
+        z[j * nx + i] = bilinearXY(g, x, y)
+      }
+    for (let j = 0; j < ny; j++)
+      for (let i = 0; i < nx; i++) {
+        const c = j * nx + i
+        if (i === 0 || j === 0 || i === nx - 1 || j === ny - 1) {
+          slope[c] = NaN
+          continue
+        }
+        const x = minx + i * px
+        const y = maxy - j * px
+        const [, lat] = xyToLonLat(x, y)
+        const k = 2 / (1 - Math.sin(lat * D2R)) // map metres per true metre
+        const dzdx = ((z[c + 1] - z[c - 1]) / (2 * px)) * k
+        const dzdy = ((z[c - nx] - z[c + nx]) / (2 * px)) * k
+        slope[c] = Math.atan(Math.hypot(dzdx, dzdy)) * R2D
+      }
+    const cell = (x: number, y: number) => Math.round((maxy - y) / px) * nx + Math.round((x - minx) / px)
+    const k0 = 2 / (1 - Math.sin(((a.from.lat + a.to.lat) / 2) * D2R))
+    const r = route({ nx, ny, px: px / k0, slope }, cell(x0, y0), cell(x1, y1), a.sMax, a.sRef)
+    if (!r) return { error: 'no route below the slope limit' }
+    // per node: lon/lat, elevation, sunlit at time t (one ray toward the Sun azimuth, 150 km)
+    const sun = e.position('SUN', a.t)
+    const sr = Math.hypot(sun[0], sun[1], sun[2])
+    const nodes = r.path.map((c) => {
+      const x = minx + (c % nx) * px
+      const y = maxy - Math.floor(c / nx) * px
+      const [lon, lat] = xyToLonLat(x, y)
+      const f = siteFrame({ lon, lat, z0: z[c], h: 2 })
+      const el = Math.asin((sun[0] * f.up[0] + sun[1] * f.up[1] + sun[2] * f.up[2]) / sr) * R2D
+      let az = Math.atan2(sun[0] * f.east[0] + sun[1] * f.east[1] + sun[2] * f.east[2], sun[0] * f.north[0] + sun[1] * f.north[1] + sun[2] * f.north[2]) * R2D
+      if (az < 0) az += 360
+      const hz = rayMax(g, x, y, lon, az, z[c] + 2)
+      return { lon, lat, z: z[c], slope: slope[c], lit: el + 0.2666 > hz }
+    })
+    return { lengthM: r.lengthM, maxSlope: r.maxSlope, meanSlope: r.meanSlope, cost: r.cost, nodes, cell: px, sunlitFrac: nodes.filter((n) => n.lit).length / nodes.length }
   },
   async optimise(a: { site: SiteSpec; masks: Record<string, Mask>; t0: number; t1: number; array?: ArraySpec; attitude?: Attitude; objective: 'total' | 'worst' }) {
     return optimiseEnergy(await eph(), a.site, a.masks, a.t0, a.t1, a.array ?? DEFAULT_ARRAY, a.attitude ?? LEVEL_ATTITUDE, a.objective)
@@ -336,6 +428,23 @@ const api = {
       }
     return { N, half, data: out, sunEl: 0 }
   },
+}
+
+function rayMax(g: DemGrid, x: number, y: number, lonDeg: number, azDeg: number, zObs: number) {
+  const lo = lonDeg * D2R
+  const ca = Math.cos(azDeg * D2R)
+  const sa = Math.sin(azDeg * D2R)
+  const dx = ca * Math.sin(lo) + sa * Math.cos(lo)
+  const dy = ca * Math.cos(lo) - sa * Math.sin(lo)
+  let best = -90
+  for (let d = g.px / 2; d < 150_000; d += Math.max(g.px / 2, d * 0.01)) {
+    const z = bilinearXY(g, x + dx * d, y + dy * d)
+    if (Number.isNaN(z)) break
+    const th = d / R_MOON_M
+    const e = Math.atan2((R_MOON_M + z) * Math.cos(th) - (R_MOON_M + zObs), (R_MOON_M + z) * Math.sin(th)) * R2D
+    if (e > best) best = e
+  }
+  return best
 }
 
 function lonLatXY(lon: number, lat: number): [number, number] {

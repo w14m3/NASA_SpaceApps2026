@@ -61,6 +61,9 @@ export function Tour() {
           ✕
         </button>
       </div>
+      <button className="btn small" style={{ marginTop: 8 }} onClick={() => setState({ game: true, view: 'pole', tour: -1, layers: ['relief', 'top3', 'regions'] })} data-testid="play-land-it">
+        🎮 {lang === 'fr' ? 'Jouer à « Posez-le ! »' : 'Play “Land it!”'}
+      </button>
       <Glossary />
     </div>
   )

@@ -9,6 +9,6 @@
  },
  "summary": "sphere 5.6e-9°, ring 9.3e-6°, cone 1.4e-8°",
  "status": "pass",
- "generated_utc": "2026-11-15T01:38:17.925Z",
+ "generated_utc": "2026-11-15T03:46:29.443Z",
  "generator": "vitest (web/src/core)"
 }

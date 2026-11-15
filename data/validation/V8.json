@@ -8,6 +8,6 @@
  },
  "summary": "max 0.50 s over 5 events",
  "status": "pass",
- "generated_utc": "2026-11-15T01:38:17.507Z",
+ "generated_utc": "2026-11-15T03:46:28.939Z",
  "generator": "vitest (web/src/core)"
 }

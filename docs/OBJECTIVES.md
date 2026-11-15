@@ -24,7 +24,7 @@ result yet; `todo` without evidence.
 | C9 | Accessible to planners, educators, public | modes, tour, glossary, FR, V13 | L5 | 1 | e2e:learn mode; e2e:french; e2e:axe | met |
 | C10 | Real terrain horizon, no atmosphere | V4–V7 pass, method page | L1 | 1 | val:V4; val:V5; val:V6; doc:docs/METHODS.md | in progress |
 | C11 | Libration and orbital variations shown | libration loop on sky plot; method page | L2 | 2 | e2e:libration loop; vt:libration | met |
-| C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop | L4 | 2 | vt:who blocks; e2e:compass | todo |
+| C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop | L4 | 2 | vt:who blocks; e2e:who blocks; e2e:compass | met |
 | C13 | Thermal conditions for equipment (proxy) | §7.14 in Workbench, Top 3 cards, Brief; unit tests | L3 | 2 | vt:thermal; e2e:thermal | met |
 | C14 | Site-date scenario comparison and seasons | 2–4 scenarios incl. same site/different dates; season view | L3 | 2 | e2e:scenario compare; e2e:season | met |
 
@@ -40,15 +40,15 @@ result yet; `todo` without evidence.
 | P6 | Solar-efficiency optimizers + headline + survival timeline | V10 + e2e | L3 | 1 | val:V10; e2e:energy | met |
 | P7 | Earth connectivity: DSN + custom stations, DTE, pointing, FSPL, interference | V11 + e2e | L3 | 1 | val:V11b; e2e:connectivity | met |
 | P8 | Moon Street View | e2e | L4 | 2 | e2e:street view | met |
-| P9 | Moon Directions | V20 + e2e | L4 | 3 | val:V20; e2e:directions | todo |
+| P9 | Moon Directions | V20 + e2e | L4 | 3 | vt:V20; val:V20; e2e:directions | met |
 | P10 | Site 3D with true-Sun shadows | e2e screenshot, ≥ 30 fps | L4 | 2 | e2e:site 3d | met |
 | P11 | Mission replay (2023–2025 landings) | V18, V19 | L4 | 2 | val:V19; e2e:mission replay | met |
 | P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete | L0 | 2 | doc:docs/RESOURCES.md | todo |
 | P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it | L5 | 1 | val:DEPLOY | todo |
 | P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | in progress |
-| P15 | Installable, offline-capable PWA | offline reload works in e2e | L5 | 2 | e2e:offline | todo |
+| P15 | Installable, offline-capable PWA | offline reload works in e2e | L5 | 2 | e2e:offline | met |
 | P16 | Science and Engineering constraint panels feeding Top 3 and Brief | e2e | L3 | 2 | e2e:constraints | met |
-| P17 | "Land it!" educational game (optional) | e2e | L4 | 3 | e2e:land it | todo |
+| P17 | "Land it!" educational game (optional) | e2e | L4 | 3 | e2e:land it | met |
 
 ## Validation objectives (contract §10)
 
@@ -78,4 +78,4 @@ result yet; `todo` without evidence.
 | V17 | Top 3: determinism, constraints, diversity | pass | L3 | 1 | vt:V17; val:V17 | met |
 | V18 | Mission replay vs published accounts (cited) | documented | L4 | 2 | blocked:published end-of-mission accounts unreadable here (hosts unreachable); touchdown facts only, see docs/VALIDATION.md | blocked |
 | V19 | Ephemeris 2017–2031 vs SPICE | ≤ 0.001° | L1 | 1 | py:test_pa_to_me_convention; val:V19 | met |
-| V20 | Moon Directions: A* vs Dijkstra; no forbidden cell | exact cost match | L4 | 3 | vt:V20; val:V20 | todo |
+| V20 | Moon Directions: A* vs Dijkstra; no forbidden cell | exact cost match | L4 | 3 | vt:V20; val:V20 | met |

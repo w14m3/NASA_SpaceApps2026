@@ -11,6 +11,7 @@ import { rpcLayers } from './workerClient'
 import { setState, useStore, type SiteRef } from './store'
 import { selectSite } from './LeftPanel'
 import type { ResolvedSite } from './data'
+import { useRoute } from './Insights'
 
 const HILL_HALF = 304_000 // m, extent of the 1900 × 1900 v1 hillshade (320 m pixels)
 const LETTERS = ['A', 'B', 'C']
@@ -130,6 +131,8 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
     return () => ro.disconnect()
   }, [])
 
+  const routeRes = useRoute()
+  const routeNodes = routeRes.data && !('error' in routeRes.data) ? routeRes.data.nodes : null
   const activeLayer = layers.find((l) => LAYER_STYLES[l])
   const layerValues = activeLayer && top3.data ? (top3.data.layers as Record<string, Float32Array>)[activeLayer] : null
 
@@ -252,6 +255,23 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
         ctx.setLineDash([])
       }
     }
+    // Moon Directions route
+    if (routeNodes && routeNodes.length > 1) {
+      ctx.lineWidth = 3
+      for (let k = 1; k < routeNodes.length; k++) {
+        const [ax, ay] = lonLatToXY(routeNodes[k - 1].lon, routeNodes[k - 1].lat)
+        const [bx, by] = lonLatToXY(routeNodes[k].lon, routeNodes[k].lat)
+        ctx.strokeStyle = routeNodes[k].lit ? '#f7bd4a' : '#9fb3d9'
+        ctx.beginPath()
+        ctx.moveTo(X(ax), Y(ay))
+        ctx.lineTo(X(bx), Y(by))
+        ctx.stroke()
+      }
+      const end = routeNodes[routeNodes.length - 1]
+      const [ex, ey] = lonLatToXY(end.lon, end.lat)
+      ctx.fillStyle = '#9fb3d9'
+      ctx.fillRect(X(ex) - 4, Y(ey) - 4, 8, 8)
+    }
     // pins
     if (layers.includes('pins'))
       pins.forEach((p, k) => {
@@ -311,7 +331,7 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
     ctx.fillStyle = '#e8ecf4'
     ctx.fillRect(size.w - nice * s - 20, size.h - 18, nice * s, 3)
     ctx.fillText(nice >= 1000 ? `${nice / 1000} km` : `${nice} m`, size.w - nice * s - 20, size.h - 22)
-  }, [view, size, img, layers, sites, site, top3.data, region, pins, eph, tNow, layerValues, regionMeta, activeLayer, lightCanvas, light, lightOn])
+  }, [view, size, img, layers, sites, site, top3.data, region, pins, eph, tNow, layerValues, regionMeta, activeLayer, lightCanvas, light, lightOn, routeNodes])
 
   const toLL = (ev: { clientX: number; clientY: number }) => {
     const el = canvas.current!
@@ -322,9 +342,29 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
     return { lon, lat, x, y }
   }
   const probeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const game = useStore((s) => s.game)
+  const [gameResult, setGameResult] = useState<GameResult | null>(null)
   const clickAt = (lon: number, lat: number) => {
     if (lat > -80) return
-    // inside the active region's candidate grid → nearest candidate keeps Top 3 context
+    if (game && regionMeta && top3.data) {
+      const [x, y] = lonLatToXY(lon, lat)
+      let best = -1
+      let bd = Infinity
+      for (let i = 0; i < regionMeta.n; i++) {
+        const d = Math.hypot(regionMeta.x[i] - x, regionMeta.y[i] - y)
+        if (d < bd) {
+          bd = d
+          best = i
+        }
+      }
+      if (bd > regionMeta.spacing) return setGameResult({ outside: true })
+      const L = top3.data.layers
+      const comb = L.combined[best]
+      let rank = 1
+      for (let i = 0; i < regionMeta.n; i++) if (L.combined[i] > comb) rank++
+      setGameResult({ outside: false, i: best, lon: regionMeta.lon[best], lat: regionMeta.lat[best], power: L.power[best], link: L.link[best], safety: L.safety[best], combined: comb, feasible: L.feasible[best] > 0.5, rank, total: regionMeta.n, best: top3.data.top[0]?.combined ?? NaN })
+      return
+    }
     selectSite({ kind: 'custom', lon, lat }, sites)
   }
 
@@ -406,6 +446,7 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
           <div className="hint">{layerHint(activeLayer, top3.data?.heightUsed)}</div>
         </div>
       )}
+      {game && <GameCard result={gameResult} onClose={() => (setState({ game: false }), setGameResult(null))} />}
       <div className="exag">Shaded relief ×2 vertical exaggeration, for visibility · LOLA (NASA GSFC PGDA)</div>
     </>
   )
@@ -431,4 +472,32 @@ export function refLonLat(r: SiteRef, sites: { id: string; lon: number; lat: num
 
 export function useMapHelpers() {
   return { setState }
+}
+
+type GameResult = { outside: true } | { outside: false; i: number; lon: number; lat: number; power: number; link: number; safety: number; combined: number; feasible: boolean; rank: number; total: number; best: number }
+
+/** "Land it!" (contract §6.15 item 5): the player picks a spot; the core scores it and reveals the Top 3. */
+function GameCard({ result, onClose }: { result: GameResult | null; onClose: () => void }) {
+  const lang = useStore((s) => s.lang)
+  const fr = lang === 'fr'
+  return (
+    <section className="float" style={{ top: 56, right: 10, maxWidth: 320, zIndex: 8 }} aria-live="polite" data-testid="land-it">
+      <b>{fr ? 'Posez-le !' : 'Land it!'}</b>
+      {!result && <p>{fr ? 'Cliquez un point dans le carré bleu de la région : où poseriez-vous l’atterrisseur ?' : 'Click a spot inside the blue region square: where would you land?'}</p>}
+      {result && result.outside && <p>{fr ? 'Hors de la grille de la région : cliquez dans le carré bleu.' : 'Outside the region grid: click inside the blue square.'}</p>}
+      {result && !result.outside && (
+        <>
+          <p data-testid="land-it-score">
+            {fr ? 'Votre site' : 'Your spot'}: {fmtLat(result.lat)} {fmtLon(result.lon)} — {fr ? 'énergie' : 'power'} {Math.round(result.power)}, {fr ? 'liaison' : 'link'} {Math.round(result.link)}, {fr ? 'sécurité' : 'safety'} {Math.round(result.safety)} → <b>{Math.round(result.combined)}/100</b>
+            {result.feasible ? (fr ? ' ✔ passe les contraintes' : ' ✔ passes the constraints') : fr ? ' ✖ échoue à une contrainte' : ' ✖ fails a constraint'}.
+          </p>
+          <p>
+            {fr ? 'Rang' : 'Rank'} {result.rank} / {result.total}. {fr ? 'Meilleure option de Sightline' : 'Sightline’s best option'}: {Math.round(result.best)}/100 — {fr ? 'voir les épingles A, B, C.' : 'see pins A, B, C.'}
+          </p>
+          <p className="hint">{fr ? 'Pourquoi ? Au pôle, quelques centaines de mètres changent l’horizon : le Soleil et la Terre rasent le relief.' : 'Why? At the pole a few hundred metres change the horizon: the Sun and Earth skim the terrain.'}</p>
+        </>
+      )}
+      <button className="btn small" onClick={onClose}>{fr ? 'Terminer' : 'Done'}</button>
+    </section>
+  )
 }

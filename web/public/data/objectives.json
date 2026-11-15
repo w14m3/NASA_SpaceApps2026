@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T01:40:02.025Z",
+ "generated_utc": "2026-11-15T03:48:11.753Z",
  "objectives": [
   {
    "id": "C1",
@@ -185,15 +185,19 @@
    "id": "C12",
    "objective": "Why small changes have large impacts",
    "acceptance": "Who-blocks-the-Sun, compass, porkchop",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "vt:who blocks",
-     "result": "missing"
+     "result": "pass"
+    },
+    {
+     "ref": "e2e:who blocks",
+     "result": "pass"
     },
     {
      "ref": "e2e:compass",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -365,15 +369,19 @@
    "id": "P9",
    "objective": "Moon Directions",
    "acceptance": "V20 + e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
+     "ref": "vt:V20",
+     "result": "pass"
+    },
+    {
      "ref": "val:V20",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "e2e:directions",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -465,11 +473,11 @@
    "id": "P15",
    "objective": "Installable, offline-capable PWA",
    "acceptance": "offline reload works in e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:offline",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -489,11 +497,11 @@
    "id": "P17",
    "objective": "\"Land it!\" educational game (optional)",
    "acceptance": "e2e",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:land it",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -861,15 +869,15 @@
    "id": "V20",
    "objective": "Moon Directions: A* vs Dijkstra; no forbidden cell",
    "acceptance": "exact cost match",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "vt:V20",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "val:V20",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   }

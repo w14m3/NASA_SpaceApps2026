@@ -1,0 +1,14 @@
+{
+ "id": "V20",
+ "test": "Moon Directions: A* (straight-line heuristic) vs brute-force Dijkstra on 50 seeded random slope grids (20–40 cells, 15 % forbidden cells, S_max 20°, S_ref 10°)",
+ "criterion": "exact cost match; no forbidden cell on the route",
+ "measured": {
+  "routes": 38,
+  "max_relative_cost_diff": 0,
+  "forbidden_cells_on_routes": 0
+ },
+ "summary": "38 routes: max relative cost difference 0.0e+0, 0 forbidden cells",
+ "status": "pass",
+ "generated_utc": "2026-11-15T03:46:31.097Z",
+ "generator": "vitest (web/src/core)"
+}
