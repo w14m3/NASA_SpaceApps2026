@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T03:51:49.100Z",
+ "generated_utc": "2026-11-15T04:09:20.700Z",
  "objectives": [
   {
    "id": "C1",
@@ -197,6 +197,10 @@
     },
     {
      "ref": "e2e:compass",
+     "result": "pass"
+    },
+    {
+     "ref": "e2e:porkchop",
      "result": "pass"
     }
    ]
@@ -429,11 +433,11 @@
    "id": "P13",
    "objective": "Public URL on GitHub Pages",
    "acceptance": "URL returns 200, golden path passes on it",
-   "status": "todo",
+   "status": "failing",
    "evidence": [
     {
      "ref": "val:DEPLOY",
-     "result": "missing"
+     "result": "fail"
     }
    ]
   },
@@ -745,10 +749,14 @@
    "id": "V12",
    "objective": "Hero sites vs QuickMap (documented screenshots)",
    "acceptance": "qualitative",
-   "status": "todo",
+   "status": "blocked",
    "evidence": [
     {
-     "ref": "val:V12",
+     "ref": "blocked:manual comparison",
+     "result": "blocked"
+    },
+    {
+     "ref": "quickmap.lroc.asu.edu unreachable from the build environment",
      "result": "missing"
     }
    ]
@@ -770,6 +778,10 @@
     {
      "ref": "e2e:mobile",
      "result": "pass"
+    },
+    {
+     "ref": "val:LIGHTHOUSE",
+     "result": "pass"
     }
    ]
   },
@@ -777,11 +789,11 @@
    "id": "V14",
    "objective": "Clean clone → one command rebuilds artifacts with identical hashes",
    "acceptance": "pass or documented",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V14",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },

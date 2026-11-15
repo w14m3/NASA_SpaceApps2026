@@ -1,0 +1,19 @@
+{
+ "id": "LIGHTHOUSE",
+ "test": "Lighthouse 12.8.2 on http://localhost:4173/ (mobile, simulate throttling)",
+ "criterion": "performance >= 85, accessibility >= 95 (contract §8)",
+ "measured": {
+  "scores": {
+   "performance": 91,
+   "accessibility": 97,
+   "best-practices": 100,
+   "seo": 91
+  },
+  "lcp_ms": 2071.3011500000002,
+  "tbt_ms": 301.9999999999998
+ },
+ "summary": "performance 91, accessibility 97, best-practices 100, seo 91",
+ "status": "pass",
+ "generated_utc": "2026-11-15T04:07:32.544Z",
+ "generator": "scripts/lighthouse-record.mjs"
+}

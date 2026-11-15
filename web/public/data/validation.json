@@ -1,6 +1,39 @@
 {
- "generated_utc": "2026-11-15T03:51:49.102Z",
+ "generated_utc": "2026-11-15T04:09:20.701Z",
  "records": {
+  "DEPLOY": {
+   "id": "DEPLOY",
+   "test": "Public URL https://w14m3.github.io/NASA_SpaceApps2026/ returns 200 and the golden-path e2e passes against it",
+   "criterion": "HTTP 200 and golden path pass",
+   "measured": {
+    "http_status": 404,
+    "error": null,
+    "golden_path": "not run"
+   },
+   "summary": "HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions)",
+   "status": "fail",
+   "generated_utc": "2026-11-15T03:57:43.396Z",
+   "generator": "scripts/check-deploy.mjs"
+  },
+  "LIGHTHOUSE": {
+   "id": "LIGHTHOUSE",
+   "test": "Lighthouse 12.8.2 on http://localhost:4173/ (mobile, simulate throttling)",
+   "criterion": "performance >= 85, accessibility >= 95 (contract §8)",
+   "measured": {
+    "scores": {
+     "performance": 91,
+     "accessibility": 97,
+     "best-practices": 100,
+     "seo": 91
+    },
+    "lcp_ms": 2071.3011500000002,
+    "tbt_ms": 301.9999999999998
+   },
+   "summary": "performance 91, accessibility 97, best-practices 100, seo 91",
+   "status": "pass",
+   "generated_utc": "2026-11-15T04:07:32.544Z",
+   "generator": "scripts/lighthouse-record.mjs"
+  },
   "O1": {
    "id": "O1",
    "test": "Runtime ephemeris + topocentric geometry vs reference/v1 rigorous SPICE az/el fixture (300 site/time rows, Sun and Earth)",
@@ -12,7 +45,7 @@
    },
    "summary": "max 2.7e-5 deg",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:31.272Z",
+   "generated_utc": "2026-11-15T04:07:44.275Z",
    "generator": "vitest (web/src/core)"
   },
   "O2_240m": {
@@ -107,7 +140,7 @@
    },
    "summary": "max |Δ| at 10 m: 3.09°",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:49.127Z",
+   "generated_utc": "2026-11-15T04:08:00.892Z",
    "generator": "vitest (web/src/core)"
   },
   "O2b": {
@@ -138,7 +171,7 @@
    },
    "summary": "max 0.0000° (refinement adds up to 0.097°)",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:43.572Z",
+   "generated_utc": "2026-11-15T04:07:55.367Z",
    "generator": "vitest (web/src/core)"
   },
   "V1": {
@@ -151,7 +184,7 @@
    },
    "summary": "max 4.4e-10 m, 4.4e-13 px",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:29.962Z",
+   "generated_utc": "2026-11-15T04:07:42.877Z",
    "generator": "vitest (web/src/core)"
   },
   "V10": {
@@ -170,7 +203,7 @@
    },
    "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:30.869Z",
+   "generated_utc": "2026-11-15T04:07:43.844Z",
    "generator": "vitest (web/src/core)"
   },
   "V11b": {
@@ -184,8 +217,21 @@
    },
    "summary": "max 0.0022°, RMS 0.0005° (n=720)",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:31.458Z",
+   "generated_utc": "2026-11-15T04:07:44.504Z",
    "generator": "vitest (web/src/core)"
+  },
+  "V14": {
+   "id": "V14",
+   "test": "Rebuild from inputs with one command (node scripts/rebuild-check.mjs --candidates): ephemeris pieces, UT1 table, DEM, sites, masks, test fixtures, candidate grids; content hashes compared with the committed artifacts",
+   "criterion": "identical hashes (pass) or documented",
+   "measured": {
+    "files": 25,
+    "differing": []
+   },
+   "summary": "25 files rebuilt with identical content hashes",
+   "status": "pass",
+   "generated_utc": "2026-11-15T04:07:08.758Z",
+   "generator": "scripts/rebuild-check.mjs"
   },
   "V15": {
    "id": "V15",
@@ -198,7 +244,7 @@
    },
    "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:30.898Z",
+   "generated_utc": "2026-11-15T04:07:43.866Z",
    "generator": "vitest (web/src/core)"
   },
   "V16": {
@@ -213,7 +259,7 @@
    },
    "summary": "max 0.0e+0 m/s",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:30.899Z",
+   "generated_utc": "2026-11-15T04:07:43.867Z",
    "generator": "vitest (web/src/core)"
   },
   "V17": {
@@ -268,7 +314,7 @@
    },
    "summary": "connecting-ridge/balanced: 747 feasible, min sep 1061 m; connecting-ridge/crewSafety: 747 feasible, min sep 1061 m; malapert/balanced: 297 feasible, min sep 1030 m; malapert/crewSafety: 297 feasible, min sep 1030 m",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:35.888Z",
+   "generated_utc": "2026-11-15T04:07:48.055Z",
    "generator": "vitest (web/src/core)"
   },
   "V19": {
@@ -313,7 +359,7 @@
    },
    "summary": "max 1.6e-05 deg (DE421 vs DE440 + fit)",
    "status": "pass",
-   "generated_utc": "2026-11-15T00:56:10+00:00"
+   "generated_utc": "2026-11-15T03:53:23+00:00"
   },
   "V2": {
    "id": "V2",
@@ -333,7 +379,7 @@
    },
    "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:31.292Z",
+   "generated_utc": "2026-11-15T04:07:44.295Z",
    "generator": "vitest (web/src/core)"
   },
   "V20": {
@@ -347,7 +393,7 @@
    },
    "summary": "38 routes: max relative cost difference 0.0e+0, 0 forbidden cells",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:31.097Z",
+   "generated_utc": "2026-11-15T04:07:44.106Z",
    "generator": "vitest (web/src/core)"
   },
   "V3": {
@@ -361,7 +407,7 @@
    },
    "summary": "pipeline 10.703°, Horizons 10.703°, published (planned) 10.8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:51+00:00",
+   "generated_utc": "2026-11-15T04:08:01+00:00",
    "generator": "pytest"
   },
   "V4": {
@@ -375,7 +421,7 @@
    },
    "summary": "sphere 5.6e-9°, ring 9.3e-6°, cone 1.4e-8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:29.443Z",
+   "generated_utc": "2026-11-15T04:07:42.270Z",
    "generator": "vitest (web/src/core)"
   },
   "V5": {
@@ -390,7 +436,7 @@
    },
    "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:29.818Z",
+   "generated_utc": "2026-11-15T04:07:42.733Z",
    "generator": "vitest (web/src/core)"
   },
   "V6": {
@@ -405,7 +451,7 @@
    },
    "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:37.320Z",
+   "generated_utc": "2026-11-15T04:07:49.803Z",
    "generator": "vitest (web/src/core)"
   },
   "V7": {
@@ -445,7 +491,7 @@
    },
    "summary": "max 0.50 s over 5 events",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:28.939Z",
+   "generated_utc": "2026-11-15T04:07:41.870Z",
    "generator": "vitest (web/src/core)"
   },
   "V9": {
@@ -457,7 +503,7 @@
    },
    "summary": "max 6.3e-5",
    "status": "pass",
-   "generated_utc": "2026-11-15T03:46:28.627Z",
+   "generated_utc": "2026-11-15T04:07:41.602Z",
    "generator": "vitest (web/src/core)"
   }
  }

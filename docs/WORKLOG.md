@@ -41,3 +41,10 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
   recorded).
 - Next if time remains before the 19:59 freeze: polish (Street View Sun animation, collapsed workbench sections in
   Explore), re-run Judge pass, keep `npm run verify` green.
+
+## 2026-11-15 ~05:20 — V14 and V13 closed
+- V14: `node scripts/rebuild-check.mjs --candidates` rebuilt 25 artifacts (ephemeris, DEM, sites, masks, fixtures,
+  4 candidate grids) with identical content hashes.
+- V13: Lighthouse 12.8.2 on the built site: performance 91, accessibility 97, best practices 100, SEO 91.
+- `npm run verify`: all steps PASS (27 Vitest, 8 pytest, 37 Playwright). Objectives: 51 met, 4 blocked
+  (O2, V11, V12, V18 — unreachable hosts, substitutes recorded), 1 failing (P13 — GitHub Pages not enabled: owner action).

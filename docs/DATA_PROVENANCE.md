@@ -1,6 +1,6 @@
 # Data provenance (generated)
 
-Generated 2026-11-15T03:51:49.149Z by `scripts/gen-docs.mjs` from the artifact manifests. Nothing here is typed by hand.
+Generated 2026-11-15T04:09:20.739Z by `scripts/gen-docs.mjs` from the artifact manifests. Nothing here is typed by hand.
 
 ## Runtime artifacts (`web/public/data/`)
 

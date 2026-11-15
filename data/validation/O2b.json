@@ -26,6 +26,6 @@
  },
  "summary": "max 0.0000° (refinement adds up to 0.097°)",
  "status": "pass",
- "generated_utc": "2026-11-15T03:46:43.572Z",
+ "generated_utc": "2026-11-15T04:07:55.367Z",
  "generator": "vitest (web/src/core)"
 }

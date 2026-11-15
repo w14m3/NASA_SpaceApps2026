@@ -22,7 +22,7 @@
  "clipped_mask_values": 1436,
  "file": "connecting-ridge.bin.gz",
  "bytes_gzip": 1075865,
- "built_utc": "2026-11-15T01:23:59.182Z",
- "seconds": 765.042,
+ "built_utc": "2026-11-15T04:07:08.531Z",
+ "seconds": 822.837,
  "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
 }

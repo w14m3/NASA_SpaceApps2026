@@ -9,6 +9,6 @@
  },
  "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
  "status": "pass",
- "generated_utc": "2026-11-15T03:46:30.898Z",
+ "generated_utc": "2026-11-15T04:07:43.866Z",
  "generator": "vitest (web/src/core)"
 }

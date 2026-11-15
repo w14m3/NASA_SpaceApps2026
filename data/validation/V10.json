@@ -14,6 +14,6 @@
  },
  "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
  "status": "pass",
- "generated_utc": "2026-11-15T03:46:30.869Z",
+ "generated_utc": "2026-11-15T04:07:43.844Z",
  "generator": "vitest (web/src/core)"
 }

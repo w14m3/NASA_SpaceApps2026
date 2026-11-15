@@ -44,7 +44,7 @@ result yet; `todo` without evidence.
 | P10 | Site 3D with true-Sun shadows | e2e screenshot, ≥ 30 fps | L4 | 2 | e2e:site 3d | met |
 | P11 | Mission replay (2023–2025 landings) | V18, V19 | L4 | 2 | val:V19; e2e:mission replay | met |
 | P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete | L0 | 2 | doc:docs/RESOURCES.md | met |
-| P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it | L5 | 1 | val:DEPLOY | todo |
+| P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it | L5 | 1 | val:DEPLOY | failing |
 | P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | met |
 | P15 | Installable, offline-capable PWA | offline reload works in e2e | L5 | 2 | e2e:offline | met |
 | P16 | Science and Engineering constraint panels feeding Top 3 and Brief | e2e | L3 | 2 | e2e:constraints | met |
@@ -70,9 +70,9 @@ result yet; `todo` without evidence.
 | V10 | Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d | ≤ 0.1 % | L1 | 1 | vt:V10; val:V10 | met |
 | V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | blocked:JPL Horizons unreachable from the build environment (D2); substitute V11b | blocked |
 | V11b | Moon elevation at DSN sites vs an independent astropy/ERFA chain (substitute for V11) | ≤ 0.05° | L1 | 1 | vt:V11b; val:V11b | met |
-| V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | blocked:manual comparison; quickmap.lroc.asu.edu unreachable from the build environment | todo |
-| V13 | Front end: e2e golden path; axe critical = 0; Lighthouse; mobile | pass | L5 | 1 | e2e:golden path; e2e:axe; e2e:mobile | met |
-| V14 | Clean clone → one command rebuilds artifacts with identical hashes | pass or documented | L5 | 3 | val:V14 | todo |
+| V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | blocked:manual comparison; quickmap.lroc.asu.edu unreachable from the build environment | blocked |
+| V13 | Front end: e2e golden path; axe critical = 0; Lighthouse; mobile | pass | L5 | 1 | e2e:golden path; e2e:axe; e2e:mobile; val:LIGHTHOUSE | met |
+| V14 | Clean clone → one command rebuilds artifacts with identical hashes | pass or documented | L5 | 3 | val:V14 | met |
 | V15 | Plane fit on synthetic tilted planes and a cone | slope ≤ 0.01°, azimuth ≤ 0.1° | L3 | 1 | vt:V15; val:V15 | met |
 | V16 | Tip-over analytic cases | exact to 1e-9 | L3 | 1 | vt:V16; val:V16 | met |
 | V17 | Top 3: determinism, constraints, diversity | pass | L3 | 1 | vt:V17; val:V17 | met |
