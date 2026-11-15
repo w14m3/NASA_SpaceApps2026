@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T03:48:11.753Z",
+ "generated_utc": "2026-11-15T03:51:49.100Z",
  "objectives": [
   {
    "id": "C1",
@@ -145,7 +145,7 @@
    "id": "C10",
    "objective": "Real terrain horizon, no atmosphere",
    "acceptance": "V4–V7 pass, method page",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "val:V4",
@@ -161,7 +161,7 @@
     },
     {
      "ref": "doc:docs/METHODS.md",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -417,11 +417,11 @@
    "id": "P12",
    "objective": "Resource integrations of §4.3 implemented or justified",
    "acceptance": "RESOURCES.md complete",
-   "status": "todo",
+   "status": "met",
    "evidence": [
     {
      "ref": "doc:docs/RESOURCES.md",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },
@@ -441,7 +441,7 @@
    "id": "P14",
    "objective": "Trust page, TRACEABILITY, product docs, demo script, pitch, submission",
    "acceptance": "files present and current",
-   "status": "in progress",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:trust page",
@@ -449,23 +449,23 @@
     },
     {
      "ref": "doc:docs/TRACEABILITY.md",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "doc:docs/PRODUCT.md",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "doc:docs/DEMO_SCRIPT.md",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "doc:docs/PITCH.md",
-     "result": "missing"
+     "result": "pass"
     },
     {
      "ref": "doc:docs/SUBMISSION.md",
-     "result": "missing"
+     "result": "pass"
     }
    ]
   },

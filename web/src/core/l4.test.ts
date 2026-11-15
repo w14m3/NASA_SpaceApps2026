@@ -24,6 +24,9 @@ describe('who blocks the Sun', () => {
     const b = attribute(flatMask(sphereDip(10)), 10, { az: 20, el: -1.0, rad: 0.27 })
     expect(b.cause).toBe('limb')
     expect(b.distKm).toBeNull()
+    // on a 5 km massif the smooth-sphere horizon is near −4.4°: a Sun at −1° is hidden by terrain, not by the limb
+    const c = attribute(m, 5000, { az: 135, el: -1.0, rad: 0.27 })
+    expect(c.cause).toBe('terrain')
     expect(HOUR).toBe(3_600_000)
   })
 })

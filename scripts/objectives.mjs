@@ -5,6 +5,7 @@
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { spawnSync } from 'node:child_process'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const P = (...a) => join(root, ...a)
@@ -145,3 +146,5 @@ const counts = summary.reduce((a, s) => ((a[s.status] = (a[s.status] ?? 0) + 1),
 console.log('objectives:', JSON.stringify(counts))
 for (const s of summary.filter((x) => x.status !== 'met'))
   console.log(`  ${s.id.padEnd(4)} ${s.status.padEnd(11)} ${s.evidence.filter((e) => e.result !== 'pass').map((e) => `${e.ref} [${e.result}]`).join('; ')}`)
+
+spawnSync(process.execPath, [join(root, 'scripts', 'gen-docs.mjs')], { stdio: 'inherit' })

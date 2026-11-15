@@ -23,21 +23,22 @@ export interface Blocker {
   cause: 'terrain' | 'limb'
 }
 
-/** Attribute one dark interval given the Sun direction at its midpoint. */
-export function attribute(mask: Mask, h: number, sun: { az: number; el: number; rad: number }): Pick<Blocker, 'az' | 'sunEl' | 'horizonEl' | 'distKm' | 'cause'> {
+/** Attribute one dark interval given the Sun direction at its midpoint. `heightAboveSphere` = z₀ + h (m): the eye
+ *  height above the 1737.4 km reference sphere, which sets the smooth-sphere (limb) horizon −acos(R/(R + z₀ + h)). */
+export function attribute(mask: Mask, heightAboveSphere: number, sun: { az: number; el: number; rad: number }): Pick<Blocker, 'az' | 'sunEl' | 'horizonEl' | 'distKm' | 'cause'> {
   const horizonEl = maskAt(mask, sun.az)
-  const limb = sphereDip(h)
-  // the Sun's upper limb is below the smooth-sphere horizon: no terrain is needed to hide it
+  const limb = sphereDip(heightAboveSphere)
+  // the Sun's upper limb is below the smooth-sphere horizon seen from this height: no terrain is needed to hide it
   if (sun.el + sun.rad < limb) return { az: sun.az, sunEl: sun.el, horizonEl, distKm: null, cause: 'limb' }
   return { az: sun.az, sunEl: sun.el, horizonEl, distKm: distAt(mask, sun.az), cause: 'terrain' }
 }
 
-export function whoBlocks(eph: Ephemeris, f: SiteFrame, mask: Mask, h: number, sunIv: Interval[], t0: number, t1: number, minHours = 1): Blocker[] {
+export function whoBlocks(eph: Ephemeris, f: SiteFrame, mask: Mask, heightAboveSphere: number, sunIv: Interval[], t0: number, t1: number, minHours = 1): Blocker[] {
   return gaps(sunIv, t0, t1)
     .filter((g) => g.end - g.start >= minHours * HOUR)
     .map((g) => {
       const mid = 0.5 * (g.start + g.end)
       const s = azel(eph, 'SUN', mid, f)
-      return { start: g.start, end: g.end, hours: (g.end - g.start) / HOUR, openStart: g.openStart, openEnd: g.openEnd, ...attribute(mask, h, s) }
+      return { start: g.start, end: g.end, hours: (g.end - g.start) / HOUR, openStart: g.openStart, openEnd: g.openEnd, ...attribute(mask, heightAboveSphere, s) }
     })
 }

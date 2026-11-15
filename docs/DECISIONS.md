@@ -42,3 +42,9 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
   effect on visibility because the Sun and Earth never exceed ~12° elevation at 85–90°S.
 - **D11 — Gzip artifacts are accepted inflated or not.** Some servers add `Content-Encoding: gzip` to `.gz` files, so
   the browser receives inflated bytes; loaders check the gzip magic number before inflating.
+- **D12 — "Lunar limb" attribution uses the eye height above the reference sphere (z₀ + h).** A night is attributed to
+  the limb only when the Sun's upper limb is below −acos(R/(R + z₀ + h)); on a 5 km massif that is about −4.4°, so a
+  Sun at −1° hidden by the terrain is attributed to terrain. Unit test in `web/src/core/l4.test.ts`.
+- **D13 — Pages deployment needs the owner.** CI builds and uploads the site on every push to `main`, but the deploy
+  step returns 404 until GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions). `configure-pages` now
+  asks for enablement, which only works if the workflow token is allowed to; otherwise the owner must click it once.

@@ -213,7 +213,7 @@ const api = {
     const e = await eph()
     const f = siteFrame(a.site)
     const iv = intervals(bodyFn(e, f, a.mask, 'SUN', DEFAULT_THRESHOLDS, 'mid'), a.t0, a.t1)
-    return whoBlocks(e, f, a.mask, a.site.h, iv, a.t0, a.t1)
+    return whoBlocks(e, f, a.mask, a.site.z0 + a.site.h, iv, a.t0, a.t1)
   },
   /** Illumination compass (§6.12): sunlit fraction at 8 neighbours r metres away (LOLA 240 m live masks). */
   async compass(a: { lon: number; lat: number; h: number; t0: number; t1: number; r: number }) {

@@ -22,7 +22,7 @@ result yet; `todo` without evidence.
 | C7 | Multiple visualisations | Globe, South pole, Site 3D, Street View, timeline | L4 | 2 | e2e:views | met |
 | C8 | Temporal dynamics | animated lighting + timeline over a lunar day | L2 | 1 | e2e:time controls; e2e:play | met |
 | C9 | Accessible to planners, educators, public | modes, tour, glossary, FR, V13 | L5 | 1 | e2e:learn mode; e2e:french; e2e:axe | met |
-| C10 | Real terrain horizon, no atmosphere | V4–V7 pass, method page | L1 | 1 | val:V4; val:V5; val:V6; doc:docs/METHODS.md | in progress |
+| C10 | Real terrain horizon, no atmosphere | V4–V7 pass, method page | L1 | 1 | val:V4; val:V5; val:V6; doc:docs/METHODS.md | met |
 | C11 | Libration and orbital variations shown | libration loop on sky plot; method page | L2 | 2 | e2e:libration loop; vt:libration | met |
 | C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop | L4 | 2 | vt:who blocks; e2e:who blocks; e2e:compass | met |
 | C13 | Thermal conditions for equipment (proxy) | §7.14 in Workbench, Top 3 cards, Brief; unit tests | L3 | 2 | vt:thermal; e2e:thermal | met |
@@ -43,9 +43,9 @@ result yet; `todo` without evidence.
 | P9 | Moon Directions | V20 + e2e | L4 | 3 | vt:V20; val:V20; e2e:directions | met |
 | P10 | Site 3D with true-Sun shadows | e2e screenshot, ≥ 30 fps | L4 | 2 | e2e:site 3d | met |
 | P11 | Mission replay (2023–2025 landings) | V18, V19 | L4 | 2 | val:V19; e2e:mission replay | met |
-| P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete | L0 | 2 | doc:docs/RESOURCES.md | todo |
+| P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete | L0 | 2 | doc:docs/RESOURCES.md | met |
 | P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it | L5 | 1 | val:DEPLOY | todo |
-| P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | in progress |
+| P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | met |
 | P15 | Installable, offline-capable PWA | offline reload works in e2e | L5 | 2 | e2e:offline | met |
 | P16 | Science and Engineering constraint panels feeding Top 3 and Brief | e2e | L3 | 2 | e2e:constraints | met |
 | P17 | "Land it!" educational game (optional) | e2e | L4 | 3 | e2e:land it | met |
