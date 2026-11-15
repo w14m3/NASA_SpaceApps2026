@@ -1,5 +1,22 @@
 # Codex task plan — paste these messages in order
 
+## Local mode on your PC (Windows) — read first
+1. Install Git (with Git Bash), Python 3.11+ ("Add to PATH" checked), Node.js 20+ LTS, and Codex (app, CLI or IDE
+   extension). Sign in with your ChatGPT account.
+2. Copy the settings of `codex/config.toml.example` into `%USERPROFILE%\.codex\config.toml` (model, reasoning
+   effort, workspace-write sandbox, **network access on**).
+3. Open the repository folder in Codex (CLI: open a terminal in the folder and run `codex`).
+4. A "task" below = one Codex session started with the message. When it ends: check the summary, push to GitHub
+   (GitHub Desktop → Push) so the site redeploys, then start the next task in a new session.
+5. **Parallel tasks locally** (T1 + T2, T4 + T4b): create a second working folder with
+   `git worktree add ../sightline-t2 -b t2-ui`, open it in a second Codex session, and merge the branch into `main`
+   when both are done (`git merge t2-ui`). If this feels risky, run them one after the other instead.
+6. Keep the PC awake (Windows: Settings → System → Power → Sleep: Never while plugged in).
+
+For **T0 locally**, add this first line to the message: "Local mode on Windows: run `python codex/setup.py` first,
+then continue."
+
+
 How it works: each message starts one Codex cloud task on the current `main`. When a task finishes, read its summary,
 create the pull request, merge it, then start the next task. Tasks marked **parallel** can run at the same time
 because they own disjoint directories. Times are Europe/Paris targets; if you start later, keep the order and the

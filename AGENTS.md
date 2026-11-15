@@ -9,8 +9,7 @@ why?** Focus areas: **solar-energy efficiency** and **connectivity with Earth**.
   (product, physics, validation, objectives, plan). This file only summarises it.
 - Task messages, in order: `docs/CODEX_TASKS.md`. Objectives and their evidence: `docs/OBJECTIVES.md`.
   Running log: `docs/WORKLOG.md`. Decisions taken without the owner: `docs/DECISIONS.md`.
-- Deadline: **Sunday 15 Nov 2026, 23:59 Europe/Paris. Feature freeze 19:59.** Check `TZ=Europe/Paris date` at the
-  start of every loop iteration.
+- Deadline: **Sunday 15 Nov 2026, 23:59 Europe/Paris. Feature freeze 19:59.** Check the current Europe/Paris time (cross-platform: `node -e "console.log(new Date().toLocaleString('en-GB',{timeZone:'Europe/Paris'}))"`) at the start of every loop iteration.
 
 ## Repository map
 - `reference/v1/` — earlier validated implementation. **Read-only.** Specification and test oracle, not source.
@@ -21,10 +20,19 @@ why?** Focus areas: **solar-energy efficiency** and **connectivity with Earth**.
 - `docs/` — contract, challenge text, UI mockup (`docs/design/reference_mockup.png`, layout only), generated docs.
 
 ## Commands
-- Setup (environment script): `bash codex/setup.sh`. Data only: `bash codex/fetch_nasa_data.sh`.
+- Setup: `python codex/setup.py` (local PC, any OS) or `bash codex/setup.sh` (Codex cloud environment).
+  Data only: `python codex/fetch_nasa_data.py` (resumable).
 - Full gate (create in T0, keep green): `npm run verify` at the repo root = lint + typecheck + Vitest + offline
   pytest + build + Playwright e2e + `npm run objectives`.
 - Objective statuses: `npm run objectives` (computed from test reports; never edit the status column by hand).
+
+## Local mode (the owner runs Codex on a Windows PC)
+- There is no setup phase: at the start of T0, and whenever `data/cache/SHA256SUMS` is missing, run
+  `python codex/setup.py`. Use `python`, not `python3`, in instructions for the owner.
+- Every project script must be cross-platform (Node or Python). No bash-only commands in npm scripts or docs.
+- Commit at the end of every loop iteration. At the end of every task run `git push` if a remote and credentials are
+  configured; otherwise tell the owner to push (GitHub Desktop) so GitHub Pages redeploys.
+- Parallel tasks run in separate git worktrees (see `docs/CODEX_TASKS.md`), never in the same folder.
 
 ## Non-negotiable rules
 1. Priority: scientific truthfulness > numerical correctness > interactivity and clarity > polish > feature count.

@@ -21,5 +21,5 @@ if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; fi
 npx --yes playwright install --with-deps chromium || echo "playwright browser install failed (e2e will report it)"
 
 echo "== NASA data"
-bash codex/fetch_nasa_data.sh || echo "some NASA downloads failed; the agent retries if internet is enabled"
+python3 codex/fetch_nasa_data.py || echo "some NASA downloads failed; the agent retries if internet is enabled"
 echo "== setup done"

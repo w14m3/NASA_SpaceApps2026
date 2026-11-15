@@ -30,6 +30,15 @@ current, because the next task starts in a new container with no memory of this 
 - Model: GPT-6 Astra (or the most capable Astra/GPT-6 model offered), highest available reasoning effort for science,
   optimisation and review tasks.
 
+### 0.1b Local mode (Codex on the owner's PC — the default for this team)
+The owner runs Codex locally on Windows (Codex app, CLI or IDE extension) in a clone of this repository. Differences
+from the cloud mode above: there is no setup phase, so run `python codex/setup.py` at the start of T0 and whenever
+`data/cache/SHA256SUMS` is missing; commands need network access enabled in the Codex configuration
+(`codex/config.toml.example`); every script must be cross-platform (Node or Python, no bash-only commands); a "task"
+is one Codex session started with a message from `docs/CODEX_TASKS.md`; commit after every loop iteration and push at
+the end of every task (or ask the owner to push) so GitHub Pages redeploys; parallel tasks run in separate git
+worktrees, never in the same folder. The owner's PC must stay awake while a task runs.
+
 ### 0.2 Repository layout at start
 ```
 AGENTS.md                            ← rules Codex loads automatically (short)
@@ -57,8 +66,8 @@ connectivity with Earth**.
 
 ### 0.4 Deadline
 Submission closes **Sunday 15 November 2026, 23:59, Europe/Paris** (owner's Local Event). **Feature freeze at 19:59
-Europe/Paris.** After the freeze, only bug fixes, docs, screenshots and submission material. Check the current time
-with `TZ=Europe/Paris date` at the start of every loop iteration and plan against the phase time boxes of §12.
+Europe/Paris.** After the freeze, only bug fixes, docs, screenshots and submission material. Check the current Europe/Paris time (cross-platform: `node -e "console.log(new Date().toLocaleString('en-GB',{timeZone:'Europe/Paris'}))"`)
+at the start of every loop iteration and plan against the phase time boxes of §12.
 
 ### 0.5 Owner interaction
 A Codex task cannot wait for an answer mid-run. Never stop to ask: take the most reasonable documented default,
@@ -640,7 +649,7 @@ One row per objective: ID · description · acceptance criterion (automated wher
 ### 11.2 The loop — run until every objective is met
 ```
 LOOP
-  1. Check time (TZ=Europe/Paris). Re-read docs/OBJECTIVES.md (and this prompt at each phase start).
+  1. Check the Europe/Paris time. Re-read docs/OBJECTIVES.md (and this prompt at each phase start).
   2. Pick the highest-priority objective not `met` in the current phase (or the next phase if done).
   3. Write a 3–6 line plan in docs/WORKLOG.md.
   4. Implement the smallest complete increment. Physics: failing test first, then code.
