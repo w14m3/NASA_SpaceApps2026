@@ -1,0 +1,10 @@
+Autopilot run (non-interactive, no approvals). You are working locally in the owner's clone of github.com/w14m3/NASA_SpaceApps2026 on Windows.
+1. If data/cache/SHA256SUMS is missing, run: python codex/setup.py
+2. Read AGENTS.md and docs/MASTER_PROMPT_CODEX.md in full, then docs/OBJECTIVES.md, docs/WORKLOG.md, docs/LOCK.md and the last 20 commits.
+3. Follow the lock rule of contract section 0.7: if docs/LOCK.md shows a heartbeat from another session less than 45 minutes old, append one line to docs/WORKLOG.md saying an active session was detected, commit, and stop. Otherwise take the lock.
+4. Follow the resume protocol of section 11.2 and continue the tasks of docs/CODEX_TASKS.md in order (T0, T1, T2, T3, T4, T4b, T5, T6, then T7 after the 19:59 Europe/Paris feature freeze), sequentially in this folder, skipping objectives already met.
+5. Run the work loop of AGENTS.md continuously. After every loop iteration: update docs/LOCK.md, commit, then try git pull --rebase origin main and git push origin HEAD:main. If the push fails, keep working: the autopilot script pushes between runs.
+6. Never ask questions and never wait for approval. Take documented defaults (docs/DECISIONS.md) and list questions for the owner in docs/WORKLOG.md.
+7. Do not stop while unmet objectives remain and time remains. When a task ends, append its summary (section 0.6) to docs/WORKLOG.md and start the next task.
+8. When npm run objectives reports every objective met, create the file docs/ALL_OBJECTIVES_MET. After 23:59 Europe/Paris, only verify the public site, record the result and stop.
+9. Before stopping for any reason: commit and write the exact resume point at the end of docs/WORKLOG.md.

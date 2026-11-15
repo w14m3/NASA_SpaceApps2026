@@ -1,18 +1,15 @@
-# Example Codex configuration for this project.
-# Copy the lines you need into your Codex config file:
-#   Windows: %USERPROFILE%\.codex\config.toml      macOS/Linux: ~/.codex/config.toml
+# Codex configuration for this project (local runs).
+# Copy into your Codex config file:  Windows: %USERPROFILE%\.codex\config.toml   macOS/Linux: ~/.codex/config.toml
 # Check key names against the Codex configuration reference if your Codex version rejects one.
 
 model = "gpt-6-astra"            # or the Astra / GPT-6 model your plan offers
 model_reasoning_effort = "high"  # "xhigh" if your plan and model offer it
 
-# Let Codex edit files inside the project folder without asking each time.
+# Edit files inside the project folder; requests that need more are reviewed automatically instead of asking you.
 sandbox_mode = "workspace-write"
 approval_policy = "on-request"
+approvals_reviewer = "auto_review"   # "Approve for me". Use approval_policy = "never" to refuse such requests instead.
 
-# The pipeline must download NASA data and npm/pip packages: commands need network access.
+# The pipeline downloads NASA data and npm/pip packages, and git pushes to GitHub: commands need network access.
 [sandbox_workspace_write]
 network_access = true
-
-# AGENTS.md is short; the full contract is read explicitly. Raise the limit only if you merge more instructions.
-project_doc_max_bytes = 65536

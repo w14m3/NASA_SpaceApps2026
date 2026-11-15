@@ -33,6 +33,9 @@ why?** Focus areas: **solar-energy efficiency** and **connectivity with Earth**.
 - Commit at the end of every loop iteration. At the end of every task run `git push` if a remote and credentials are
   configured; otherwise tell the owner to push (GitHub Desktop) so GitHub Pages redeploys.
 - Parallel tasks run in separate git worktrees (see `docs/CODEX_TASKS.md`), never in the same folder.
+- Full autonomy (contract §0.7): no questions, no waiting; push straight to `main` after every iteration; keep
+  `docs/LOCK.md` current; do not end the turn while objectives remain before the freeze; create
+  `docs/ALL_OBJECTIVES_MET` when `npm run objectives` reports everything met. Start guide: `docs/CODEX_LOCAL_START.md`.
 
 ## Non-negotiable rules
 1. Priority: scientific truthfulness > numerical correctness > interactivity and clarity > polish > feature count.

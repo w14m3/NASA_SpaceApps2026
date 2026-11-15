@@ -80,6 +80,22 @@ record it in `docs/DECISIONS.md`, and put any question for the owner at the top 
 5. Questions for the owner. 6. **The exact message for the next task** (copied from `docs/CODEX_TASKS.md`, adjusted
 to the real state). 7. Time used vs the phase time box.
 
+### 0.7 Autonomy — local runs without approvals
+- **No approvals, no questions.** Interactive sessions run with automatic review of approval requests; autopilot runs
+  use `codex exec` (approval is always "never"). Never wait for the owner; take documented defaults.
+- **Push straight to `main`** (the owner's instruction; the repository is github.com/w14m3/NASA_SpaceApps2026): after
+  every loop iteration commit, `git pull --rebase origin main`, `git push origin HEAD:main`. If the push fails
+  (credentials inside the sandbox), keep working and note it; `codex/autopilot.ps1` pushes between runs.
+- **Do not end the turn early.** While unmet objectives remain and the feature freeze has not passed, finish a task and
+  start the next one immediately. End only when (a) every objective is met — then create `docs/ALL_OBJECTIVES_MET` —
+  (b) the freeze has passed and fix-only work is done, (c) a usage or platform limit stops you, or (d) you are blocked;
+  always after committing and writing the resume point at the end of `docs/WORKLOG.md`.
+- **Lock.** `docs/LOCK.md` holds the session start time, last heartbeat (Europe/Paris) and current objective; update it
+  every iteration. At session start, if another session's heartbeat is less than 45 minutes old, do not modify
+  anything except one WORKLOG line "active session detected", commit, and end. Otherwise take the lock.
+- **Autopilot.** `codex/autopilot.ps1` restarts `codex exec` with `codex/autopilot_prompt.txt` until 23:30
+  Europe/Paris or until `docs/ALL_OBJECTIVES_MET` exists. See `docs/CODEX_LOCAL_START.md`.
+
 ---
 
 ## 1. "From zero", defined

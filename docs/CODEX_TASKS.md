@@ -1,6 +1,9 @@
 # Codex task plan — paste these messages in order
 
 ## Local mode on your PC (Windows) — read first
+**Simplest path: follow `docs/CODEX_LOCAL_START.md`** (one message, or the autopilot script that restarts Codex
+until the deadline). The steps below are the manual, task-by-task alternative.
+
 1. Install Git (with Git Bash), Python 3.11+ ("Add to PATH" checked), Node.js 20+ LTS, and Codex (app, CLI or IDE
    extension). Sign in with your ChatGPT account.
 2. Copy the settings of `codex/config.toml.example` into `%USERPROFILE%\.codex\config.toml` (model, reasoning
