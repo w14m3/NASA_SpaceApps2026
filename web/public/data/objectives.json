@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T10:17:05.352Z",
+ "generated_utc": "2026-11-15T10:19:41.681Z",
  "objectives": [
   {
    "id": "C1",
@@ -529,15 +529,11 @@
    "id": "O2",
    "objective": "New horizon masks vs v1 masks, curated south-pole sites (2 m, 10 m)",
    "acceptance": "≤ 0.05° (report max, explain)",
-   "status": "blocked",
+   "status": "met",
    "evidence": [
     {
-     "ref": "blocked:LOLA 80 m product unreachable (D7)",
-     "result": "blocked"
-    },
-    {
-     "ref": "fallback O2b + report val O2_240m",
-     "result": "missing"
+     "ref": "val:O2",
+     "result": "pass"
     }
    ]
   },

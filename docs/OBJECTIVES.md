@@ -55,7 +55,7 @@ result yet; `todo` without evidence.
 | ID | Objective | Acceptance | Phase | Prio | Evidence | Status |
 |---|---|---|---|---|---|---|
 | O1 | Browser ephemeris vs v1 SPICE az/el fixture (300 rows × 2 bodies) | ≤ 0.001° | L1 | 1 | vt:O1 | met |
-| O2 | New horizon masks vs v1 masks, curated south-pole sites (2 m, 10 m) | ≤ 0.05° (report max, explain) | L1 | 1 | blocked:LOLA 80 m product unreachable (D7); fallback O2b + report val O2_240m | blocked |
+| O2 | New horizon masks vs v1 masks, curated south-pole sites (2 m, 10 m) | ≤ 0.05° (report max, explain) | L1 | 1 | val:O2 | met |
 | O2b | New horizon cascade vs v1 algorithm on the same 240 m DEM | ≤ 0.05° | L1 | 1 | vt:O2b | met |
 | V1 | Round trip lat/lon ↔ Cartesian ↔ DEM pixel ↔ map pixel | ≤ 1 m and ≤ 0.5 px | L1 | 1 | vt:V1; val:V1 | met |
 | V2 | Ephemeris vs Horizons az/el (cached responses) | ≤ 0.005° | L1 | 1 | val:V2 | met |

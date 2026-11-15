@@ -1,6 +1,6 @@
 # Validation results (generated)
 
-Generated 2026-11-15T10:17:05.405Z by `scripts/gen-docs.mjs` from the records in `data/validation/`, which are written by the tests (`web/src/core/*.test.ts`, `pipeline/tests/`, `web/scripts/validate-candidates.ts`) and the pipeline. Statuses are never typed by hand. Contract §10 checks that cannot run in this build environment are listed at the end.
+Generated 2026-11-15T10:19:41.727Z by `scripts/gen-docs.mjs` from the records in `data/validation/`, which are written by the tests (`web/src/core/*.test.ts`, `pipeline/tests/`, `web/scripts/validate-candidates.ts`) and the pipeline. Statuses are never typed by hand. Contract §10 checks that cannot run in this build environment are listed at the end.
 
 | ID | Test | Criterion | Measured | Status | Recorded |
 |---|---|---|---|---|---|
@@ -27,6 +27,7 @@ Generated 2026-11-15T10:17:05.405Z by `scripts/gen-docs.mjs` from the records in
 | V20 | Moon Directions: A* (straight-line heuristic) vs brute-force Dijkstra on 50 seeded random slope grids (20–40 cells, 15 % forbidden cells, S_max 20°, S_ref 10°) | exact cost match; no forbidden cell on the route | 38 routes: max relative cost difference 0.0e+0, 0 forbidden cells | **pass** | 2026-11-15T04:07 |
 | LIGHTHOUSE | Lighthouse 12.8.2 on http://localhost:4173/ (mobile, simulate throttling) | performance >= 85, accessibility >= 95 (contract §8) | performance 91, accessibility 97, best-practices 100, seo 91 | **pass** | 2026-11-15T04:07 |
 | DEPLOY | Public URL https://w14m3.github.io/NASA_SpaceApps2026/ returns 200 and the golden-path e2e passes against it | HTTP 200 and golden path pass | HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions) | **fail** | 2026-11-15T10:12 |
+| O2 | Oracle: new horizon masks (web/src/core/horizon.ts, refinement off) vs reference/v1 precomputed masks for the 13 curated south-pole sites at 2 m and 10 m, same inputs (LOLA 80 m then LOLA 240 m 60°S, 1440 azimuths, 300 km); v1 masks are quantised at 0.002°. The production refinement (D5) is reported separately | <= 0.05 deg (report max, explain differences) | max 0.0010° over 26 masks × 1440 azimuths (with golden-section refinement: 0.030°) | **pass** | 2026-11-15T10:19 |
 | V11 | Moon topocentric elevation at DSS-14, DSS-63, DSS-43: runtime chain (DE421 Moon in CIRS + ERA(UT1), no polar motion) vs JPL Horizons apparent airless az/el, 240 seeded instants 2026–2030 (responses cached in data/raw/horizons_dsn/) | <= 0.05 deg | elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240) | **pass** | 2026-11-15T10:16 |
 
 ## Not run here (and why)

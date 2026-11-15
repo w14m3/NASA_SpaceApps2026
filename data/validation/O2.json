@@ -1,0 +1,120 @@
+{
+ "id": "O2",
+ "test": "Oracle: new horizon masks (web/src/core/horizon.ts, refinement off) vs reference/v1 precomputed masks for the 13 curated south-pole sites at 2 m and 10 m, same inputs (LOLA 80 m then LOLA 240 m 60°S, 1440 azimuths, 300 km); v1 masks are quantised at 0.002°. The production refinement (D5) is reported separately",
+ "criterion": "<= 0.05 deg (report max, explain differences)",
+ "measured": {
+  "per_site": {
+   "chandrayaan3_vikram": {
+    "max_h2": 0.000997781753540039,
+    "rms_h2": 0.0005768493091730434,
+    "refined_max_h2": 0.014362931251525879,
+    "max_h10": 0.000997304916381836,
+    "rms_h10": 0.0005706284135820626,
+    "refined_max_h10": 0.012803077697753906
+   },
+   "im1_odysseus": {
+    "max_h2": 0.00099945068359375,
+    "rms_h2": 0.0005673507934276159,
+    "refined_max_h2": 0.014053642749786377,
+    "max_h10": 0.0009984970092773438,
+    "rms_h10": 0.0005797438244531068,
+    "refined_max_h10": 0.012499377131462097
+   },
+   "im2_athena": {
+    "max_h2": 0.0009996891021728516,
+    "rms_h2": 0.0005895964468343946,
+    "refined_max_h2": 0.009421616792678833,
+    "max_h10": 0.0009999275207519531,
+    "rms_h10": 0.0005876462739557977,
+    "refined_max_h10": 0.011123567819595337
+   },
+   "poi_bussey2010_A_shackleton_rim": {
+    "max_h2": 0.0009990781545639038,
+    "rms_h2": 0.000562090413556004,
+    "refined_max_h2": 0.015095710754394531,
+    "max_h10": 0.0009981393814086914,
+    "rms_h10": 0.0005966931797649853,
+    "refined_max_h10": 0.029953956604003906
+   },
+   "poi_bussey2010_B_connecting_ridge": {
+    "max_h2": 0.0010004043579101562,
+    "rms_h2": 0.0005810801113484662,
+    "refined_max_h2": 0.013118445873260498,
+    "max_h10": 0.00099945068359375,
+    "rms_h10": 0.0005810469823446278,
+    "refined_max_h10": 0.01643991470336914
+   },
+   "poi_bussey2010_C_degerlache_rim": {
+    "max_h2": 0.0009980201721191406,
+    "rms_h2": 0.0005730287938180771,
+    "refined_max_h2": 0.012856602668762207,
+    "max_h10": 0.0009999573230743408,
+    "rms_h10": 0.0005732994774363723,
+    "refined_max_h10": 0.01542729139328003
+   },
+   "poi_bussey2010_D_peak_near_shackleton": {
+    "max_h2": 0.0009999275207519531,
+    "rms_h2": 0.0005893551624881794,
+    "refined_max_h2": 0.007235527038574219,
+    "max_h10": 0.0009996891021728516,
+    "rms_h10": 0.0005795995757257058,
+    "refined_max_h10": 0.010189294815063477
+   },
+   "poi_bussey2010_M1_malapert": {
+    "max_h2": 0.0009999275207519531,
+    "rms_h2": 0.0005779094925020104,
+    "refined_max_h2": 0.014878988265991211,
+    "max_h10": 0.00099945068359375,
+    "rms_h10": 0.0005781299166604159,
+    "refined_max_h10": 0.024712800979614258
+   },
+   "poi_bussey2010_M2_malapert": {
+    "max_h2": 0.00099945068359375,
+    "rms_h2": 0.0005800577472657519,
+    "refined_max_h2": 0.006154537200927734,
+    "max_h10": 0.0010004043579101562,
+    "rms_h10": 0.0005794599970684862,
+    "refined_max_h10": 0.012572526931762695
+   },
+   "poi_lpsc2024_connecting_ridge_candidate": {
+    "max_h2": 0.0009995698928833008,
+    "rms_h2": 0.0005697436449131483,
+    "refined_max_h2": 0.021024875342845917,
+    "max_h10": 0.00099945068359375,
+    "rms_h10": 0.0005763858518205121,
+    "refined_max_h10": 0.02052256464958191
+   },
+   "poi_lpsc2024_peak_near_shackleton_candidate": {
+    "max_h2": 0.0009990930557250977,
+    "rms_h2": 0.0005785453099127119,
+    "refined_max_h2": 0.010942578315734863,
+    "max_h10": 0.00099945068359375,
+    "rms_h10": 0.0005697969937514295,
+    "refined_max_h10": 0.01229146122932434
+   },
+   "poi_site001_connecting_ridge": {
+    "max_h2": 0.0009996891021728516,
+    "rms_h2": 0.0005728077599776441,
+    "refined_max_h2": 0.015324771404266357,
+    "max_h10": 0.0009993910789489746,
+    "rms_h10": 0.0005822389136402365,
+    "refined_max_h10": 0.012207269668579102
+   },
+   "poi_site004_shackleton_rim": {
+    "max_h2": 0.0009999275207519531,
+    "rms_h2": 0.0005921791932709441,
+    "refined_max_h2": 0.020183444023132324,
+    "max_h10": 0.0009993314743041992,
+    "rms_h10": 0.0005759044933260062,
+    "refined_max_h10": 0.028995037078857422
+   }
+  },
+  "max_deg": 0.0010004043579101562,
+  "refined_max_deg": 0.029953956604003906,
+  "max_z0_diff_m": 9.094947017729282e-12
+ },
+ "summary": "max 0.0010° over 26 masks × 1440 azimuths (with golden-section refinement: 0.030°)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T10:19:18.572Z",
+ "generator": "vitest (web/src/core)"
+}
