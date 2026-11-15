@@ -22,7 +22,7 @@
  "clipped_mask_values": 57737,
  "file": "malapert.bin.gz",
  "bytes_gzip": 996571,
- "built_utc": "2026-11-15T01:23:40.646Z",
- "seconds": 746.526,
+ "built_utc": "2026-11-15T04:06:48.512Z",
+ "seconds": 802.796,
  "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
 }

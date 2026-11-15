@@ -22,7 +22,7 @@
  "clipped_mask_values": 15821,
  "file": "de-gerlache.bin.gz",
  "bytes_gzip": 1068964,
- "built_utc": "2026-11-15T01:24:01.252Z",
- "seconds": 767.055,
+ "built_utc": "2026-11-15T04:07:03.194Z",
+ "seconds": 817.463,
  "method": "computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk"
 }
