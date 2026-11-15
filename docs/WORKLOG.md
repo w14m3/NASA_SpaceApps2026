@@ -33,3 +33,11 @@ Times are Europe/Paris. Newest entries at the bottom. The **resume point** is al
   offline). Objectives 50 met / 56 before V14; blocked O2, V11, V18 (unreachable hosts) with substitutes.
 - Deploy: CI builds and uploads; deploy step 404 until the owner enables GitHub Pages (D13).
 - Review and Judge pass: `docs/REVIEW_L5.md`; high-severity findings fixed.
+
+## RESUME POINT (2026-11-15 ~05:10)
+- Done: L0–L5 scope built and verified; objectives 51 met. Remaining: P13 (owner must enable GitHub Pages →
+  then `NODE_USE_ENV_PROXY=1 node scripts/check-deploy.mjs`), V14 full rebuild with `--candidates` (running),
+  Lighthouse record (`scripts/lighthouse-record.mjs`). Blocked by unreachable hosts: O2, V11, V12, V18 (substitutes
+  recorded).
+- Next if time remains before the 19:59 freeze: polish (Street View Sun animation, collapsed workbench sections in
+  Explore), re-run Judge pass, keep `npm run verify` green.
