@@ -66,7 +66,7 @@ export const DEFAULTS: AppState = {
   sel: { kind: 'curated', id: 'poi_site001_connecting_ridge' },
   h: 10,
   pins: [],
-  layers: ['relief', 'top3', 'pins'],
+  layers: ['relief', 'trek-lola10', 'top3', 'pins'],
   landing: DEFAULT_LANDING,
   durDays: 14,
   lander: 'medium',

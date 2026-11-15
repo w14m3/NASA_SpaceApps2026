@@ -1,0 +1,105 @@
+{
+ "id": "V18",
+ "test": "Mission replay: Sightline predictions at the published touchdowns of Chandrayaan-3 (2023-08-23), IM-1 (2024-02-22), IM-2 (2025-03-06) vs published accounts (ISRO, NASA), instrument height 2 m",
+ "criterion": "documented (qualitative agreement, differences explained)",
+ "measured": {
+  "predictions": {
+   "chandrayaan3_vikram": {
+    "touchdown_utc_used": "2023-08-23T12:34:00Z",
+    "terrain": "LOLA 80 m + LOLA 240 m (60\u00b0S)",
+    "z0_m": 529.7234449007652,
+    "sun_el_at_touchdown_deg": 8.614631290524173,
+    "sun_az_deg": 62.04254398047639,
+    "sun_visible_fraction_at_touchdown": 1,
+    "earth_el_at_touchdown_deg": 12.995105343717047,
+    "earth_visible_fraction_at_touchdown": 1,
+    "first_sunset_utc": "2023-09-04T07:22Z",
+    "days_of_sunlight_after_touchdown": 11.783938937717014,
+    "first_dark_interval": {
+     "start": "2023-09-04T07:22Z",
+     "end": "2023-09-19T22:54Z",
+     "hours": 375.5323893229167
+    },
+    "near_share": 0.08194444444444444,
+    "finest_px": 240,
+    "dte_hours_first_7_days": 156,
+    "earth_in_view_fraction_35d": 1
+   },
+   "im1_odysseus": {
+    "touchdown_utc_used": "2024-02-22T23:23:53Z",
+    "terrain": "LOLA 80 m + LOLA 240 m (60\u00b0S)",
+    "z0_m": 2591.9477552566914,
+    "sun_el_at_touchdown_deg": 10.472821039976452,
+    "sun_az_deg": 18.603822052688162,
+    "sun_visible_fraction_at_touchdown": 1,
+    "earth_el_at_touchdown_deg": 15.432075598259816,
+    "earth_visible_fraction_at_touchdown": 1,
+    "first_sunset_utc": "2024-03-02T17:46Z",
+    "days_of_sunlight_after_touchdown": 8.76591322157118,
+    "first_dark_interval": {
+     "start": "2024-03-02T17:46Z",
+     "end": "2024-03-19T22:40Z",
+     "hours": 412.8987630208333
+    },
+    "near_share": 0.0625,
+    "finest_px": 80,
+    "dte_hours_first_7_days": 168,
+    "earth_in_view_fraction_35d": 1
+   },
+   "im2_athena": {
+    "touchdown_utc_used": "2025-03-06T17:30:00Z",
+    "terrain": "LOLA 80 m + LOLA 240 m (60\u00b0S)",
+    "z0_m": 5321.501553305143,
+    "sun_el_at_touchdown_deg": 2.465422508195838,
+    "sun_az_deg": 65.67046542024448,
+    "sun_visible_fraction_at_touchdown": 1,
+    "earth_el_at_touchdown_deg": 11.192631864070902,
+    "earth_visible_fraction_at_touchdown": 1,
+    "first_sunset_utc": "2025-03-19T22:43Z",
+    "days_of_sunlight_after_touchdown": 13.217987060546875,
+    "first_dark_interval": {
+     "start": "2025-03-19T22:43Z",
+     "end": "2025-04-04T19:14Z",
+     "hours": 380.5091145833333
+    },
+    "near_share": 0,
+    "finest_px": 80,
+    "dte_hours_first_7_days": 167,
+    "earth_in_view_fraction_35d": 0.8236543201264881
+   }
+  },
+  "published": {
+   "chandrayaan3_vikram": {
+    "source": "ISRO, Chandrayaan-3 mission page, https://www.isro.gov.in/Chandrayaan3.html",
+    "quotes": [
+     "August 23, 2023 \u2026 Chandrayaan-3 has successfully soft-landed on the moon.",
+     "September 04, 2023 The lander and rover are in sleep mode. Awaiting their awakening around September 22, 2023.",
+     "September 22, 2023 Efforts to establish communication with lander and rover are underway."
+    ],
+    "comparison": "Predicted first sunset 2023-09-04 07:22 UTC (instrument 2 m, LOLA 240 m 60\u00b0S \u2014 the site is outside the 80 m product) matches the published sleep date (4 Sep); predicted next sunrise 2023-09-19 22:54 UTC precedes the published expected awakening \"around September 22\" by ~2\u20133 days, consistent with waiting for the Sun to climb and batteries to charge."
+   },
+   "im1_odysseus": {
+    "source": "NASA, \"NASA Collects First Surface Science in Decades via Commercial Moon Mission\" (page last updated 4 Mar 2024), https://www.nasa.gov/missions/artemis/clps/nasa-collects-first-surface-science-in-decades-via-commercial-moon-mission/",
+    "quotes": [
+     "The six instruments ceased science and technology operations seven days after landing in the lunar South Pole region aboard Intuitive Machines\u2019 Odysseus, meeting pre-launch projected mission operations.",
+     "After landing, NASA payload data was acquired consistent with the communications and other constraints resulting from the lander orientation."
+    ],
+    "comparison": "Operations ceased ~7 days after the 2024-02-22 touchdown (~2024-02-29), about 1.8 days before Sightline\u2019s predicted geometric sunset at the site (2024-03-02 17:46 UTC, 2 m, LOLA 80 m). Documented difference: the lander came to rest tilted (NASA cites \"lander orientation\" constraints) and its panels and power budget are not modelled; geometry alone gives the upper bound."
+   },
+   "im2_athena": {
+    "source": "NASA release 25-025, \"NASA Receives Some Data Before Intuitive Machines Ends Lunar Mission\" (7 Mar 2025), https://www.nasa.gov/news-release/nasa-receives-some-data-before-intuitive-machines-ends-lunar-mission/",
+    "quotes": [
+     "Planned to land at Mons Mouton, IM-2 touched down at approximately 11:30 a.m. \u2026 March 6, more than 1,300 feet (400 meters) from its intended landing site.",
+     "The lunar lander is on its side about 820 feet from the intended landing site, Mons Mouton.",
+     "Intuitive Machines said images collected later confirmed the lander was on its side, preventing it from fully operating the drill and other instruments before its batteries were depleted.",
+     "\u2026 calling an early end of mission at 12:15 a.m. CST Friday."
+    ],
+    "comparison": "Sightline predicts the Sun only 2.5\u00b0 above the horizontal at touchdown and ~13 days of geometric sunlight at the 80 m DEM scale. The mission ended ~13 h after touchdown because the lander lay on its side inside a ~20 m crater (LROC, sites.json) \u2014 relief smaller than one DEM pixel and an attitude outside the screening model. This is the documented limit \"DEMs cannot resolve rocks or craters smaller than their pixel\"; with the Sun 2.5\u00b0 up, a few metres of local relief can shade a lander for days."
+   }
+  }
+ },
+ "summary": "Chandrayaan-3: predicted sunset 4 Sep = published sleep 4 Sep, next sunrise 19 Sep vs awakening expected ~22 Sep; IM-1: ops ended ~1.8 d before predicted sunset (tilted lander, not modelled); IM-2: 2.5\u00b0 Sun, ended in a sub-pixel crater on its side (outside DEM-scale screening)",
+ "status": "documented",
+ "generated_utc": "2026-11-15T10:29:03.761Z",
+ "generator": "vitest (web/src/core)"
+}

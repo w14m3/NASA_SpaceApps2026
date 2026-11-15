@@ -3,7 +3,7 @@
 import { analyseSite, defaultScenario, type Scenario, type SiteAnalysis } from '../core/analysis'
 import { candidateMask, parseCandidates, type CandidateGrid } from '../core/candidates'
 import { DAY, D2R, R2D, R_MOON_M } from '../core/constants'
-import { bilinearXY, type DemGrid } from '../core/dem'
+import { bilinearXY, cascadeXY, type DemGrid } from '../core/dem'
 import { browserGunzip, loadDem } from '../core/demload'
 import { loadEphemeris, type Ephemeris } from '../core/ephem'
 import { computeHorizon } from '../core/horizon'
@@ -29,6 +29,21 @@ let ephP: Promise<Ephemeris> | null = null
 const eph = () => (ephP ??= loadEphemeris(fetcher))
 let demP: Promise<DemGrid> | null = null
 const dem = () => (demP ??= loadDem(fetcher, browserGunzip))
+/** Terrain cascade, finest first: LOLA 80 m windows around the hero regions, then LOLA 240 m (80–90°S). */
+let cascadeP: Promise<DemGrid[]> | null = null
+const cascade = () =>
+  (cascadeP ??= (async () => {
+    const idx = (await (await fetcher('data/dem/index.json')).json()) as { grids_finest_first: string[] }
+    const fine = await Promise.all(idx.grids_finest_first.filter((n) => n !== 'dem240_80S').map((n) => loadDem(fetcher, browserGunzip, 'data/dem/', n)))
+    return [...fine, await dem()]
+  })())
+/** Finest grid with data at a point, and the plane-fit baseline of 3 of its pixels. */
+async function finestAt(lon: number, lat: number) {
+  const gs = await cascade()
+  const [x, y] = lonLatXY(lon, lat)
+  const g = gs.find((gg) => !Number.isNaN(bilinearXY(gg, x, y))) ?? gs[gs.length - 1]
+  return { g, baseline: 3 * g.px, all: gs }
+}
 const grids = new Map<string, Promise<CandidateGrid>>()
 function grid(id: string) {
   if (!grids.has(id)) {
@@ -113,8 +128,7 @@ const api = {
     return true
   },
   async liveMask(a: { lon: number; lat: number; h: number; nAz: number }) {
-    const g = await dem()
-    const r = computeHorizon([g], a.lon, a.lat, a.h, { nAz: a.nAz })
+    const r = computeHorizon(await cascade(), a.lon, a.lat, a.h, { nAz: a.nAz })
     if (!r) return null
     return { mask: r.mask, z0: r.z0, voidFrac: r.voidFrac, rays: r.raysLeavingData, rough: r.rough }
   },
@@ -122,14 +136,13 @@ const api = {
     return analyseSite(await eph(), a.site, a.mask, scenario(a.sc))
   },
   async heightAt(a: { lon: number; lat: number }) {
-    const g = await dem()
-    const pf = planeFit(g, a.lon, a.lat, 720)
-    return { z: bilinearXY(g, ...lonLatXY(a.lon, a.lat)), slope: pf?.slope ?? NaN, downhill: pf?.downhill ?? NaN, rough: pf?.roughness ?? NaN }
+    const { g, baseline } = await finestAt(a.lon, a.lat)
+    const pf = planeFit(g, a.lon, a.lat, baseline)
+    return { z: bilinearXY(g, ...lonLatXY(a.lon, a.lat)), slope: pf?.slope ?? NaN, downhill: pf?.downhill ?? NaN, rough: pf?.roughness ?? NaN, baseline, label: g.label }
   },
   async safety(a: { lon: number; lat: number; lander: 'small' | 'medium' | 'large'; ellipse: Ellipse; maxSlope: number; seed: number }) {
-    const g = await dem()
+    const { g, baseline } = await finestAt(a.lon, a.lat)
     const p = LANDERS[a.lander]
-    const baseline = 720
     const pf = planeFit(g, a.lon, a.lat, baseline)
     if (!pf) return null
     const tip = tipOver(p, pf.slope, SLOPE_UNCERTAINTY_DEG)
@@ -142,7 +155,7 @@ const api = {
   },
   async regionMeta(a: { region: string }) {
     const g = await grid(a.region)
-    return { n: g.n, nx: g.nx, x: g.x, y: g.y, lon: g.lon, lat: g.lat, slope: g.slope, spacing: g.region.spacingM, heights: g.heights }
+    return { n: g.n, nx: g.nx, x: g.x, y: g.y, lon: g.lon, lat: g.lat, slope: g.slope, spacing: g.region.spacingM, heights: g.heights, slopeBaselineM: g.slopeBaselineM, demLabel: g.demLabel }
   },
   async rank(a: { region: string; h: number; t0: number; t1: number; lander: 'small' | 'medium' | 'large'; persona: string; constraints?: Partial<Constraints>; minSepKm?: number; stations?: Station[]; refine?: number }, progress?: (f: number) => void) {
     const e = await eph()
@@ -191,6 +204,8 @@ const api = {
       median: r.median,
       constraints,
       heightUsed: g.heights[hi],
+      slopeBaselineM: g.slopeBaselineM,
+      demLabel: g.demLabel,
       layers: {
         lit: layer((o) => o.lit * 100),
         night: layer((o) => o.nightH),
@@ -218,10 +233,10 @@ const api = {
   /** Illumination compass (§6.12): sunlit fraction at 8 neighbours r metres away (LOLA 240 m live masks). */
   async compass(a: { lon: number; lat: number; h: number; t0: number; t1: number; r: number }) {
     const e = await eph()
-    const g = await dem()
+    const gs = await cascade()
     const out: { az: number; lon: number; lat: number; lit: number }[] = []
     const sunlit = (lon: number, lat: number) => {
-      const hz = computeHorizon([g], lon, lat, a.h, { nAz: 360, bands: false })
+      const hz = computeHorizon(gs, lon, lat, a.h, { nAz: 360, bands: false })
       if (!hz) return NaN
       const f = siteFrame({ lon, lat, z0: hz.z0, h: a.h })
       let on = 0
@@ -395,7 +410,7 @@ const api = {
   },
   /** Terrain patch in local east/north metres around a site (curvature drop included), for the 3D view. */
   async demPatch(a: { lon: number; lat: number; halfKm: number; n: number }) {
-    const g = await dem()
+    const { g, all } = await finestAt(a.lon, a.lat)
     const [x0, y0] = lonLatXY(a.lon, a.lat)
     const lo = a.lon * D2R
     const k = 2 / (1 - Math.sin(a.lat * D2R))
@@ -410,10 +425,10 @@ const api = {
       for (let i = 0; i < a.n; i++) {
         const E = -half + (2 * half * i) / (a.n - 1)
         const N = half - (2 * half * j) / (a.n - 1)
-        const v = bilinearXY(g, x0 + k * (E * ex + N * nx), y0 + k * (E * ey + N * ny))
+        const v = cascadeXY(all, x0 + k * (E * ex + N * nx), y0 + k * (E * ey + N * ny)).z
         z[j * a.n + i] = (Number.isNaN(v) ? zc : v) - zc - (E * E + N * N) / (2 * R_MOON_M)
       }
-    return { n: a.n, half, z, zc, px: g.px, label: g.label }
+    return { n: a.n, half, z, zc, px: g.px, label: g.px < 200 ? 'LOLA 80 m (+240 m beyond the window)' : g.label }
   },
   /** Instantaneous terrain shadow over the polar cap for the Sun direction at time t (horizon sweep per pixel). */
   async lighting(a: { t: number; size: number }) {

@@ -54,3 +54,14 @@ Newest last. Each entry: decision · reason · consequence. Contract rule R10 / 
 - **D15 (11:30) — O2 run on LOLA 80 m.** With `codex/fetch_nasa_data.py` + `pipeline/scripts/export_dem_raw.py`,
   `web/scripts/o2.ts` recomputes the 26 curated masks from LOLA 80 m + 240 m (60°S): max 0.0010° vs v1 (= half the v1
   0.002° quantum); with the golden-section refinement up to 0.030°. The 80 m `_ERR` raster has a median of 0.29 m.
+- **D16 (12:00) — Live terrain uses LOLA 80 m windows.** 48 × 48 km LOLA 80 m windows around the four hero regions
+  (`pipeline/scripts/build_dem80_windows.py`, ~390 kB each, heights at 0.25 m) sit in front of the 240 m grid in the
+  worker's cascade: live horizons, plane fits (baseline = 3 pixels of the finest grid: 240 m inside a window, 720 m
+  elsewhere), the map probe and Site 3D use 80 m there. The confidence grade uses the finest grid actually used.
+- **D17 — IM-1 mask recomputed on LOLA 80 m (v1 defect 1).** `web/scripts/recompute-im1.ts` replaces the v1 240 m-only
+  mask; near-field share 6 % at 2 m, 0 % at 10 m.
+- **D18 — Moon Trek south-polar tiles integrated.** Catalogue read through the Trek services (71 south-polar layers);
+  LOLA 10 m and 30 m shaded relief, LRO WAC mosaic and the LOLA PSR layer are offered on the polar map (tile matrix from
+  each WMTSCapabilities.xml; CORS `*`). The LOLA 10 m relief is the default basemap above the offline hillshade.
+- **D19 — Challenge Resources tab not re-checked.** www.spaceappschallenge.org fails TLS verification from this
+  environment (incomplete certificate chain, as in v1); certificate checks are not bypassed.

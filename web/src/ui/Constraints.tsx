@@ -6,7 +6,7 @@ import { setState, useStore } from './store'
 
 type NumKey = 'maxSlope' | 'minSafeArea' | 'minMargin' | 'minSunlit' | 'maxNightH' | 'minDte'
 const ENG: { k: NumKey; label: string; min: number; max: number; step: number; scale: number; unit: string; src: string }[] = [
-  { k: 'maxSlope', label: 'Max slope (720 m baseline)', min: 2, max: 20, step: 1, scale: 1, unit: '°', src: '8° default: literature example (Barker et al. 2021)' },
+  { k: 'maxSlope', label: 'Max slope (DEM baseline)', min: 2, max: 20, step: 1, scale: 1, unit: '°', src: '8° default: literature example (Barker et al. 2021)' },
   { k: 'minMargin', label: 'Min tip-over margin', min: 0, max: 30, step: 1, scale: 1, unit: '°', src: 'assumption' },
   { k: 'minSafeArea', label: 'Min safe-area fraction (500 m)', min: 0, max: 100, step: 5, scale: 100, unit: '%', src: 'assumption' },
   { k: 'minSunlit', label: 'Min sunlit time', min: 0, max: 100, step: 5, scale: 100, unit: '%', src: 'assumption' },

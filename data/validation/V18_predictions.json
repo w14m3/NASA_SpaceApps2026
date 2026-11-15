@@ -1,0 +1,65 @@
+{
+ "chandrayaan3_vikram": {
+  "touchdown_utc_used": "2023-08-23T12:34:00Z",
+  "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+  "z0_m": 529.7234449007652,
+  "sun_el_at_touchdown_deg": 8.614631290524173,
+  "sun_az_deg": 62.04254398047639,
+  "sun_visible_fraction_at_touchdown": 1,
+  "earth_el_at_touchdown_deg": 12.995105343717047,
+  "earth_visible_fraction_at_touchdown": 1,
+  "first_sunset_utc": "2023-09-04T07:22Z",
+  "days_of_sunlight_after_touchdown": 11.783938937717014,
+  "first_dark_interval": {
+   "start": "2023-09-04T07:22Z",
+   "end": "2023-09-19T22:54Z",
+   "hours": 375.5323893229167
+  },
+  "near_share": 0.08194444444444444,
+  "finest_px": 240,
+  "dte_hours_first_7_days": 156,
+  "earth_in_view_fraction_35d": 1
+ },
+ "im1_odysseus": {
+  "touchdown_utc_used": "2024-02-22T23:23:53Z",
+  "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+  "z0_m": 2591.9477552566914,
+  "sun_el_at_touchdown_deg": 10.472821039976452,
+  "sun_az_deg": 18.603822052688162,
+  "sun_visible_fraction_at_touchdown": 1,
+  "earth_el_at_touchdown_deg": 15.432075598259816,
+  "earth_visible_fraction_at_touchdown": 1,
+  "first_sunset_utc": "2024-03-02T17:46Z",
+  "days_of_sunlight_after_touchdown": 8.76591322157118,
+  "first_dark_interval": {
+   "start": "2024-03-02T17:46Z",
+   "end": "2024-03-19T22:40Z",
+   "hours": 412.8987630208333
+  },
+  "near_share": 0.0625,
+  "finest_px": 80,
+  "dte_hours_first_7_days": 168,
+  "earth_in_view_fraction_35d": 1
+ },
+ "im2_athena": {
+  "touchdown_utc_used": "2025-03-06T17:30:00Z",
+  "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
+  "z0_m": 5321.501553305143,
+  "sun_el_at_touchdown_deg": 2.465422508195838,
+  "sun_az_deg": 65.67046542024448,
+  "sun_visible_fraction_at_touchdown": 1,
+  "earth_el_at_touchdown_deg": 11.192631864070902,
+  "earth_visible_fraction_at_touchdown": 1,
+  "first_sunset_utc": "2025-03-19T22:43Z",
+  "days_of_sunlight_after_touchdown": 13.217987060546875,
+  "first_dark_interval": {
+   "start": "2025-03-19T22:43Z",
+   "end": "2025-04-04T19:14Z",
+   "hours": 380.5091145833333
+  },
+  "near_share": 0,
+  "finest_px": 80,
+  "dte_hours_first_7_days": 167,
+  "earth_in_view_fraction_35d": 0.8236543201264881
+ }
+}

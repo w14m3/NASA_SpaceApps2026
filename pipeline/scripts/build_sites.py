@@ -32,7 +32,9 @@ def main() -> None:
     for s in sites:
         mfile = V1 / "web/public/data/masks" / f"{s['id']}.json"
         has = mfile.exists()
-        if has:
+        # IM-1 is recomputed on LOLA 80 m by web/scripts/recompute-im1.ts (v1 defect 1); keep that file if present
+        if has and not (s["id"] == "im1_odysseus" and (OUT / "masks" / mfile.name).exists()
+                        and "Sightline" in json.loads((OUT / "masks" / mfile.name).read_text()).get("label", "")):
             shutil.copyfile(mfile, OUT / "masks" / mfile.name)
         group = GROUP[s["category"]]
         if s["lat"] < -60 and s["category"] in ("clps", "international"):

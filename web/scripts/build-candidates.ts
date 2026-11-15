@@ -10,13 +10,26 @@ import { planeFit } from '../src/core/safety'
 import { gridPoints } from '../src/core/candidates'
 import { CANDIDATE_HEIGHTS, CANDIDATE_NAZ, HERO_REGIONS, MASK_STEP_DEG } from '../src/core/regions'
 import { PUBLIC, testDem } from '../src/core/testdata'
+import { hasCachedDem, loadCachedDem } from '../src/core/cachedem'
+import type { DemGrid } from '../src/core/dem'
 
 const OUT = join(PUBLIC, 'data', 'candidates')
-const BASELINE = 720 // m: plane fit over 3 pixels of the 240 m DEM
+
+/** Terrain: LOLA 80 m (80–90°S) then LOLA 240 m (60–90°S) when the NASA products are in data/cache (preferred, the
+ *  same inputs as the validated curated masks, O2); otherwise the committed 240 m artifact. */
+async function terrain(): Promise<{ grids: DemGrid[]; fine: DemGrid; baseline: number; label: string }> {
+  if (hasCachedDem('LDEM_80S_80MPP_ADJ') && hasCachedDem('LDEM_60S_240MPP_ADJ')) {
+    const g80 = loadCachedDem('LDEM_80S_80MPP_ADJ', 'LOLA 80 m', 0.29)
+    const g240 = loadCachedDem('LDEM_60S_240MPP_ADJ', 'LOLA 240 m', 3)
+    return { grids: [g80, g240], fine: g80, baseline: 240, label: 'LOLA 80 m + 240 m' }
+  }
+  const g = await testDem()
+  return { grids: [g], fine: g, baseline: 720, label: g.label }
+}
 
 async function one(id: string) {
   const region = HERO_REGIONS.find((r) => r.id === id)!
-  const g = await testDem()
+  const { grids, fine, baseline: BASELINE, label } = await terrain()
   const { nx, pts } = gridPoints(region)
   const n = pts.length
   const f = (k: number) => new Float32Array(n)
@@ -32,12 +45,12 @@ async function one(id: string) {
     lat[i] = p.lat
     x[i] = p.x
     y[i] = p.y
-    const pf = planeFit(g, p.lon, p.lat, BASELINE)
+    const pf = planeFit(fine, p.lon, p.lat, BASELINE)
     slope[i] = pf ? pf.slope : NaN
     downhill[i] = pf ? pf.downhill : NaN
     rough[i] = pf ? pf.roughness : NaN
     CANDIDATE_HEIGHTS.forEach((h, hi) => {
-      const r = computeHorizon([g], p.lon, p.lat, h, { nAz: CANDIDATE_NAZ, bands: false })
+      const r = computeHorizon(grids, p.lon, p.lat, h, { nAz: CANDIDATE_NAZ, bands: false })
       if (!r) return
       z0[i] = r.z0
       let mn = Infinity
@@ -82,13 +95,14 @@ async function one(id: string) {
     n_az: CANDIDATE_NAZ,
     mask_step_deg: MASK_STEP_DEG,
     slope_baseline_m: BASELINE,
-    dem_label: g.label,
+    dem_label: label,
+    finest_px: fine.px,
     clipped_mask_values: clipped,
     file: `${id}.bin.gz`,
     bytes_gzip: gz.length,
     built_utc: new Date().toISOString(),
     seconds: (Date.now() - t0) / 1000,
-    method: 'computeHorizon (web/src/core/horizon.ts), 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a 720 m disk',
+    method: `computeHorizon (web/src/core/horizon.ts) on ${label}, 360 azimuths, s_max 300 km, refinement on, no bands; planeFit over a ${BASELINE} m disk (3 pixels of the finest grid)`,
   }
   writeFileSync(join(OUT, `${id}.json`), JSON.stringify(meta, null, 1))
   console.log(`${id}: done, ${n} candidates, ${(gz.length / 1e6).toFixed(2)} MB gzip, ${meta.seconds.toFixed(0)} s, clipped ${clipped}`)

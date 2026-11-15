@@ -1,0 +1,18 @@
+{
+ "name": "LOLA 80 m \u00b7 Malapert massif",
+ "label": "LOLA 80 m (PGDA product 90)",
+ "file": "dem80_malapert.i16d.gz",
+ "encoding": "gzip of int16 little-endian row-wise deltas (first column absolute); NODATA -32768",
+ "nx": 600,
+ "ny": 600,
+ "x0": -18320.0,
+ "y0": 144000.0,
+ "px": 80.0,
+ "scale": 0.25,
+ "err": 0.0833183154463768,
+ "err_definition": "median of the LOLA 80 m _ERR raster (1-sigma) in the window",
+ "source": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_80MPP_ADJ.TIF",
+ "sha256_source_tif": "82030dcbdd7c4bb0c7d858e9b4b293b9f2cda5a543ba31ec0f42784bd6beee5a",
+ "sha256_file": "0673bb3ed0f6cd58b2e0da147d797fcc74d37873e7fac7b0127660b4654aec18",
+ "bytes": 381141
+}

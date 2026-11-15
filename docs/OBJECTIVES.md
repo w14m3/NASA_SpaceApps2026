@@ -42,7 +42,7 @@ result yet; `todo` without evidence.
 | P8 | Moon Street View | e2e | L4 | 2 | e2e:street view | met |
 | P9 | Moon Directions | V20 + e2e | L4 | 3 | vt:V20; val:V20; e2e:directions | met |
 | P10 | Site 3D with true-Sun shadows | e2e screenshot, ≥ 30 fps | L4 | 2 | e2e:site 3d | met |
-| P11 | Mission replay (2023–2025 landings) | V18, V19 | L4 | 2 | val:V19; e2e:mission replay | met |
+| P11 | Mission replay (2023–2025 landings) | V18, V19 | L4 | 2 | val:V18; val:V19; e2e:mission replay | met |
 | P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete | L0 | 2 | doc:docs/RESOURCES.md | met |
 | P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it | L5 | 1 | val:DEPLOY | failing |
 | P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | met |
@@ -76,6 +76,6 @@ result yet; `todo` without evidence.
 | V15 | Plane fit on synthetic tilted planes and a cone | slope ≤ 0.01°, azimuth ≤ 0.1° | L3 | 1 | vt:V15; val:V15 | met |
 | V16 | Tip-over analytic cases | exact to 1e-9 | L3 | 1 | vt:V16; val:V16 | met |
 | V17 | Top 3: determinism, constraints, diversity | pass | L3 | 1 | vt:V17; val:V17 | met |
-| V18 | Mission replay vs published accounts (cited) | documented | L4 | 2 | blocked:published end-of-mission accounts unreadable here (hosts unreachable); touchdown facts only, see docs/VALIDATION.md | blocked |
+| V18 | Mission replay vs published accounts (cited) | documented | L4 | 2 | val:V18 | blocked |
 | V19 | Ephemeris 2017–2031 vs SPICE | ≤ 0.001° | L1 | 1 | py:test_pa_to_me_convention; val:V19 | met |
 | V20 | Moon Directions: A* vs Dijkstra; no forbidden cell | exact cost match | L4 | 3 | vt:V20; val:V20 | met |

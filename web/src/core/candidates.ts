@@ -22,6 +22,7 @@ export interface CandidateGrid {
   near: Uint8Array[] // percent
   slopeBaselineM: number
   demLabel: string
+  finestPx: number
 }
 
 export function gridPoints(r: HeroRegion) {
@@ -45,7 +46,7 @@ export function candidateMask(g: CandidateGrid, i: number, hi: number): Mask {
   const off = g.offset[hi][i] * MASK_STEP_DEG
   const m = g.masks[hi]
   for (let k = 0; k < CANDIDATE_NAZ; k++) mid[k] = off + m[i * CANDIDATE_NAZ + k] * MASK_STEP_DEG
-  return { n: CANDIDATE_NAZ, mid, lo: mid, hi: mid, kind: `${g.demLabel}, 360 azimuths (candidate grid)`, nearShare: g.near[hi][i] / 100, finestPx: 240 }
+  return { n: CANDIDATE_NAZ, mid, lo: mid, hi: mid, kind: `${g.demLabel}, 360 azimuths (candidate grid)`, nearShare: g.near[hi][i] / 100, finestPx: g.finestPx }
 }
 
 /** Fast mask lookup without allocation (deg). */
@@ -60,7 +61,7 @@ export function candidateMaskAt(g: CandidateGrid, i: number, hi: number, az: num
   return (g.offset[hi][i] + v) * MASK_STEP_DEG
 }
 
-export function parseCandidates(region: HeroRegion, meta: { n: number; nx: number; heights: number[]; slope_baseline_m: number; dem_label: string }, buf: ArrayBuffer): CandidateGrid {
+export function parseCandidates(region: HeroRegion, meta: { n: number; nx: number; heights: number[]; slope_baseline_m: number; dem_label: string; finest_px?: number }, buf: ArrayBuffer): CandidateGrid {
   const n = meta.n
   let o = 0
   const f32 = () => {
@@ -88,5 +89,5 @@ export function parseCandidates(region: HeroRegion, meta: { n: number; nx: numbe
     o += n
     o = Math.ceil(o / 4) * 4
   }
-  return { region, n, nx: meta.nx, lon, lat, x, y, z0, slope, downhill, rough, heights: meta.heights, offset, masks, near, slopeBaselineM: meta.slope_baseline_m, demLabel: meta.dem_label }
+  return { region, n, nx: meta.nx, lon, lat, x, y, z0, slope, downhill, rough, heights: meta.heights, offset, masks, near, slopeBaselineM: meta.slope_baseline_m, demLabel: meta.dem_label, finestPx: meta.finest_px ?? 240 }
 }

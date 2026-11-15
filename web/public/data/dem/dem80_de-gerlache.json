@@ -1,0 +1,18 @@
+{
+ "name": "LOLA 80 m \u00b7 de Gerlache rim",
+ "label": "LOLA 80 m (PGDA product 90)",
+ "file": "dem80_de-gerlache.i16d.gz",
+ "encoding": "gzip of int16 little-endian row-wise deltas (first column absolute); NODATA -32768",
+ "nx": 600,
+ "ny": 600,
+ "x0": -60480.0,
+ "y0": 38240.0,
+ "px": 80.0,
+ "scale": 0.25,
+ "err": 0.08442496508359909,
+ "err_definition": "median of the LOLA 80 m _ERR raster (1-sigma) in the window",
+ "source": "https://pgda.gsfc.nasa.gov/data/LOLA_20mpp/LDEM_80S_80MPP_ADJ.TIF",
+ "sha256_source_tif": "82030dcbdd7c4bb0c7d858e9b4b293b9f2cda5a543ba31ec0f42784bd6beee5a",
+ "sha256_file": "4da3c48f68c6a56aee35bb3e09529bfda6f6842f74dbc9336fba18af52dd3497",
+ "bytes": 388630
+}

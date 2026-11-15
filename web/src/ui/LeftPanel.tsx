@@ -144,7 +144,7 @@ export function Top3Cards({ compact = false }: { compact?: boolean }) {
   return (
     <div data-testid="top3">
       <p className="hint">
-        {t('top3.region')}: {r?.name} · {t('top3.feasible', { f: String(data.feasibleCount), n: String(data.total) })} · {data.heightUsed} m
+        {t('top3.region')}: {r?.name} · {t('top3.feasible', { f: String(data.feasibleCount), n: String(data.total) })} · {data.heightUsed} m mast · {data.demLabel}, slope baseline {data.slopeBaselineM} m
       </p>
       {data.top.map((o, k) => {
         const ref: SiteRef = { kind: 'candidate', region, i: o.i }
@@ -229,7 +229,7 @@ function Bar({ label, v }: { label: string; v: number }) {
   )
 }
 
-const LAYERS = ['relief', 'lighting', 'lit', 'night', 'zero', 'earth', 'dte', 'slope', 'viability', 'gain', 'rays', 'top3', 'pins', 'regions'] as const
+const LAYERS = ['relief', 'trek-lola10', 'trek-lola30', 'trek-wac', 'trek-psr', 'lighting', 'lit', 'night', 'zero', 'earth', 'dte', 'slope', 'viability', 'gain', 'rays', 'top3', 'pins', 'regions'] as const
 
 export function Overlays() {
   const { t } = useT()

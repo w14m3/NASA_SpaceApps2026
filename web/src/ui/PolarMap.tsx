@@ -12,6 +12,7 @@ import { setState, useStore, type SiteRef } from './store'
 import { selectSite } from './LeftPanel'
 import type { ResolvedSite } from './data'
 import { useRoute } from './Insights'
+import { drawTrek, TREK_LAYERS } from './trekTiles'
 
 const HILL_HALF = 304_000 // m, extent of the 1900 × 1900 v1 hillshade (320 m pixels)
 const LETTERS = ['A', 'B', 'C']
@@ -79,10 +80,11 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
     const [x, y] = lonLatToXY(r.lon, r.lat)
     return { cx: x, cy: y, s: 0.012 } // px per metre
   })
-  const [probe, setProbe] = useState<{ lon: number; lat: number; z?: number; slope?: number } | null>(null)
+  const [probe, setProbe] = useState<{ lon: number; lat: number; z?: number; slope?: number; baseline?: number } | null>(null)
   const [regionMeta, setRegionMeta] = useState<Awaited<ReturnType<typeof rpcLayers.regionMeta>> | null>(null)
   const [light, setLight] = useState<{ t: number; N: number; half: number; data: Uint8Array } | null>(null)
   const [size, setSize] = useState({ w: 800, h: 600 })
+  const [tileTick, setTileTick] = useState(0)
   const drag = useRef<{ x: number; y: number; cx: number; cy: number; moved: boolean } | null>(null)
 
   useEffect(() => {
@@ -172,6 +174,9 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
       ctx.imageSmoothingEnabled = s * 320 < 2
       ctx.drawImage(img, X(-HILL_HALF), Y(HILL_HALF), 2 * HILL_HALF * s, 2 * HILL_HALF * s)
     }
+    // NASA Moon Trek basemaps and overlay (streamed tiles; missing tile = no coverage)
+    const viewBox = { x0: cx - size.w / 2 / s, x1: cx + size.w / 2 / s, y0: cy - size.h / 2 / s, y1: cy + size.h / 2 / s }
+    for (const tl of TREK_LAYERS) if (layers.includes(tl.key)) drawTrek(ctx, tl, X, Y, s, viewBox, () => setTileTick((k) => k + 1), tl.key === 'trek-psr' ? 0.7 : 1)
     if (lightOn && lightCanvas && light) {
       ctx.imageSmoothingEnabled = true
       ctx.drawImage(lightCanvas, X(-light.half), Y(light.half), 2 * light.half * s, 2 * light.half * s)
@@ -331,7 +336,7 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
     ctx.fillStyle = '#e8ecf4'
     ctx.fillRect(size.w - nice * s - 20, size.h - 18, nice * s, 3)
     ctx.fillText(nice >= 1000 ? `${nice / 1000} km` : `${nice} m`, size.w - nice * s - 20, size.h - 22)
-  }, [view, size, img, layers, sites, site, top3.data, region, pins, eph, tNow, layerValues, regionMeta, activeLayer, lightCanvas, light, lightOn, routeNodes])
+  }, [view, size, img, layers, sites, site, top3.data, region, pins, eph, tNow, layerValues, regionMeta, activeLayer, lightCanvas, light, lightOn, routeNodes, tileTick])
 
   const toLL = (ev: { clientX: number; clientY: number }) => {
     const el = canvas.current!
@@ -402,7 +407,7 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
           setProbe({ lon: p.lon, lat: p.lat })
           if (probeTimer.current) clearTimeout(probeTimer.current)
           probeTimer.current = setTimeout(() => {
-            if (p.lat <= -79.9) rpcLayers.heightAt({ lon: p.lon, lat: p.lat }).then((h) => setProbe((q) => (q && q.lon === p.lon ? { ...q, z: h.z, slope: h.slope } : q)))
+            if (p.lat <= -79.9) rpcLayers.heightAt({ lon: p.lon, lat: p.lat }).then((h) => setProbe((q) => (q && q.lon === p.lon ? { ...q, z: h.z, slope: h.slope, baseline: h.baseline } : q)))
           }, 120)
         }}
         onPointerUp={(e) => {
@@ -432,7 +437,7 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
         <div className="probe" aria-live="off" data-testid="probe">
           {fmtLat(probe.lat)} {fmtLon(probe.lon)}
           {probe.z !== undefined && Number.isFinite(probe.z) ? ` · z ${n(probe.z, 0)} m` : ''}
-          {probe.slope !== undefined && Number.isFinite(probe.slope) ? ` · slope ${n(probe.slope, 1)}° (720 m baseline)` : ''}
+          {probe.slope !== undefined && Number.isFinite(probe.slope) ? ` · slope ${n(probe.slope, 1)}° (${probe.baseline} m baseline)` : ''}
         </div>
       )}
       {activeLayer && (
@@ -447,16 +452,18 @@ export function PolarMap({ site }: { site: ResolvedSite | null }) {
         </div>
       )}
       {game && <GameCard result={gameResult} onClose={() => (setState({ game: false }), setGameResult(null))} />}
-      <div className="exag">Shaded relief ×2 vertical exaggeration, for visibility · LOLA (NASA GSFC PGDA)</div>
+      <div className="exag">
+        {TREK_LAYERS.filter((tl) => layers.includes(tl.key)).map((tl) => `${tl.title} — NASA Moon Trek`).join(' · ') || 'Shaded relief ×2 vertical exaggeration, for visibility · LOLA (NASA GSFC PGDA)'}
+      </div>
     </>
   )
 }
 
 function layerHint(l: string, h?: number) {
   const hh = h ?? 10
-  const base = `Candidate grid 250 m, LOLA 240 m horizons, mast ${hh} m, hourly samples over the mission window.`
+  const base = `Candidate grid 250 m, horizons from the grid's LOLA cascade, mast ${hh} m, hourly samples over the mission window.`
   if (l === 'zero') return `${base} Cells never lit in this window — a proxy for permanently shadowed regions at this resolution, not a PSR map.`
-  if (l === 'slope') return 'Plane-fit slope over a 720 m disk (3 DEM pixels). Lander-scale slopes are steeper.'
+  if (l === 'slope') return 'Plane-fit slope over a disk of 3 DEM pixels (baseline in the Top 3 header). Lander-scale slopes are steeper.'
   if (l === 'gain') return 'Extra sunlit time at a 10 m mast versus 2 m, percentage points.'
   return base
 }

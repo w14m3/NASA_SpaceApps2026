@@ -80,7 +80,7 @@ export default function Brief() {
                 <Row label="Longest night (h)" vals={opts.map((o) => n(o.nightH, 0))} />
                 <Row label="Direct-to-Earth (% of window)" vals={opts.map((o) => n(o.dte * 100, 1))} />
                 <Row label="Longest DTE gap (h)" vals={opts.map((o) => n(o.dteGapH, 0))} />
-                <Row label="Slope at 720 m baseline (°)" vals={opts.map((o) => n(o.slope, 1))} />
+                <Row label={`Slope at ${d.slopeBaselineM} m baseline (°)`} vals={opts.map((o) => n(o.slope, 1))} />
                 <Row label="Tip-over margin (°) · v_crit (m/s)" vals={opts.map((o) => `${n(o.margin, 1)} · ${n(o.vCrit, 2)}`)} />
                 <Row label="Safe-area fraction (500 m)" vals={opts.map((o) => `${Math.round(o.safeArea * 100)} %`)} />
                 <Row label="Scores S / P / L / R" vals={opts.map((o) => `${Math.round(o.scores.safety)} / ${Math.round(o.scores.power)} / ${Math.round(o.scores.link)} / ${Math.round(o.scores.robustness)}`)} />
@@ -93,7 +93,7 @@ export default function Brief() {
               <div>
                 <h3>Engineering</h3>
                 <ul data-testid="brief-engineering">
-                  <li>Slope ≤ {d.constraints.maxSlope}° at the DEM baseline (720 m)</li>
+                  <li>Slope ≤ {d.constraints.maxSlope}° at the DEM baseline ({d.slopeBaselineM} m, {d.demLabel})</li>
                   <li>Safe-area fraction ≥ {Math.round(d.constraints.minSafeArea * 100)} % within 500 m</li>
                   <li>Tip-over margin ≥ {d.constraints.minMargin}°</li>
                   <li>Sunlit ≥ {Math.round(d.constraints.minSunlit * 100)} % · longest night ≤ {d.constraints.maxNightH} h</li>
@@ -112,7 +112,7 @@ export default function Brief() {
             <h2>Assumptions and uncertainty</h2>
             <ul>
               <li>Generic {lander} lander (illustrative): {p.legs} legs, pad radius {p.padRadius} m, CG height {p.cgHeight} m, radius of gyration {p.gyration} m, minimum margin {p.minMargin}°, design lateral velocity {p.vDesign} m/s, slope uncertainty 2°.</li>
-              <li>Mast {d.heightUsed} m. Horizons from LOLA 240 m (screening resolution, confidence at most B); candidate masks 360 azimuths, 0.1° quantisation.</li>
+              <li>Mast {d.heightUsed} m. Horizons and slopes from {d.demLabel}; candidate masks 360 azimuths, 0.1° quantisation; confidence at most B (no 5 m DEM).</li>
               <li>Ground stations: DSN DSS-14, DSS-63, DSS-43 with 10° minimum elevation (assumption). Geometric visibility, not link closure.</li>
               <li>Illumination, not electrical power; no reflected light, thermal or dust effects. Screening estimates, not certification.</li>
               <li>Region centre from the curated point "{r?.anchor}" ({r?.status}).</li>

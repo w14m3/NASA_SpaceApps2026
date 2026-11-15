@@ -83,7 +83,7 @@ export async function resolveSite(ref: SiteRef, h: number, name?: string): Promi
     }
     if (c.lat <= DEM_LIMIT_LAT || c.mask) {
       const live = await rpc.liveMask({ lon: c.lon, lat: c.lat, h, nAz: 720 })
-      if (live) return { key, ref, name: c.name, lon: c.lon, lat: c.lat, z0: live.z0, h, mask: live.mask, terrain: 'live', grade: confidenceGrade(live.mask.nearShare ?? 1, 240), status: c.status, curated: c, voidFrac: live.voidFrac }
+      if (live) return { key, ref, name: c.name, lon: c.lon, lat: c.lat, z0: live.z0, h, mask: live.mask, terrain: 'live', grade: confidenceGrade(live.mask.nearShare ?? 1, live.mask.finestPx ?? 240), status: c.status, curated: c, voidFrac: live.voidFrac }
     }
     return { key, ref, name: c.name, lon: c.lon, lat: c.lat, z0: c.z0 ?? 0, h, mask: flatMask(sphereDip(h)), terrain: 'sphere', grade: '—', status: c.status, curated: c, note: 'noTerrain' }
   }
@@ -92,11 +92,11 @@ export async function resolveSite(ref: SiteRef, h: number, name?: string): Promi
     const c = await rpc.candidateInfo({ region: ref.region, i: ref.i })
     const live = await rpc.liveMask({ lon: c.lon, lat: c.lat, h, nAz: 720 })
     const label = name ?? `${r?.name ?? ref.region} · #${ref.i}`
-    if (live) return { key, ref, name: label, lon: c.lon, lat: c.lat, z0: live.z0, h, mask: live.mask, terrain: 'live', grade: confidenceGrade(live.mask.nearShare ?? 1, 240), status: 'candidate', voidFrac: live.voidFrac }
+    if (live) return { key, ref, name: label, lon: c.lon, lat: c.lat, z0: live.z0, h, mask: live.mask, terrain: 'live', grade: confidenceGrade(live.mask.nearShare ?? 1, live.mask.finestPx ?? 240), status: 'candidate', voidFrac: live.voidFrac }
     throw new Error('candidate outside DEM')
   }
   const live = ref.lat <= DEM_LIMIT_LAT ? await rpc.liveMask({ lon: ref.lon, lat: ref.lat, h, nAz: 720 }) : null
   const label = name ?? `${Math.abs(ref.lat).toFixed(3)}°${ref.lat < 0 ? 'S' : 'N'} ${Math.abs(ref.lon).toFixed(3)}°${ref.lon < 0 ? 'W' : 'E'}`
-  if (live) return { key, ref, name: label, lon: ref.lon, lat: ref.lat, z0: live.z0, h, mask: live.mask, terrain: 'live', grade: confidenceGrade(live.mask.nearShare ?? 1, 240), status: 'custom', voidFrac: live.voidFrac }
+  if (live) return { key, ref, name: label, lon: ref.lon, lat: ref.lat, z0: live.z0, h, mask: live.mask, terrain: 'live', grade: confidenceGrade(live.mask.nearShare ?? 1, live.mask.finestPx ?? 240), status: 'custom', voidFrac: live.voidFrac }
   return { key, ref, name: label, lon: ref.lon, lat: ref.lat, z0: 0, h, mask: flatMask(sphereDip(h)), terrain: 'sphere', grade: '—', status: 'custom', note: 'noTerrain' }
 }
