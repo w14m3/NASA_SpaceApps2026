@@ -6,10 +6,10 @@ import { fmtUtc, useT } from './i18n'
 import { setState, useStore } from './store'
 import { useAsync, useTop3, useWindow } from './hooks'
 import { useCurrentSite } from './current'
-import { rpc } from './workerClient'
+import { rpc, rpcLayers } from './workerClient'
 import type { ResolvedSite } from './data'
 
-const routeCache = new Map<string, ReturnType<typeof rpc.route>>()
+const routeCache = new Map<string, ReturnType<typeof rpcLayers.route>>()
 
 /** Destination of the route for the current site, or null. */
 export function useRouteTarget(): { lon: number; lat: number; label: string } | null {
@@ -46,7 +46,7 @@ export function useRoute() {
   const tKey = Math.round(t / (6 * 3_600_000))
   const key = site && target ? `${site.lon},${site.lat}->${target.lon},${target.lat}@${tKey}` : null
   const res = useAsync(key, () => {
-    if (!routeCache.has(key!)) routeCache.set(key!, rpc.route({ from: { lon: site!.lon, lat: site!.lat }, to: target!, sMax: TRAVERSE_DEFAULTS.sMax, sRef: TRAVERSE_DEFAULTS.sRef, t }))
+    if (!routeCache.has(key!)) routeCache.set(key!, rpcLayers.route({ from: { lon: site!.lon, lat: site!.lat }, to: target!, sMax: TRAVERSE_DEFAULTS.sMax, sRef: TRAVERSE_DEFAULTS.sRef, t }))
     return routeCache.get(key!)!
   })
   return { ...res, target }
@@ -65,7 +65,7 @@ export function Insights({ site }: { site: ResolvedSite }) {
 function WhoBlocks({ site }: { site: ResolvedSite }) {
   const { n } = useT()
   const { t0, t1 } = useWindow()
-  const res = useAsync(`wb|${site.key}|${t0}|${t1}`, () => rpc.whoBlocks({ site: { lon: site.lon, lat: site.lat, z0: site.z0, h: site.h }, mask: site.mask, t0, t1 }))
+  const res = useAsync(`wb|${site.key}|${t0}|${t1}`, () => rpcLayers.whoBlocks({ site: { lon: site.lon, lat: site.lat, z0: site.z0, h: site.h }, mask: site.mask, t0, t1 }))
   return (
     <div className="section" data-testid="who-blocks">
       <h2>Who blocks the Sun?</h2>
@@ -100,7 +100,7 @@ function Compass({ site }: { site: ResolvedSite }) {
   const landing = useStore((s) => s.landing)
   const dur = useStore((s) => s.durDays)
   const r = 500
-  const res = useAsync(site.terrain !== 'sphere' ? `cmp|${site.lon},${site.lat},${site.h}|${landing}|${dur}` : null, () => rpc.compass({ lon: site.lon, lat: site.lat, h: site.h, t0: landing, t1: landing + dur * DAY, r }))
+  const res = useAsync(site.terrain !== 'sphere' ? `cmp|${site.lon},${site.lat},${site.h}|${landing}|${dur}` : null, () => rpcLayers.compass({ lon: site.lon, lat: site.lat, h: site.h, t0: landing, t1: landing + dur * DAY, r }))
   if (site.terrain === 'sphere') return null
   const d = res.data
   const best = d ? d.neighbours.reduce((a, b) => (b.lit > a.lit ? b : a), d.neighbours[0]) : null

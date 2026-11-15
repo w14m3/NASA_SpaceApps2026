@@ -7,7 +7,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const P = (...a) => join(root, ...a)
 const J = (p) => JSON.parse(readFileSync(p, 'utf8'))
 const ORDER = ['O1', 'O2b', 'O2_240m', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V7b', 'V8', 'V9', 'V10', 'V11b', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'LIGHTHOUSE', 'DEPLOY']
-const recs = readdirSync(P('data', 'validation')).filter((f) => f.endsWith('.json')).map((f) => J(P('data', 'validation', f)))
+const recs = readdirSync(P('data', 'validation')).filter((f) => f.endsWith('.json')).map((f) => J(P('data', 'validation', f))).filter((r) => r.id && r.status)
 recs.sort((a, b) => ((ORDER.indexOf(a.id) + 1) || 99) - ((ORDER.indexOf(b.id) + 1) || 99))
 const esc = (s) => String(s ?? '').replaceAll('|', '\\|').replaceAll('\n', ' ')
 let md = `# Validation results (generated)\n\nGenerated ${new Date().toISOString()} by \`scripts/gen-docs.mjs\` from the records in \`data/validation/\`, which are written by the tests (\`web/src/core/*.test.ts\`, \`pipeline/tests/\`, \`web/scripts/validate-candidates.ts\`) and the pipeline. Statuses are never typed by hand. Contract §10 checks that cannot run in this build environment are listed at the end.\n\n| ID | Test | Criterion | Measured | Status | Recorded |\n|---|---|---|---|---|---|\n`

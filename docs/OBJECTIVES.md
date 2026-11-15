@@ -33,7 +33,7 @@ result yet; `todo` without evidence.
 | ID | Objective | Acceptance | Phase | Prio | Evidence | Status |
 |---|---|---|---|---|---|---|
 | P1 | Golden path ≤ 10 s, brief ≤ 60 s | e2e timing | L3 | 1 | e2e:golden path | met |
-| P2 | Moon Maps: search, layers panel, place card, measure, share | e2e | L2 | 1 | e2e:search finds; e2e:layers panel; e2e:place card; e2e:share link | failing |
+| P2 | Moon Maps: search, layers panel, place card, measure, share | e2e | L2 | 1 | e2e:search finds; e2e:layers panel; e2e:place card; e2e:share link | met |
 | P3 | ≥ 8 value-added layers with legends and probe | e2e + V7 | L4 | 2 | e2e:layers panel; val:V7 | met |
 | P4 | Top 3 + crew choice + Mission Brief | V17 + e2e | L3 | 1 | val:V17; e2e:golden path | met |
 | P5 | Landing safety: slope, roughness, tip-over, ellipse | V15, V16 + e2e | L3 | 1 | val:V15; val:V16; e2e:safety | met |
@@ -45,7 +45,7 @@ result yet; `todo` without evidence.
 | P11 | Mission replay (2023–2025 landings) | V18, V19 | L4 | 2 | val:V18; val:V19; e2e:mission replay | met |
 | P12 | Resource integrations of §4.3 implemented or justified | RESOURCES.md complete | L0 | 2 | doc:docs/RESOURCES.md | met |
 | P13 | Public URL on GitHub Pages | URL returns 200, golden path passes on it | L5 | 1 | val:DEPLOY | failing |
-| P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | failing |
+| P14 | Trust page, TRACEABILITY, product docs, demo script, pitch, submission | files present and current | L5 | 1 | e2e:trust page; doc:docs/TRACEABILITY.md; doc:docs/PRODUCT.md; doc:docs/DEMO_SCRIPT.md; doc:docs/PITCH.md; doc:docs/SUBMISSION.md | met |
 | P15 | Installable, offline-capable PWA | offline reload works in e2e | L5 | 2 | e2e:offline | met |
 | P16 | Science and Engineering constraint panels feeding Top 3 and Brief | e2e | L3 | 2 | e2e:constraints | met |
 | P17 | "Land it!" educational game (optional) | e2e | L4 | 3 | e2e:land it | met |

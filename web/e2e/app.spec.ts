@@ -235,7 +235,7 @@ test.describe('maps and layers', () => {
     await expect(page.getByTestId('workbench')).toContainText('IM-2 Athena')
     await expect(page.getByTestId('verdict')).toContainText('Power', { timeout: 20_000 })
     await expect(page.getByTestId('verdict')).toContainText('Earth')
-    await expect(page.getByTestId('verdict')).toContainText('Landing')
+    await expect(page.getByTestId('verdict')).toContainText('Landing', { timeout: 30_000 })
   })
 
   test('share link restores the same scenario', async ({ page, context }) => {

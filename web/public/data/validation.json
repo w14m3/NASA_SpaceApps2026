@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T11:59:05.746Z",
+ "generated_utc": "2026-11-15T12:01:59.492Z",
  "records": {
   "DEPLOY": {
    "id": "DEPLOY",
@@ -45,7 +45,7 @@
    },
    "summary": "max 2.7e-5 deg",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:28.175Z",
+   "generated_utc": "2026-11-15T11:59:46.899Z",
    "generator": "vitest (web/src/core)"
   },
   "O2": {
@@ -260,7 +260,7 @@
    },
    "summary": "max |Δ| at 10 m: 3.09°",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:46.653Z",
+   "generated_utc": "2026-11-15T12:00:08.365Z",
    "generator": "vitest (web/src/core)"
   },
   "O2b": {
@@ -291,7 +291,7 @@
    },
    "summary": "max 0.0000° (refinement adds up to 0.097°)",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:40.291Z",
+   "generated_utc": "2026-11-15T12:00:01.955Z",
    "generator": "vitest (web/src/core)"
   },
   "V1": {
@@ -304,7 +304,7 @@
    },
    "summary": "max 4.4e-10 m, 4.4e-13 px",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:26.934Z",
+   "generated_utc": "2026-11-15T11:59:45.676Z",
    "generator": "vitest (web/src/core)"
   },
   "V10": {
@@ -323,7 +323,7 @@
    },
    "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:27.753Z",
+   "generated_utc": "2026-11-15T11:59:46.456Z",
    "generator": "vitest (web/src/core)"
   },
   "V11": {
@@ -338,7 +338,7 @@
    },
    "summary": "elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240)",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:28.347Z",
+   "generated_utc": "2026-11-15T11:59:47.094Z",
    "generator": "vitest (web/src/core)"
   },
   "V11b": {
@@ -352,7 +352,7 @@
    },
    "summary": "max 0.0022°, RMS 0.0005° (n=720)",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:28.355Z",
+   "generated_utc": "2026-11-15T11:59:47.100Z",
    "generator": "vitest (web/src/core)"
   },
   "V14": {
@@ -379,7 +379,7 @@
    },
    "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:27.777Z",
+   "generated_utc": "2026-11-15T11:59:46.482Z",
    "generator": "vitest (web/src/core)"
   },
   "V16": {
@@ -394,7 +394,7 @@
    },
    "summary": "max 0.0e+0 m/s",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:27.778Z",
+   "generated_utc": "2026-11-15T11:59:46.483Z",
    "generator": "vitest (web/src/core)"
   },
   "V17": {
@@ -449,7 +449,7 @@
    },
    "summary": "connecting-ridge/balanced: 615 feasible, min sep 1061 m; connecting-ridge/crewSafety: 615 feasible, min sep 1061 m; malapert/balanced: 245 feasible, min sep 1030 m; malapert/crewSafety: 245 feasible, min sep 1030 m",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:31.826Z",
+   "generated_utc": "2026-11-15T11:59:52.310Z",
    "generator": "vitest (web/src/core)"
   },
   "V18": {
@@ -557,71 +557,6 @@
    "generated_utc": "2026-11-15T10:29:03.761Z",
    "generator": "vitest (web/src/core)"
   },
-  "V18_predictions": {
-   "chandrayaan3_vikram": {
-    "touchdown_utc_used": "2023-08-23T12:34:00Z",
-    "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
-    "z0_m": 529.7234449007652,
-    "sun_el_at_touchdown_deg": 8.614631290524173,
-    "sun_az_deg": 62.04254398047639,
-    "sun_visible_fraction_at_touchdown": 1,
-    "earth_el_at_touchdown_deg": 12.995105343717047,
-    "earth_visible_fraction_at_touchdown": 1,
-    "first_sunset_utc": "2023-09-04T07:22Z",
-    "days_of_sunlight_after_touchdown": 11.783938937717014,
-    "first_dark_interval": {
-     "start": "2023-09-04T07:22Z",
-     "end": "2023-09-19T22:54Z",
-     "hours": 375.5323893229167
-    },
-    "near_share": 0.08194444444444444,
-    "finest_px": 240,
-    "dte_hours_first_7_days": 156,
-    "earth_in_view_fraction_35d": 1
-   },
-   "im1_odysseus": {
-    "touchdown_utc_used": "2024-02-22T23:23:53Z",
-    "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
-    "z0_m": 2591.9477552566914,
-    "sun_el_at_touchdown_deg": 10.472821039976452,
-    "sun_az_deg": 18.603822052688162,
-    "sun_visible_fraction_at_touchdown": 1,
-    "earth_el_at_touchdown_deg": 15.432075598259816,
-    "earth_visible_fraction_at_touchdown": 1,
-    "first_sunset_utc": "2024-03-02T17:46Z",
-    "days_of_sunlight_after_touchdown": 8.76591322157118,
-    "first_dark_interval": {
-     "start": "2024-03-02T17:46Z",
-     "end": "2024-03-19T22:40Z",
-     "hours": 412.8987630208333
-    },
-    "near_share": 0.0625,
-    "finest_px": 80,
-    "dte_hours_first_7_days": 168,
-    "earth_in_view_fraction_35d": 1
-   },
-   "im2_athena": {
-    "touchdown_utc_used": "2025-03-06T17:30:00Z",
-    "terrain": "LOLA 80 m + LOLA 240 m (60°S)",
-    "z0_m": 5321.501553305143,
-    "sun_el_at_touchdown_deg": 2.465422508195838,
-    "sun_az_deg": 65.67046542024448,
-    "sun_visible_fraction_at_touchdown": 1,
-    "earth_el_at_touchdown_deg": 11.192631864070902,
-    "earth_visible_fraction_at_touchdown": 1,
-    "first_sunset_utc": "2025-03-19T22:43Z",
-    "days_of_sunlight_after_touchdown": 13.217987060546875,
-    "first_dark_interval": {
-     "start": "2025-03-19T22:43Z",
-     "end": "2025-04-04T19:14Z",
-     "hours": 380.5091145833333
-    },
-    "near_share": 0,
-    "finest_px": 80,
-    "dte_hours_first_7_days": 167,
-    "earth_in_view_fraction_35d": 0.8236543201264881
-   }
-  },
   "V19": {
    "id": "V19",
    "test": "Runtime ephemeris 2017-2031 vs SPICE: the 2017-2026 piece is fitted to SPICE DE440 (spkpos MOON_ME, LT+S) and checked against direct SPICE calls at 4000 random instants; the 2026-2031 piece is the v1 SPICE fit. Independent cross-check: DE421 rebuild vs SPICE",
@@ -694,7 +629,7 @@
    },
    "summary": "Sun max 1.5e-6 deg, Earth max 2.7e-5 deg (n=2012)",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:28.191Z",
+   "generated_utc": "2026-11-15T11:59:46.912Z",
    "generator": "vitest (web/src/core)"
   },
   "V20": {
@@ -708,7 +643,7 @@
    },
    "summary": "38 routes: max relative cost difference 0.0e+0, 0 forbidden cells",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:28.001Z",
+   "generated_utc": "2026-11-15T11:59:46.715Z",
    "generator": "vitest (web/src/core)"
   },
   "V3": {
@@ -722,7 +657,7 @@
    },
    "summary": "pipeline 10.703°, Horizons 10.703°, published (planned) 10.8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:47+00:00",
+   "generated_utc": "2026-11-15T12:00:08+00:00",
    "generator": "pytest"
   },
   "V4": {
@@ -736,7 +671,7 @@
    },
    "summary": "sphere 5.6e-9°, ring 9.3e-6°, cone 1.4e-8°",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:26.250Z",
+   "generated_utc": "2026-11-15T11:59:45.062Z",
    "generator": "vitest (web/src/core)"
   },
   "V5": {
@@ -751,7 +686,7 @@
    },
    "summary": "seam 7.0e-4° (max neighbour step 3.8e-2°), 720/720 rays flagged",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:26.782Z",
+   "generated_utc": "2026-11-15T11:59:45.541Z",
    "generator": "vitest (web/src/core)"
   },
   "V6": {
@@ -766,7 +701,7 @@
    },
    "summary": "connecting ridge 0.0102°; shackleton rim 004 0.0087°; IM-2 Athena 0.0005°; Malapert M1 0.0018°",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:34.583Z",
+   "generated_utc": "2026-11-15T11:59:55.840Z",
    "generator": "vitest (web/src/core)"
   },
   "V7": {
@@ -806,7 +741,7 @@
    },
    "summary": "max 0.50 s over 5 events",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:25.717Z",
+   "generated_utc": "2026-11-15T11:59:44.377Z",
    "generator": "vitest (web/src/core)"
   },
   "V9": {
@@ -818,7 +753,7 @@
    },
    "summary": "max 6.3e-5",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:56:25.327Z",
+   "generated_utc": "2026-11-15T11:59:44.047Z",
    "generator": "vitest (web/src/core)"
   }
  }

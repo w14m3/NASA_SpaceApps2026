@@ -27,7 +27,7 @@ export default function Trust() {
   const val = useAsync('val', () => fetch(BASE + 'data/validation.json').then((r) => r.json() as Promise<{ generated_utc: string; records: Record<string, Rec> }>))
   const obj = useAsync('obj', () => fetch(BASE + 'data/objectives.json').then((r) => r.json() as Promise<{ objectives: Obj[] }>))
   const man = useAsync('man', () => fetch(BASE + 'data/ephem/manifest.json').then((r) => r.json()))
-  const recs = val.data ? Object.values(val.data.records).sort((a, b) => (ORDER.indexOf(a.id) + 99 * +(ORDER.indexOf(a.id) < 0)) - (ORDER.indexOf(b.id) + 99 * +(ORDER.indexOf(b.id) < 0))) : []
+  const recs = val.data ? Object.values(val.data.records).filter((r) => r && r.id && r.status).sort((a, b) => (ORDER.indexOf(a.id) + 99 * +(ORDER.indexOf(a.id) < 0)) - (ORDER.indexOf(b.id) + 99 * +(ORDER.indexOf(b.id) < 0))) : []
   return (
     <div className="page" role="dialog" aria-modal="true" aria-labelledby="trust-title" data-testid="trust-page">
       <div className="inner">

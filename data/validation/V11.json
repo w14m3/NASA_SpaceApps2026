@@ -10,6 +10,6 @@
  },
  "summary": "elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240)",
  "status": "pass",
- "generated_utc": "2026-11-15T11:56:28.347Z",
+ "generated_utc": "2026-11-15T11:59:47.094Z",
  "generator": "vitest (web/src/core)"
 }

@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T11:59:05.744Z",
+ "generated_utc": "2026-11-15T12:01:59.489Z",
  "objectives": [
   {
    "id": "C1",
@@ -253,7 +253,7 @@
    "id": "P2",
    "objective": "Moon Maps: search, layers panel, place card, measure, share",
    "acceptance": "e2e",
-   "status": "failing",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:search finds",
@@ -265,7 +265,7 @@
     },
     {
      "ref": "e2e:place card",
-     "result": "fail"
+     "result": "pass"
     },
     {
      "ref": "e2e:share link",
@@ -453,11 +453,11 @@
    "id": "P14",
    "objective": "Trust page, TRACEABILITY, product docs, demo script, pitch, submission",
    "acceptance": "files present and current",
-   "status": "failing",
+   "status": "met",
    "evidence": [
     {
      "ref": "e2e:trust page",
-     "result": "fail"
+     "result": "pass"
     },
     {
      "ref": "doc:docs/TRACEABILITY.md",

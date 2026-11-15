@@ -139,7 +139,7 @@ writeFileSync(
 const recs = {}
 for (const f of readdirSync(P('data', 'validation')).filter((x) => x.endsWith('.json'))) {
   const r = readJson(P('data', 'validation', f))
-  if (r) recs[f.replace(/\.json$/, '')] = r
+  if (r && r.id && r.status) recs[f.replace(/\.json$/, '')] = r // helper files without id/status are not records
 }
 writeFileSync(P('web', 'public', 'data', 'validation.json'), JSON.stringify({ generated_utc: new Date().toISOString(), records: recs }, null, 1))
 const counts = summary.reduce((a, s) => ((a[s.status] = (a[s.status] ?? 0) + 1), a), {})
