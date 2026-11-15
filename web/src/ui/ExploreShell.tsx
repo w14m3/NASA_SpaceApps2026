@@ -94,9 +94,11 @@ export function ExploreShell() {
         </label>
       </div>
       <TimeBar />
-      <p className="ex-credit">
-        {exag > 1 ? `3D relief ×${exag} vertical exaggeration, for visibility · ` : '3D relief at true scale · '}
-        NASA Moon Trek: LRO WAC mosaic (NASA/GSFC/ASU), LOLA 30 m &amp; 10 m relief · terrain LOLA (GSFC PGDA) · {lit ? 'lit by the Sun at the time shown' : 'flat map lighting'}
+      <p
+        className="ex-credit"
+        title={`${exag > 1 ? `Vertical exaggeration ×${exag}, for visibility. ` : 'True-scale relief. '}Imagery: NASA Moon Trek — LRO WAC global mosaic (NASA/GSFC/Arizona State University) and LOLA 30 m / 10 m shaded relief. Terrain heights: LOLA (NASA GSFC PGDA). ${lit ? 'Lit by the true Sun at the time shown; shadows are rendered on the GPU from LOLA terrain (visual only: the numbers come from the validated horizon model).' : 'Flat map lighting.'}`}
+      >
+        {exag > 1 ? `Relief ×${exag} (exaggerated)` : 'Relief ×1'} · NASA Moon Trek: LRO WAC, LOLA relief · LOLA terrain · {lit ? 'true Sun, GPU shadows (visual)' : 'map lighting'}
       </p>
     </div>
   )

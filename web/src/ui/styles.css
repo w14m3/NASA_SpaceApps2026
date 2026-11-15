@@ -234,8 +234,8 @@ abbr[title], .def { text-decoration: underline dotted; cursor: help; }
 .timebar input[type='range'] { flex: 1; min-width: 80px; accent-color: var(--sun); }
 .tb-time { font-variant-numeric: tabular-nums; font-weight: 650; white-space: nowrap; }
 .tb-window { white-space: nowrap; }
-.ex-credit { position: absolute; left: 404px; bottom: 64px; z-index: 8; margin: 0; font-size: 11px; color: var(--muted); background: rgba(0, 0, 0, 0.55); padding: 3px 8px; border-radius: 6px; max-width: calc(100% - 420px); }
-.globe-hud { position: absolute; right: 12px; bottom: 90px; z-index: 8; font-size: 11.5px; color: var(--muted); background: rgba(0, 0, 0, 0.55); padding: 3px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.ex-credit { position: absolute; left: 404px; bottom: 64px; z-index: 8; margin: 0; font-size: 11px; color: var(--muted); background: rgba(0, 0, 0, 0.55); padding: 3px 8px; border-radius: 6px; max-width: calc(100% - 700px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.globe-hud { position: absolute; right: 12px; bottom: 64px; z-index: 8; font-size: 11.5px; color: var(--muted); background: rgba(0, 0, 0, 0.55); padding: 3px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
 .compass { position: absolute; right: 60px; top: 120px; z-index: 9; }
 .pins { position: absolute; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
 .pin { position: absolute; left: 0; top: 0; pointer-events: auto; cursor: pointer; white-space: nowrap; font-size: 11.5px; padding: 2px 7px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(8, 13, 24, 0.75); color: var(--text); margin: -10px 0 0 6px; }
@@ -259,3 +259,6 @@ abbr[title], .def { text-decoration: underline dotted; cursor: help; }
   .compass { top: 150px; }
   .ex-credit, .globe-hud { display: none; }
 }
+
+.globe-hover { position: absolute; right: 12px; bottom: 88px; z-index: 8; font-size: 12px; background: rgba(0, 0, 0, 0.65); padding: 3px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) { .globe-hover { display: none; } }

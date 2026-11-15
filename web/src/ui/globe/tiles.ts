@@ -88,18 +88,47 @@ export class MoonTiles {
     this.grids = grids
     // rebuild polar meshes with heights
     for (const t of this.cache.values()) if (t.kind === 'sp' && t.mesh) this.rebuildMesh(t)
+    this.buildCasters()
   }
 
   setExaggeration(k: number) {
     if (k === this.exaggeration) return
     this.exaggeration = k
     for (const t of this.cache.values()) if (t.kind === 'sp' && t.mesh) this.rebuildMesh(t)
+    if (this.grids) this.buildCasters()
   }
 
   setLit(lit: boolean) {
     if (lit === this.lit) return
     this.lit = lit
-    for (const t of this.cache.values()) if (t.mesh && t.tex) t.mesh.material = this.material(t)
+    for (const t of this.cache.values())
+      if (t.mesh && t.tex) {
+        t.mesh.material = this.material(t)
+        if (t.kind === 'sp') {
+          t.mesh.castShadow = lit
+          t.mesh.receiveShadow = lit
+        }
+      }
+    this.casters.visible = lit
+  }
+
+  /** Invisible coarse terrain over the whole polar cap that only casts shadows (ridges outside the view). */
+  readonly casters = new THREE.Group()
+  buildCasters() {
+    this.casters.clear()
+    const z = 5
+    const S = 256 * (SP_R0 / 2 ** z)
+    const mat = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false })
+    for (let r = Math.floor((SP_Y0 - CAP_HALF) / S); r <= Math.floor((SP_Y0 + CAP_HALF) / S); r++)
+      for (let c = Math.floor((-CAP_HALF - SP_X0) / S); c <= Math.floor((CAP_HALF - SP_X0) / S); c++) {
+        const t = this.makeSp(z, r, c)
+        const g = this.buildGeometry(t, 48, -0.25 * this.exaggeration)
+        const m = new THREE.Mesh(g, mat)
+        m.castShadow = true
+        m.receiveShadow = false
+        this.casters.add(m)
+      }
+    this.casters.visible = this.lit
   }
 
   private makeEq(z: number, r: number, c: number): Tile {
@@ -166,8 +195,8 @@ export class MoonTiles {
     return m
   }
 
-  private buildGeometry(t: Tile): THREE.BufferGeometry {
-    const n = t.kind === 'eq' ? Math.max(8, 48 >> t.z) : 32
+  private buildGeometry(t: Tile, segments?: number, offsetKm = 0): THREE.BufferGeometry {
+    const n = segments ?? (t.kind === 'eq' ? Math.max(8, 48 >> t.z) : 32)
     const pos = new Float32Array((n + 1) * (n + 1) * 3)
     const uv = new Float32Array((n + 1) * (n + 1) * 2)
     const v = new THREE.Vector3()
@@ -189,7 +218,7 @@ export class MoonTiles {
           const [lon, lat] = xyToLonLat(x, y)
           let h = this.grids ? heightXY(this.grids, x, y) : 0
           if (Number.isNaN(h)) h = 0
-          lonLatToWorld(lon, lat, R_MOON_KM + (h * this.exaggeration) / 1000 + 0.02, v)
+          lonLatToWorld(lon, lat, R_MOON_KM + (h * this.exaggeration) / 1000 + 0.02 + offsetKm, v)
         }
         pos[3 * k] = v.x
         pos[3 * k + 1] = v.y
@@ -250,6 +279,10 @@ export class MoonTiles {
         t.mesh = new THREE.Mesh(this.buildGeometry(t), this.material(t))
         t.mesh.renderOrder = t.kind === 'sp' ? 2 + t.z : t.z
         t.mesh.userData.tile = t.key
+        if (t.kind === 'sp') {
+          t.mesh.castShadow = this.lit
+          t.mesh.receiveShadow = this.lit
+        }
         t.state = 'ready'
         this.onChange()
         this.pump()

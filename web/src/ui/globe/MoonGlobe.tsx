@@ -54,9 +54,11 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
     grids: DemGrid[] | null
     markers: Marker[]
     labelEls: Map<string, HTMLButtonElement>
+    sunDir: THREE.Vector3
   }
   const st = useRef<GlobeState | null>(null)
   const [hud, setHud] = useState({ resM: 0, loading: 0, alt: 0, heading: 0, tilt: 0 })
+  const [hover, setHover] = useState('')
   const onPickRef = useRef(onPick)
   onPickRef.current = onPick
   const onReadyRef = useRef(onReady)
@@ -71,6 +73,8 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
     const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, logarithmicDepthBuffer: true })
     renderer.setPixelRatio(Math.min(2, window.devicePixelRatio))
     renderer.setSize(el.clientWidth, el.clientHeight)
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.domElement.tabIndex = 0
     renderer.domElement.setAttribute('aria-label', '3D Moon map. Drag to move, wheel to zoom, right-drag to rotate and tilt, click to analyse a spot. Keyboard: arrows move, plus and minus zoom, Q and E rotate, W and S tilt.')
     renderer.domElement.setAttribute('role', 'application')
@@ -99,10 +103,14 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
     const tiles = new MoonTiles()
     scene.add(tiles.group)
     const sun = new THREE.DirectionalLight(0xffffff, 2.6)
+    sun.shadow.mapSize.set(4096, 4096)
+    sun.shadow.bias = -0.0005
+    sun.shadow.normalBias = 0.02
     const ambient = new THREE.AmbientLight(0xffffff, 0.22)
-    scene.add(sun, ambient)
+    scene.add(sun, sun.target, ambient, tiles.casters)
+    const sunDir = new THREE.Vector3(1, 0, 0)
     const view: View = { lon: -137.3, lat: -89.45, alt: 5200, heading: 0, tilt: 0 }
-    const s: GlobeState = { renderer, scene, camera, tiles, sun, ambient, view, anim: null, dirty: true, grids: null, markers: [], labelEls: new Map<string, HTMLButtonElement>() }
+    const s: GlobeState = { renderer, scene, camera, tiles, sun, ambient, view, anim: null, dirty: true, grids: null, markers: [], labelEls: new Map<string, HTMLButtonElement>(), sunDir }
     st.current = s
     tiles.onChange = () => (s.dirty = true)
     loadTerrain().then((g) => {
@@ -149,8 +157,25 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
         drag = null
       } else drag = { x: e.clientX, y: e.clientY, moved: false, button: e.ctrlKey || e.shiftKey ? 2 : e.button, view: { ...s.view } }
     })
+    let hoverTimer = 0
     dom.addEventListener('pointermove', (e) => {
-      if (!pointers.has(e.pointerId)) return
+      if (!pointers.has(e.pointerId)) {
+        // hover readout (throttled): latitude, longitude, LOLA elevation under the cursor
+        const now = performance.now()
+        if (now - hoverTimer < 90) return
+        hoverTimer = now
+        const p = pickAt(e.clientX, e.clientY)
+        if (!p) return setHover('')
+        const ll = worldToLonLat(p)
+        let h = ''
+        if (s.grids && ll.lat < -79.5) {
+          const [x, y] = lonLatToXY(ll.lon, ll.lat)
+          const z = heightXY(s.grids, x, y)
+          if (!Number.isNaN(z)) h = ` · ${Math.round(z).toLocaleString('en-GB')} m`
+        }
+        setHover(`${Math.abs(ll.lat).toFixed(3)}°${ll.lat < 0 ? 'S' : 'N'} ${Math.abs(ll.lon).toFixed(3)}°${ll.lon < 0 ? 'W' : 'E'}${h}`)
+        return
+      }
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
       if (pinch && pointers.size === 2) {
         const [a, b] = [...pointers.values()]
@@ -265,8 +290,25 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
       }
       if (s.dirty) {
         s.dirty = false
-        applyView(camera, s.view, groundKm(s.view))
+        const fr = applyView(camera, s.view, groundKm(s.view))
         tiles.update(camera, el.clientHeight)
+        // shadow camera follows the view: an orthographic box around the look-at point, oriented to the true Sun
+        const shadows = tiles.lit && s.view.alt < 1500
+        sun.castShadow = shadows
+        if (shadows) {
+          const ext = Math.max(15, Math.min(450, s.view.alt * 1.6))
+          sun.target.position.copy(fr.P)
+          sun.position.copy(fr.P).add(s.sunDir.clone().multiplyScalar(700))
+          const sc = sun.shadow.camera
+          sc.left = -ext
+          sc.right = ext
+          sc.top = ext
+          sc.bottom = -ext
+          sc.near = 1
+          sc.far = 1400
+          sc.updateProjectionMatrix()
+          sun.target.updateMatrixWorld()
+        } else sun.position.copy(s.sunDir).multiplyScalar(10000)
         renderer.render(scene, camera)
         // labels
         const box = el.getBoundingClientRect()
@@ -361,7 +403,7 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
     if (!s) return
     if (eph && eph.covers(t)) {
       const p = eph.position('SUN', t)
-      s.sun.position.copy(meToWorld(p[0], p[1], p[2]).normalize().multiplyScalar(10000))
+      s.sunDir.copy(meToWorld(p[0], p[1], p[2]).normalize())
     }
     s.tiles.setLit(lit)
     s.ambient.intensity = lit ? 0.06 : 0.22
@@ -392,6 +434,11 @@ export default function MoonGlobe({ eph, t, markers, focus, lit, exaggeration, o
         {hud.alt >= 1 ? `${Math.round(hud.alt).toLocaleString('en-GB')} km` : `${Math.round(hud.alt * 1000)} m`} above the surface · detail {res >= 1000 ? `${(res / 1000).toFixed(1)} km` : `${Math.round(res)} m`}/px
         {hud.loading > 0 ? ` · loading ${hud.loading} tiles` : ''}
       </div>
+      {hover && (
+        <div className="globe-hover" data-testid="globe-hover">
+          {hover}
+        </div>
+      )}
       <Compass heading={hud.heading} tilt={hud.tilt} />
     </>
   )
