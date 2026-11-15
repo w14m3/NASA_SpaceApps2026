@@ -61,6 +61,7 @@ export function ExploreShell() {
         </button>
       </header>
       <PlaceCard />
+      <MapHint />
       <div className="map-controls" role="toolbar" aria-label="Map controls">
         <button className="mc" onClick={() => globe.current?.zoom(1 / 2)} aria-label="Zoom in" data-testid="zoom-in">
           +
@@ -274,6 +275,38 @@ function TimeBar() {
       <span className="hint tb-window">
         {fr ? 'fenêtre' : 'window'} {new Date(t0).toISOString().slice(0, 10)} + {dur} {fr ? 'j' : 'd'} · {Math.round((tNow - t0) / HOUR)} h
       </span>
+    </div>
+  )
+}
+
+function MapHint() {
+  const { lang } = useT()
+  const [show, setShow] = useState(() => {
+    try {
+      return localStorage.getItem('sightline.hint') !== 'off'
+    } catch {
+      return true
+    }
+  })
+  if (!show) return null
+  const fr = lang === 'fr'
+  return (
+    <div className="map-hint" role="note">
+      {fr ? 'Glisser : déplacer · Molette : zoomer · Clic droit + glisser : tourner et incliner · Clic : analyser un point' : 'Drag to move · Scroll to zoom · Right-drag to rotate and tilt · Click to analyse a spot'}
+      <button
+        className="btn ghost small"
+        onClick={() => {
+          setShow(false)
+          try {
+            localStorage.setItem('sightline.hint', 'off')
+          } catch {
+            /* storage unavailable: the hint simply returns next visit */
+          }
+        }}
+        aria-label={fr ? 'Masquer l’aide' : 'Hide the hint'}
+      >
+        ✕
+      </button>
     </div>
   )
 }

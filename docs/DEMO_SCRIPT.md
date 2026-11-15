@@ -4,7 +4,8 @@ Record at 1440 × 900 on the public URL. Each shot is mapped to a judging criter
 
 | Time | Shot | Say | Criterion |
 |---|---|---|---|
-| 0:00–0:10 | App opens; Top 3 cards appear with pins A, B, C | "Pick a region and a date — Sightline already ranked 3,721 spots and proposes three for the crew." | Impact |
+| 0:00–0:10 | App opens on the 3D Moon over Shackleton; the card answers land / power / Earth; pins A, B, C on the terrain | "Pick a region and a date — Sightline already ranked 3,721 spots and proposes three for the crew." | Impact |
+| 0:10–0:20 | Click "Whole Moon", then "South pole": the camera flies in; scroll to zoom to 33 m/px; right-drag to tilt; switch "Real Sun" and press ▶ | "Explore it like a map — the imagery sharpens as you zoom, and these shadows are the real Sun's at this date." | Presentation |
 | 0:10–0:25 | Solar elevation card (+x.xx°), sky plot with terrain and Sun skimming | "At the pole the Sun never climbs more than a degree or two. Terrain decides." | Relevance |
 | 0:25–0:40 | Click Option A → workbench verdict, countdowns with ± | "Can it land, make power, talk to Earth? With uncertainty from the laser-altimetry error." | Validity |
 | 0:40–0:55 | Slip +1 d / +1 lunar day; Top 3 re-ranks; timeline tracks | "Launch slipped? One click re-evaluates every candidate." | Impact |

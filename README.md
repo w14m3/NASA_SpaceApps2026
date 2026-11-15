@@ -16,6 +16,11 @@ Settings → Pages → Source: GitHub Actions; CI already builds and uploads the
 
 ## What it does
 
+- **Explore (default)** — a full-screen 3D Moon you move like a map: drag, scroll or pinch to zoom toward the cursor,
+  right-drag to rotate and tilt. NASA Moon Trek imagery sharpens as you zoom (LRO WAC worldwide; at the south pole
+  LOLA shaded relief down to 33 m per pixel on real 3D LOLA terrain), with flat "Map" lighting or the true Sun and
+  its shadows. One card answers *Can it land? Can it make power? Can it talk to Earth?* in plain words and lists the
+  best three spots; click anywhere to analyse that spot. **Plan** mode keeps the full expert workbench below.
 - **Answer first** — opens on a computed scenario with the Top 3 already ranked out of 3,721 candidates per region:
   "Safest", "Most sunlight", "Best Earth link", "Best balance", each with three reasons, the main risk, a confidence
   grade and the best landing date in the window. "Choose this site" produces a printable **Mission Brief**.
