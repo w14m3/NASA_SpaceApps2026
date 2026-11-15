@@ -30,7 +30,7 @@ Settings → Pages → Source: GitHub Actions; CI already builds and uploads the
   real-time shadows; **Moon Street View** with the Sun and Earth at true angular size.
 - **Power** — layouts and mast heights, optimiser and headline versus a fair baseline (best fixed vertical panel at
   2 m), storage and a battery survival timeline. Illumination is kept separate from electrical power.
-- **Earth link** — DSN Goldstone, Madrid, Canberra (+ a user station), direct-to-Earth windows and countdowns, pointing
+- **Earth link** — DSN Goldstone, Madrid, Canberra (+ your own station, form in Plan mode), adjustable minimum elevation, direct-to-Earth windows and countdowns, an optional link budget from your own hardware values, pointing
   envelope, path loss per band, solar-interference flag. Geometric feasibility, not link closure.
 - **Safety** — plane-fit slope at a stated baseline, roughness, tip-over margin and critical sideways speed, seeded
   landing-ellipse Monte Carlo. Screening estimates with generic, illustrative lander presets.

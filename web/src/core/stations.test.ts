@@ -1,7 +1,21 @@
 import { describe, expect, it } from 'vitest'
 import { DSN, moonFromStation, stationFrame } from './stations'
+import { fsplDb, linkMarginDb } from './link'
 import { readJson, testEphemeris } from './testdata'
 import { record } from './record'
+
+describe('link geometry', () => {
+  it('free-space path loss and link margin follow their closed forms', () => {
+    // FSPL = 20 log10(4π d f / c): 384,400 km at 8.4 GHz
+    const d = 384_400e3
+    const f = 8.4e9
+    expect(fsplDb(384_400, 8.4)).toBeCloseTo(20 * Math.log10((4 * Math.PI * d * f) / 299_792_458), 9)
+    // margin: 10 W (10 dBW) + 20 dBi − FSPL + 74 dBi − (−228.6 + 10·log10 20 K) − 10·log10(1e5) − 2 dB
+    const m = linkMarginDb({ txPowerW: 10, txGainDbi: 20, rxGainDbi: 74, rangeKm: 384_400, ghz: 8.4, systemTempK: 20, dataRateBps: 1e5, requiredEbN0Db: 2, lossesDb: 0 })
+    const exp = 10 + 20 - fsplDb(384_400, 8.4) + 74 - (-228.6 + 10 * Math.log10(20)) - 50 - 2
+    expect(m).toBeCloseTo(exp, 9)
+  })
+})
 
 describe('ground stations', () => {
   it('V11 Moon elevation at DSN sites (runtime chain) vs JPL Horizons, 240 instants <= 0.05 deg', async () => {

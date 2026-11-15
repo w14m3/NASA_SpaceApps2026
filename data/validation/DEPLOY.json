@@ -9,6 +9,6 @@
  },
  "summary": "HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions)",
  "status": "fail",
- "generated_utc": "2026-11-15T10:12:51.763Z",
+ "generated_utc": "2026-11-15T11:55:04.148Z",
  "generator": "scripts/check-deploy.mjs"
 }

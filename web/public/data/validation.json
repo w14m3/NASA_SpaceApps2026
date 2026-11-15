@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-15T11:54:58.851Z",
+ "generated_utc": "2026-11-15T11:56:10.110Z",
  "records": {
   "DEPLOY": {
    "id": "DEPLOY",
@@ -12,7 +12,7 @@
    },
    "summary": "HTTP 404 — GitHub Pages not live (enable Settings → Pages → Source: GitHub Actions)",
    "status": "fail",
-   "generated_utc": "2026-11-15T10:12:51.763Z",
+   "generated_utc": "2026-11-15T11:55:04.148Z",
    "generator": "scripts/check-deploy.mjs"
   },
   "LIGHTHOUSE": {
@@ -338,7 +338,7 @@
    },
    "summary": "elevation max 0.0005°, RMS 0.0002°; azimuth·cos(el) max 0.0004° (n=240)",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:45:28.709Z",
+   "generated_utc": "2026-11-15T11:55:53.847Z",
    "generator": "vitest (web/src/core)"
   },
   "V11b": {
@@ -352,7 +352,7 @@
    },
    "summary": "max 0.0022°, RMS 0.0005° (n=720)",
    "status": "pass",
-   "generated_utc": "2026-11-15T11:45:28.718Z",
+   "generated_utc": "2026-11-15T11:55:53.854Z",
    "generator": "vitest (web/src/core)"
   },
   "V14": {

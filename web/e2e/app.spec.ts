@@ -265,6 +265,19 @@ test.describe('workbench panels', () => {
     await expect(page.getByTestId('connectivity')).toContainText('interference')
   })
 
+  test('connectivity: custom ground station and user link budget', async ({ page }) => {
+    await open(page)
+    await expect(page.getByTestId('connectivity')).toContainText('Path loss', { timeout: 20_000 })
+    await page.getByTestId('station-form').locator('summary').click()
+    await page.getByTestId('gs-lat').fill('48.85')
+    await page.getByTestId('gs-lon').fill('2.35')
+    await page.getByTestId('gs-add').click()
+    await expect(page.getByTestId('station-form')).toContainText('+ your station')
+    await page.getByTestId('link-budget').locator('summary').click()
+    for (const [k, v] of [['tx', '10'], ['gt', '20'], ['gr', '74'], ['ts', '20'], ['rb', '100000'], ['req', '2']]) await page.getByTestId(`lb-${k}`).fill(v)
+    await expect(page.getByTestId('lb-result')).toContainText('dB at the longest range', { timeout: 20_000 })
+  })
+
   test('safety panel: slope, tip-over sentence, gauge and ellipse', async ({ page }) => {
     await open(page)
     await expect(page.getByTestId('safety')).toContainText('tips over if it touches down faster than', { timeout: 30_000 })

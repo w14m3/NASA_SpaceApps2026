@@ -12,6 +12,7 @@ import { useCurrentSite, useInstant } from './current'
 import { rpc } from './workerClient'
 import type { ResolvedSite } from './data'
 import { Insights } from './Insights'
+import { LinkBudget, StationForm } from './LinkForms'
 
 export function useSafety() {
   const { site } = useCurrentSite()
@@ -365,7 +366,9 @@ function ConnectivityPanel({ a }: { a: SiteAnalysis }) {
       <p>
         <Def k="sep">Solar interference</Def>: {a.link.interferenceHours} h flagged · min Sun–Earth separation {n(a.link.minSepDeg, 1)}°
       </p>
-      <p className="hint">Stations: DSN Goldstone DSS-14, Madrid DSS-63, Canberra DSS-43 (NAIF/DSN 810-005), min elevation 10° (assumption). {t('wb.visNotLink')}</p>
+      <StationForm />
+      <LinkBudget a={a} />
+      <p className="hint">Stations: DSN Goldstone DSS-14, Madrid DSS-63, Canberra DSS-43 (NAIF/DSN 810-005). {t('wb.visNotLink')}</p>
     </div>
   )
 }
