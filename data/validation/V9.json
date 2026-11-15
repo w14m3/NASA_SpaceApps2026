@@ -1,0 +1,12 @@
+{
+ "id": "V9",
+ "test": "Visible fraction of the solar disk above a straight horizon (production quadrature, 200 strips) vs the analytic circle segment, 9 offsets",
+ "criterion": "<= 1e-4",
+ "measured": {
+  "max_abs": 0.00006308265197524365
+ },
+ "summary": "max 6.3e-5",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:34.947Z",
+ "generator": "vitest (web/src/core)"
+}

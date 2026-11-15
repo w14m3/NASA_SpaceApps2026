@@ -1,0 +1,19 @@
+{
+ "id": "V10",
+ "test": "Energy: (a) event-aware trapezoid vs closed form (clipped sinusoid, 30 d); (b) on real terrain (Connecting Ridge site 001, 10 m, 80 m-based mask, 365 days) vs a 1-minute reference, three layouts",
+ "criterion": "<= 0.1 %",
+ "measured": {
+  "closed_form_rel": 0.0000015865495640370947,
+  "terrain_rel": {
+   "track": 8.745407505149508e-11,
+   "vertical": 3.55966662815362e-8,
+   "flat": 3.5032055576749128e-9
+  },
+  "adaptive_samples": 87148,
+  "reference_samples": 525601
+ },
+ "summary": "closed form 1.6e-4 %, terrain max 3.6e-6 % with 87148 vs 525601 samples",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:37.144Z",
+ "generator": "vitest (web/src/core)"
+}

@@ -1,0 +1,14 @@
+{
+ "id": "V3",
+ "test": "Apollo 11 touchdown 1969-07-20 20:17:40 UTC: Sun elevation from the DE421 pipeline vs the cached JPL Horizons response (DE441) and the planned value in NASA SP-4029 'Apollo by the Numbers' (10.8\u00b0, a planning value for the launch window, not a measurement at touchdown)",
+ "criterion": "<= 0.2 deg vs Horizons and vs the published value",
+ "measured": {
+  "pipeline_deg": 10.703309422535561,
+  "horizons_deg": 10.703314286,
+  "published_deg": 10.8
+ },
+ "summary": "pipeline 10.703\u00b0, Horizons 10.703\u00b0, published (planned) 10.8\u00b0",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:20+00:00",
+ "generator": "pytest"
+}

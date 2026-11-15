@@ -17,7 +17,7 @@ result yet; `todo` without evidence.
 | C2 | Side-by-side comparison of 2–4 sites | overlaid sky plots, deltas, bars | L2 | 1 | e2e:compare | todo |
 | C3 | Dates and times across lunar days and seasons | picker, scrub, play, slip, year view | L2 | 1 | e2e:time controls | todo |
 | C4 | Sun and Earth relative to the horizon | sky plot + 3D directions + Street View | L2 | 1 | e2e:sky plot; e2e:street view | todo |
-| C5 | Time remaining before sunset and Earthset | countdown cards with ±; V8 | L2 | 1 | e2e:countdowns; val:V8 | todo |
+| C5 | Time remaining before sunset and Earthset | countdown cards with ±; V8 | L2 | 1 | e2e:countdowns; val:V8 | in progress |
 | C6 | Solar elevation prominent; sunlight duration; Earth windows | floating card + metrics | L2 | 1 | e2e:solar elevation card | todo |
 | C7 | Multiple visualisations | Globe, South pole, Site 3D, Street View, timeline | L4 | 2 | e2e:views | todo |
 | C8 | Temporal dynamics | animated lighting + timeline over a lunar day | L2 | 1 | e2e:time controls; e2e:play | todo |
@@ -25,7 +25,7 @@ result yet; `todo` without evidence.
 | C10 | Real terrain horizon, no atmosphere | V4–V7 pass, method page | L1 | 1 | val:V4; val:V5; val:V6; doc:docs/METHODS.md | in progress |
 | C11 | Libration and orbital variations shown | libration loop on sky plot; method page | L2 | 2 | e2e:libration loop; vt:libration | todo |
 | C12 | Why small changes have large impacts | Who-blocks-the-Sun, compass, porkchop | L4 | 2 | vt:who blocks; e2e:compass | todo |
-| C13 | Thermal conditions for equipment (proxy) | §7.14 in Workbench, Top 3 cards, Brief; unit tests | L3 | 2 | vt:thermal; e2e:thermal | todo |
+| C13 | Thermal conditions for equipment (proxy) | §7.14 in Workbench, Top 3 cards, Brief; unit tests | L3 | 2 | vt:thermal; e2e:thermal | in progress |
 | C14 | Site-date scenario comparison and seasons | 2–4 scenarios incl. same site/different dates; season view | L3 | 2 | e2e:scenario compare; e2e:season | todo |
 
 ## Product and innovation objectives
@@ -36,8 +36,8 @@ result yet; `todo` without evidence.
 | P2 | Moon Maps: search, layers panel, place card, measure, share | e2e | L2 | 1 | e2e:search; e2e:layers panel; e2e:place card; e2e:share link | todo |
 | P3 | ≥ 8 value-added layers with legends and probe | e2e + V7 | L4 | 2 | e2e:layers panel; val:V7 | todo |
 | P4 | Top 3 + crew choice + Mission Brief | V17 + e2e | L3 | 1 | val:V17; e2e:golden path | todo |
-| P5 | Landing safety: slope, roughness, tip-over, ellipse | V15, V16 + e2e | L3 | 1 | val:V15; val:V16; e2e:safety | todo |
-| P6 | Solar-efficiency optimizers + headline + survival timeline | V10 + e2e | L3 | 1 | val:V10; e2e:energy | todo |
+| P5 | Landing safety: slope, roughness, tip-over, ellipse | V15, V16 + e2e | L3 | 1 | val:V15; val:V16; e2e:safety | in progress |
+| P6 | Solar-efficiency optimizers + headline + survival timeline | V10 + e2e | L3 | 1 | val:V10; e2e:energy | in progress |
 | P7 | Earth connectivity: DSN + custom stations, DTE, pointing, FSPL, interference | V11 + e2e | L3 | 1 | val:V11; e2e:connectivity | todo |
 | P8 | Moon Street View | e2e | L4 | 2 | e2e:street view | todo |
 | P9 | Moon Directions | V20 + e2e | L4 | 3 | val:V20; e2e:directions | todo |
@@ -57,24 +57,25 @@ result yet; `todo` without evidence.
 | O1 | Browser ephemeris vs v1 SPICE az/el fixture (300 rows × 2 bodies) | ≤ 0.001° | L1 | 1 | vt:O1 | met |
 | O2 | New horizon masks vs v1 masks, curated south-pole sites (2 m, 10 m) | ≤ 0.05° (report max, explain) | L1 | 1 | blocked:LOLA 80 m product unreachable (D7); fallback O2b + report val O2_240m | blocked |
 | O2b | New horizon cascade vs v1 algorithm on the same 240 m DEM | ≤ 0.05° | L1 | 1 | vt:O2b | met |
-| V1 | Round trip lat/lon ↔ Cartesian ↔ DEM pixel ↔ map pixel | ≤ 1 m and ≤ 0.5 px | L1 | 1 | vt:V1; py:test_v1 | in progress |
+| V1 | Round trip lat/lon ↔ Cartesian ↔ DEM pixel ↔ map pixel | ≤ 1 m and ≤ 0.5 px | L1 | 1 | vt:V1; val:V1 | met |
 | V2 | Ephemeris vs Horizons az/el (cached responses) | ≤ 0.005° | L1 | 1 | val:V2 | met |
-| V3 | Apollo 11 touchdown Sun elevation vs Horizons and a published source | ≤ 0.2° | L1 | 2 | val:V3 | todo |
+| V3 | Apollo 11 touchdown Sun elevation vs Horizons and a published source | ≤ 0.2° | L1 | 2 | py:test_v3_apollo11; val:V3 | in progress |
 | V4 | Synthetic terrain: sphere dip; Gaussian ring; cone | ≤ 1e-4° | L1 | 1 | vt:V4; val:V4 | met |
 | V5 | Azimuth wrap and edge-of-DEM cases | no seam; voids flagged | L1 | 1 | vt:V5; val:V5 | met |
-| V6 | Convergence: halve Δα and step, double s_max | ≤ 0.02° | L1 | 1 | val:V6 | met |
+| V6 | Convergence: halve Δα and step, double s_max | ≤ 0.02° | L1 | 1 | vt:V6; val:V6 | met |
 | V7 | Candidate-grid masks vs naive march at the same azimuths | ≤ 0.01° | L3 | 2 | val:V7 | todo |
 | V7b | 360-azimuth sampling vs 1440-azimuth masks (sunlit time) | ≤ 2 percentage points | L3 | 2 | val:V7b | todo |
-| V8 | Event times vs brute-force 1 s scan | ≤ 5 s | L1 | 1 | vt:V8; val:V8 | todo |
-| V9 | Sun-disk occlusion vs analytic circle segment | ≤ 1e-4 | L1 | 1 | vt:V9; val:V9 | todo |
-| V10 | Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d | ≤ 0.1 % | L1 | 1 | vt:V10; val:V10 | todo |
-| V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | val:V11 | todo |
+| V8 | Event times vs brute-force 1 s scan | ≤ 5 s | L1 | 1 | vt:V8; val:V8 | met |
+| V9 | Sun-disk occlusion vs analytic circle segment | ≤ 1e-4 | L1 | 1 | vt:V9; val:V9 | met |
+| V10 | Energy integrator vs closed form and vs 1-minute reference on real terrain, 365 d | ≤ 0.1 % | L1 | 1 | vt:V10; val:V10 | met |
+| V11 | Moon elevation at DSN sites vs Horizons, ≥ 200 instants | ≤ 0.05° | L1 | 1 | blocked:JPL Horizons unreachable from the build environment (D2); substitute V11b | blocked |
+| V11b | Moon elevation at DSN sites vs an independent astropy/ERFA chain (substitute for V11) | ≤ 0.05° | L1 | 1 | vt:V11b; val:V11b | met |
 | V12 | Hero sites vs QuickMap (documented screenshots) | qualitative | L5 | 3 | val:V12 | todo |
 | V13 | Front end: e2e golden path; axe critical = 0; Lighthouse; mobile | pass | L5 | 1 | e2e:golden path; e2e:axe; e2e:mobile | todo |
 | V14 | Clean clone → one command rebuilds artifacts with identical hashes | pass or documented | L5 | 3 | val:V14 | todo |
-| V15 | Plane fit on synthetic tilted planes and a cone | slope ≤ 0.01°, azimuth ≤ 0.1° | L3 | 1 | vt:V15; val:V15 | todo |
-| V16 | Tip-over analytic cases | exact to 1e-9 | L3 | 1 | vt:V16; val:V16 | todo |
+| V15 | Plane fit on synthetic tilted planes and a cone | slope ≤ 0.01°, azimuth ≤ 0.1° | L3 | 1 | vt:V15; val:V15 | met |
+| V16 | Tip-over analytic cases | exact to 1e-9 | L3 | 1 | vt:V16; val:V16 | met |
 | V17 | Top 3: determinism, constraints, diversity | pass | L3 | 1 | vt:V17; val:V17 | todo |
 | V18 | Mission replay vs published accounts (cited) | documented | L4 | 2 | val:V18 | todo |
-| V19 | Ephemeris 2017–2031 vs SPICE | ≤ 0.001° | L1 | 1 | val:V19 | met |
+| V19 | Ephemeris 2017–2031 vs SPICE | ≤ 0.001° | L1 | 1 | py:test_pa_to_me_convention; val:V19 | in progress |
 | V20 | Moon Directions: A* vs Dijkstra; no forbidden cell | exact cost match | L4 | 3 | vt:V20; val:V20 | todo |

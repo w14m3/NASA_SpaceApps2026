@@ -1,0 +1,13 @@
+{
+ "id": "V8",
+ "test": "Rise/set times from the 10-min scan + bisection vs a brute-force 1 s scan (Malapert M1, 10 m, 80 m-based mask, 5 events in 12 days)",
+ "criterion": "<= 5 s",
+ "measured": {
+  "events": 5,
+  "max_s": 0.5
+ },
+ "summary": "max 0.50 s over 5 events",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:35.212Z",
+ "generator": "vitest (web/src/core)"
+}

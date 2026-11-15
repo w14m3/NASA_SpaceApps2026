@@ -1,0 +1,14 @@
+{
+ "id": "V11b",
+ "test": "Moon topocentric elevation at DSS-14, DSS-43, DSS-63 (runtime chain: DE421 Moon in CIRS + ERA(UT1), no polar motion) vs astropy (built-in ERFA Moon theory, full IERS-A chain), 720 rows 2026–2030. Substitute for V11 while JPL Horizons is unreachable",
+ "criterion": "<= 0.05 deg",
+ "measured": {
+  "max_deg": 0.002155278232119251,
+  "rms_deg": 0.0005147441200177617,
+  "n": 720
+ },
+ "summary": "max 0.0022°, RMS 0.0005° (n=720)",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:35.110Z",
+ "generator": "vitest (web/src/core)"
+}

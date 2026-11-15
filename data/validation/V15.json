@@ -1,0 +1,14 @@
+{
+ "id": "V15",
+ "test": "Least-squares plane fit through bilinear DEM samples: 4 synthetic tilted planes (5–20°, 4 directions, scale factor and meridian convergence applied) and a 10° cone 1 km from its apex",
+ "criterion": "slope <= 0.01°, azimuth <= 0.1°",
+ "measured": {
+  "plane_slope_max_deg": 6.794529561204854e-8,
+  "plane_azimuth_max_deg": 2.1460800780914724e-7,
+  "cone_slope_deg": 0.003212219749944012
+ },
+ "summary": "slope 6.8e-8°, azimuth 2.1e-7°, cone 3.2e-3°",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:37.168Z",
+ "generator": "vitest (web/src/core)"
+}

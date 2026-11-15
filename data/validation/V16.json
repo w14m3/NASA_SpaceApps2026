@@ -1,0 +1,15 @@
+{
+ "id": "V16",
+ "test": "Tip-over screening model: M = 0 → v_crit = 0; flat-ground closed form; symmetry of σ vs δσ; length scaling v ∝ √s",
+ "criterion": "exact to 1e-9",
+ "measured": {
+  "m0": 0,
+  "flat": 0,
+  "symmetry": 0,
+  "scaling": 0
+ },
+ "summary": "max 0.0e+0 m/s",
+ "status": "pass",
+ "generated_utc": "2026-11-15T01:09:37.169Z",
+ "generator": "vitest (web/src/core)"
+}
